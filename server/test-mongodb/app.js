@@ -9,7 +9,13 @@ module.exports = function(app)
     app.delete("/api/test/:id", deleteMessage);
 
 
-  var connectionString = 'mongodb://webappmaker:webappmaker@ds163181.mlab.com:63181/webappmaker';
+  var connectionString = 'mongodb://127.0.0.1:27017/test'; // for local
+  if(process.env.MLAB_WEBDEV_USERNAME) { // check if running remotely
+    var username = process.env.MLAB_WEBDEV_USERNAME; // get from environment
+    var password = process.env.MLAB_WEBDEV_PASSWORD;
+    connectionString = 'mongodb://' + username + ':' + password;
+    connectionString += '@ds133104.mlab.com:33104/heroku_9t4lvlcb'; // use yours
+  }
 
   var mongoose = require("mongoose");
     mongoose.connect(connectionString);
