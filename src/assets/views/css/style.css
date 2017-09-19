@@ -1,0 +1,21 @@
+body {
+  padding-top:65px;
+}
+
+.website-content {
+  font-size:125%
+}
+
+.row_style {
+  display: -webkit-flex; /* Safari */
+  -webkit-justify-content: space-around; /* Safari 6.1+ */
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5%;
+  padding-left:2%;
+  padding-right:2%;
+}
+
+.title_font_size {
+  font-size:150%;
+}
