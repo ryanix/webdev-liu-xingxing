@@ -1,10 +1,25 @@
 html,body {
   height: 100%;
+}
+
+body {
   overflow: hidden;
+}
+
+.dev-scroll {
+  overflow: scroll;
+}
+
+.dev-widget:last-of-type {
+  margin-bottom: 60px;
 }
 
 .full-height {
   height: 100%;
+}
+
+.full-width {
+  width: 100%;
 }
 
 .dev-navbar-background-color {
@@ -13,6 +28,10 @@ html,body {
 
 .dev-navbar-text-color {
   color: white;
+}
+
+.dev-content-side {
+  margin-top: 5px;
 }
 
 .dev-list-no-border {
@@ -28,7 +47,7 @@ html,body {
   bottom:0;
   right:0;
   left:0;
-  padding-right:5%;
+  padding-right:15px;
 }
 
 .list-group-item {
@@ -55,8 +74,16 @@ html,body {
   height:100%;
 }
 
+.dev-separator {
+  margin-top: 15px;
+}
+
 .dev-input {
-  width: 100%
+  width: 100%;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid black;
 }
 
 .dev-inputarea {
@@ -65,4 +92,27 @@ html,body {
 
 .dev-left-menu {
   height: 100%;
+}
+
+.dev-widget-toolbar {
+  position: absolute;
+  right: 0px;
+  background-color: sandybrown;
+  opacity: 0.7;
+  padding: 7px;
+  border-bottom-left-radius:10px;
+}
+
+.dev-widget-content {
+  width: 100%;
+}
+
+a:hover {
+  color: #23527c;
+  text-decoration: none;
+}
+
+.dev-input-section {
+  margin-top: 15px;
+  width: 100%;
 }

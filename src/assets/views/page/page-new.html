@@ -13,112 +13,118 @@
 
 
   <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-
   <link href="../css/style.css" rel="stylesheet"/>
+  <!--<link href="../css/style.css" rel="stylesheet"/>-->
 </head>
-
 <body>
+<div class="container-fluid row dev-navbar-background-color dev-header">
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-
-    <!--arrow icon on the left-->
-    <p class="navbar-header pull-left">
-      <a href="page-ulst.html" class="navbar-brand thick">
-        <span class="glyphicon glyphicon-chevron-left"></span>
+  <!--arrow on the navbar-->
+  <div class="navbar-text pull-left">
+    <a href="page-ulst.html" class="navbar-link">
+      <span class="glyphicon glyphicon-chevron-left dev-navbar-text-color"></span>
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+    <!--heading on the left-->
+    <div class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="dev-navbar-text-color">Pages</b>
       </a>
-    </p>
-
-    <div class="  hidden-xs col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-left">
-      <!--heading on the nav bar-->
-      <p class="navbar-header pull-left">
-        <a class="navbar-brand thick">
-          <b class="title_font_size">Pages</b>
-        </a>
-      </p>
-
-      <!--plus sign-->
-      <p class="navbar-header pull-right">
-        <a class="navbar-brand  thick">
-          <span class="glyphicon glyphicon-plus"></span>
-        </a>
-      </p>
     </div>
 
-    <p class="navbar-header pull-left">
-      <a class="navbar-brand thick">
-        <b class="title_font_size">New Page</b>
+    <!--plus icon on the navbar -->
+    <div class="navbar-text pull-right">
+      <a href="page-new.html" class="navbar-link pull-right">
+        <span class="glyphicon glyphicon-plus dev-navbar-text-color"></span>
       </a>
-    </p>
-    <!--ok mark-->
-    <p class="navbar-text pull-right">
-      <a href="page-ulst.html" class="navbar-link">
-        <span class="glyphicon glyphicon-ok title_font_size"></span>
-      </a>
-    </p>
-
+    </div>
   </div>
-</nav>
 
-<div class="container-fluid website-content hidden-xs col-xs-3 col-sm-3 col-md-3 col-lg-3 with-right-border pull-left">
-  <div class="row_style">
-    <a href="../widget/widget-ulst.html">Blog Post</a>
-    <a href="page-edit.html" class="text-right">
-      <span class="glyphicon glyphicon-cog"></span>
+
+  <div class="navbar-header pull-left">
+    <a class="navbar-brand thick">
+      <b class="dev-navbar-text-color">New Page</b>
     </a>
   </div>
 
-  <div class="row_style">
-    <a href="../widget/widget-ulst.html">Blogs</a>
-    <a href="page-edit.html" class="text-right">
-      <span class="glyphicon glyphicon-cog"></span>
-    </a>
-  </div>
 
-  <div class="row_style">
-    <a href="../widget/widget-ulst.html">Home</a>
-    <a href="page-edit.html" class="text-right">
-      <span class="glyphicon glyphicon-cog"></span>
+  <!--check mark-->
+  <p class="navbar-text pull-right">
+    <a href="page-ulst.html" class="navbar-link">
+      <span class="glyphicon glyphicon-ok dev-navbar-text-color"></span>
     </a>
-  </div>
+  </p>
+</div>
 
-  <div class="row_style">
-    <a href="../widget/widget-ulst.html">About</a>
-    <a href="page-edit.html" class="text-right">
-      <span class="glyphicon glyphicon-cog"></span>
-    </a>
-  </div>
 
-  <div class="row_style">
-    <a href="../widget/widget-ulst.html">Contact Us</a>
-    <a href="page-edit.html" class="text-right">
-      <span class="glyphicon glyphicon-cog"></span>
-    </a>
+<div class="container-fluid full-height">
+  <!--large screen side options-->
+  <div class="col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <a href="../widget/widget-ulst.html" class="pull-left">Blog Post</a>
+          <a href="page-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <a href="../widget/widget-ulst.html" class="pull-left">Blogs</a>
+          <a href="page-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <a href="../widget/widget-ulst.html" class="pull-left">Home</a>
+          <a href="page-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <a href="../widget/widget-ulst.html" class="pull-left">About</a>
+          <a href="page-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <a href="../widget/widget-ulst.html" class="pull-left">Contact Us</a>
+          <a href="page-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!--<div class="dev-dividor pull-left"></div>-->
+  <div class=" col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    <div class="dev-content-side"><label>Name</label></div>
+    <div><input type="text" placeholder="Name" class="dev-input"/></div>
+    <div class="dev-separator"></div>
+    <div class="dev-content-side"><label>Title</label></div>
+    <div><input type="text" class="dev-input" placeholder="Page Title"/></div>
+
+
+
+
   </div>
 </div>
 
-<div class="container-fluid website-content">
-  <div class="input-contain">
-    <label>Name</label>
-    <input placeholder="Page Name">
-  </div>
-
-  <div class="input-contain">
-    <label>Title</label>
-    <input placeholder="Page Title">
-  </div>
+<!--footer-->
+<div class="dev-navbar-background-color container-fluid row dev-footer">
+  <p class="navbar-text pull-right">
+    <a href="../user/profile.html" class="navbar-link">
+      <span class="glyphicon glyphicon-user dev-navbar-text-color"></span>
+    </a>
+  </p>
 </div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
-        <span class="glyphicon glyphicon-user title_font_size"></span>
-      </a>
-    </p>
-
-  </div>
-</nav>
-
 </body>
 </html>

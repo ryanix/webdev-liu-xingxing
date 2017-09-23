@@ -16,75 +16,80 @@
   <link href="../css/style.css" rel="stylesheet"/>
   <!--<link href="../css/style.css" rel="stylesheet"/>-->
 </head>
-<body>
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+<body class="dev-scroll">
+<div class="container-fluid row dev-navbar-background-color dev-header">
 
-    <!--arrow on the navbar-->
-    <p class="navbar-text pull-left">
-      <a href="../page/page-ulst.html" class="navbar-link">
-        <span class="glyphicon glyphicon-chevron-left title_font_size"></span>
+  <!--arrow on the navbar-->
+  <div class="navbar-text pull-left">
+    <a href="../page/page-ulst.html" class="navbar-link">
+      <span class="glyphicon glyphicon-chevron-left dev-navbar-text-color"></span>
+    </a>
+  </div>
+
+  <!--heading on the left-->
+  <div class="navbar-header pull-left">
+    <a class="navbar-brand thick">
+      <b class="dev-navbar-text-color">Widgets</b>
+    </a>
+  </div>
+
+  <!--plus icon on the navbar -->
+  <div class="navbar-text pull-right">
+    <a href="widget-choose.html" class="navbar-link pull-right">
+      <span class="glyphicon glyphicon-plus dev-navbar-text-color"></span>
+    </a>
+  </div>
+
+</div>
+
+<div class="container-fluid">
+  <div class="dev-widget">
+    <div class="dev-widget-toolbar">
+      <a href="widget-heading.html">
+        <span class="glyphicon glyphicon-cog"></span>
       </a>
-    </p>
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </div>
+    <h1>Heading Widget Example</h1>
+  </div>
 
-    <!--heading on the left-->
-    <p class="navbar-header pull-left">
-      <a class="navbar-brand thick">
-        <b class="title_font_size">Widgets</b>
+  <div class="dev-widget">
+    <div class="dev-widget-toolbar">
+      <a href="widget-image.html">
+        <span class="glyphicon glyphicon-cog"></span>
       </a>
-    </p>
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </div>
+    <img class="dev-widget-content" src="http://lorempixel.com/400/200" />
+  </div>
 
-    <!--plus icon on the navbar -->
-    <p class="navbar-text pull-right">
-      <a href="widget-choose.html" class="navbar-link">
-        <span class="glyphicon glyphicon-plus title_font_size"></span>
+  <div class="dev-widget">
+    <div class="dev-widget-toolbar">
+      <a href="widget-heading.html">
+        <span class="glyphicon glyphicon-cog"></span>
       </a>
-    </p>
-  </div>
-</nav>
-
-<!--widgets example-->
-<div class="container-fluid website-content">
-  <div class="row_style">
-    <a href="../page/page-ulst.html">Address Book App</a>
-    <a href="website-edit.html" class="text-right">
-      <span class="glyphicon glyphicon-cog"></span>
-    </a>
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </div>
+    <p data-reactid="47">“A country that has been the world’s greatest exporter of havoc, death and inhumanity became a champion of hypocrisy by preaching about humanity from this podium.” </p>
   </div>
 
-  <div class="row_style">
-    <a href="../page/page-ulst.html">Blogger</a>
-    <a href="website-edit.html" class="text-right">
-      <span class="glyphicon glyphicon-cog"></span>
-    </a>
-  </div>
-
-  <div class="row_style">
-    <a href="../page/page-ulst.html">Blogging App</a>
-    <a href="website-edit.html" class="text-right">
-      <span class="glyphicon glyphicon-cog"></span>
-    </a>
-  </div>
-
-  <div class="row_style">
-    <a href="../page/page-ulst.html">Script Testing App</a>
-    <a href="website-edit.html" class="text-right">
-      <span class="glyphicon glyphicon-cog"></span>
-    </a>
+  <div class="dev-widget">
+    <div class="dev-widget-toolbar">
+      <a href="widget-youtube.html">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ue80QwXMRHg" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <!---->
-  <!--profile icon-->
-  <div class="container-fluid">
-    <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
-        <span class="glyphicon glyphicon-user title_font_size"></span>
-      </a>
-    </p>
-
-  </div>
-</nav>
+<div class="dev-navbar-background-color container-fluid row dev-footer">
+  <p class="navbar-text pull-right">
+    <a href="../user/profile.html" class="navbar-link">
+      <span class="glyphicon glyphicon-user dev-navbar-text-color"></span>
+    </a>
+  </p>
+</div>
 </body>
 </html>
