@@ -17,115 +17,106 @@
   <!--<link href="../css/style.css" rel="stylesheet"/>-->
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+<div class="container-fluid row dev-navbar-background-color dev-header">
 
-    <!--arrow on the navbar-->
-    <p class="navbar-text pull-left">
-      <a href="website-ulst.html" class="navbar-link">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
-    </p>
-
-    <div class="show-up hidden-sm hidden-xs col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <!--heading on the left-->
-      <p class="navbar-header pull-left">
-        <a class="navbar-brand thick">
-          <b href="../page/page-ulst.html">Websites</b>
-        </a>
-      </p>
-
-      <!--plus icon on the navbar -->
-      <p class="navbar-text pull-right">
-        <a href="website-new.html" class="navbar-link">
-          <span class="glyphicon glyphicon-plus"></span>
-        </a>
-      </p>
-    </div>
-
-    <!-- new website title-->
-    <p class="navbar-header pull-left col-xs-7 col-sm-7 col-md-7 col-lg-7">
+  <!--arrow on the navbar-->
+  <div class="navbar-text pull-left">
+    <a href="website-ulst.html" class="navbar-link">
+      <span class="glyphicon glyphicon-chevron-left dev-navbar-text-color"></span>
+    </a>
+  </div>
+  <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+    <!--heading on the left-->
+    <div class="navbar-header pull-left">
       <a class="navbar-brand thick">
-        <b href="../page/page-ulst.html">Edit Website</b>
+        <b href="../page/page-ulst.html" class="dev-navbar-text-color">Websites</b>
       </a>
-    </p>
+    </div>
 
-    <!--check mark-->
-    <p class="navbar-text pull-right">
-      <a href="website-ulst.html" class="navbar-link">
-        <span class="glyphicon glyphicon-ok "></span>
+    <!--plus icon on the navbar -->
+    <div class="navbar-text pull-right">
+      <a href="website-new.html" class="navbar-link pull-right">
+        <span class="glyphicon glyphicon-plus dev-navbar-text-color"></span>
       </a>
-    </p>
-
+    </div>
   </div>
-</nav>
 
-<div id="full" class="container-fluid website-content ">
+
+  <div class="navbar-header pull-left">
+    <a class="navbar-brand thick">
+      <b href="../page/page-ulst.html" class="dev-navbar-text-color">Edit Website</b>
+    </a>
+  </div>
+
+
+  <!--check mark-->
+  <p class="navbar-text pull-right">
+    <a href="website-ulst.html" class="navbar-link">
+      <span class="glyphicon glyphicon-ok dev-navbar-text-color"></span>
+    </a>
+  </p>
+</div>
+
+
+<div class="container-fluid full-height">
   <!--large screen side options-->
-  <div class="show-up hidden-xs hidden-sm col-xs-3 col-sm-3 col-md-3 col-lg-3 with-right-border">
-    <div class="row_style">
-      <a href="../page/page-ulst.html">Address Book App</a>
-      <a href="website-edit.html" class="text-right">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-    </div>
-
-    <div class="row_style">
-      <a href="../page/page-ulst.html">Blogger</a>
-      <a href="website-edit.html" class="text-right">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-    </div>
-
-    <div class="row_style">
-      <a href="../page/page-ulst.html">Blogging App</a>
-      <a href="website-edit.html" class="text-right">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-    </div>
-
-    <div class="row_style">
-      <a href="../page/page-ulst.html">Script Testing App</a>
-      <a href="website-edit.html" class="text-right">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-    </div>
+  <div class="col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <a href="../page/page-ulst.html" class="pull-left">Address Book</a>
+          <a href="website-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <a href="../page/page-ulst.html" class="pull-left">Blogger</a>
+          <a href="website-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <a href="../page/page-ulst.html" class="pull-left">Blogging App</a>
+          <a href="website-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <a href="../page/page-ulst.html" class="pull-left">Script Testing App</a>
+          <a href="website-edit.html" class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </div>
+      </li>
+    </ul>
   </div>
+  <!--<div class="dev-dividor pull-left"></div>-->
+  <div class=" col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    <div><label>Name</label></div>
+    <div><input placeholder="Name" class="dev-input" value="Blogger"/></div>
+    <div><label>Description</label></div>
+    <div><textarea class="dev-input" placeholder="Description" rows="6">Given the wireframes discussed in class, implement the following HTML pages using HTML, CSS, and Bootstrap. The HTML pages should responsive and mobile first. The wireframes just show the functionality and layout of the page, the do not show the look and feel of the page. You can use the default look and feel provided by bootstrap stylesheet, but you can improve on the style. Apply the styles using bootstrap classes. The instructor will demonstrate how to use bootstrap styles and code samples to build the Web pages. These are the Web pages you will be creating for this assignment:
+</textarea></div>
 
-  <div class="full-width">
-    <div class="input-contain">
-      <label>Name</label>
-      <input placeholder="Name" class="input-area" value="Blogger">
-    </div>
 
-    <div class="input-contain">
-      <label>Description</label>
-      <textarea id="textarea" placeholder="Description" class="input-area" rows="4">This is the first of several assignments that will guide you through the creation of a Website that you will be working on throughout the semester. The skills you practice on the assignments are meant to be used on a project of your own. Do all your work in a directory called “/src/assets/views/’. Commit your work frequently throughout the day and push your changes at the end of the day to deploy and restart your server. When you are ready to submit this assignment, tag your last commit you wish to be graded on as assignment2 on GitHub. You can keep working and committing and pushing. The TAs and instructors can always view your assignment using the assignment2 tag.
-</textarea>
-    </div>
 
-    <div class="btn-contain">
-      <button type="button" class="btn btn-danger" id="delete">Delete</button>
-    </div>
+
   </div>
 </div>
 
 <!--footer-->
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
-        <span class="glyphicon glyphicon-user title_font_size"></span>
-      </a>
-    </p>
-
-  </div>
-</nav>
-
-<script type="text/javascript">
-  document.getElementById('delete').onclick = function() {
-    location.href = './website-ulst.html'
-  }
-</script>
+<div class="dev-navbar-background-color container-fluid row dev-footer">
+  <p class="navbar-text pull-right">
+    <a href="../user/profile.html" class="navbar-link">
+      <span class="glyphicon glyphicon-user dev-navbar-text-color"></span>
+    </a>
+  </p>
+</div>
 </body>
 </html>

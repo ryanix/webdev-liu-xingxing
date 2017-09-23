@@ -8,7 +8,7 @@
 
 
   <meta charset="UTF-8">
-  <title>User Profile</title>
+  <title>New Page</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
 
@@ -22,16 +22,23 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
 
-    <!--heading on the nav bar-->
+    <!--arrow icon on the left-->
     <p class="navbar-header pull-left">
-      <a class="navbar-brand thick">
-        <b class="title_font_size">Profile</b>
+      <a href="page-ulst.html" class="navbar-brand thick">
+        <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </p>
 
-    <!--tick mark-->
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="title_font_size">New Page</b>
+      </a>
+    </p>
+
+    <!--ok mark-->
     <p class="navbar-text pull-right">
-      <a href="profile.html" class="navbar-link">
+      <a href="page-ulst.html" class="navbar-link">
         <span class="glyphicon glyphicon-ok title_font_size"></span>
       </a>
     </p>
@@ -40,46 +47,22 @@
 </nav>
 
 
-<div class="container">
-  <form>
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="walice">
-    </div>
-  </form>
+<div class="container-fluid website-content">
+  <div class="input-contain">
+    <label>Name</label>
+    <input placeholder="Page Name">
+  </div>
 
-  <form>
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" placeholder="alice.wonderland@unicorn.com">
-    </div>
-  </form>
-
-  <form>
-    <div class="form-group">
-      <label for="first-name">First Name</label>
-      <input type="text" class="form-control" id="first-name" placeholder="Alice">
-    </div>
-  </form>
-
-  <form>
-    <div class="form-group">
-      <label for="last-name">Last Name</label>
-      <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
-    </div>
-  </form>
-  <a class="btn btn-primary btn-block"
-     href="../website/website-ulst.html">Websites</a>
-  <a class="btn btn-danger btn-block "
-     href="login.html" >Logout</a>
-
+  <div class="input-contain">
+    <label>Title</label>
+    <input placeholder="Page Title">
+  </div>
 </div>
 
-<!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="profile.html">
+      <a href="../user/profile.html">
         <span class="glyphicon glyphicon-user title_font_size"></span>
       </a>
     </p>
