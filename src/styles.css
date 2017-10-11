@@ -1,1 +1,119 @@
 /* You can add global styles to this file, and also import other style files */
+html,body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+.dev-scroll {
+  overflow: scroll;
+}
+
+.dev-widget:last-of-type {
+  margin-bottom: 60px;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dev-navbar-background-color {
+  background-color: #337ab7;
+}
+
+.dev-navbar-text-color {
+  color: white;
+}
+
+.dev-content-side {
+  margin-top: 5px;
+}
+
+.dev-list-no-border {
+  border: 0px 0px;
+}
+
+.dev-header {
+  position: float;
+}
+
+.dev-footer {
+  position:fixed;
+  bottom:0;
+  right:0;
+  left:0;
+  padding-right:15px;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 0px solid #ddd;
+}
+
+.navbar-text {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.with-left-border {
+  width: 100%;
+}
+.dev-input-contain {
+  border-right: 1px solid black;
+  height:100%;
+}
+
+.dev-separator {
+  margin-top: 15px;
+}
+
+.dev-input {
+  width: 100%;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.dev-inputarea {
+  row: 4;
+}
+
+.dev-left-menu {
+  height: 100%;
+}
+
+.dev-widget-toolbar {
+  position: absolute;
+  right: 0px;
+  background-color: sandybrown;
+  opacity: 0.7;
+  padding: 7px;
+  border-bottom-left-radius:10px;
+}
+
+.dev-widget-content {
+  width: 100%;
+}
+
+a:hover {
+  color: #23527c;
+  text-decoration: none;
+}
+
+.dev-input-section {
+  margin-top: 15px;
+  width: 100%;
+}
