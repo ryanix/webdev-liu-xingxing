@@ -22,12 +22,12 @@ export class UserServiceClient {
     'createUser'   : this.createUser,
     'findUserById' : this.findUserById,
     'findUserByUserName' : this.findUserByUsername,
+    'findUserByCredentials': this.findUserByCredentials,
     'updateUser' : this.updateUser,
     'deleteUser' : this.deleteUser,
   };
 
   createUser(user: any) {
-    user._id = Math.random();
     this.users.push(user);
     return user;
   }
@@ -45,9 +45,18 @@ export class UserServiceClient {
       }
     }
   }
+
+  findUserByCredentials(username: String, password: String) {
+    for (let x = 0; x < this.users.length; x++) {
+      if (this.users[x].username === username && this.users[x].password === password) {
+        return this.users[x];
+      }
+    }
+  }
+
   updateUser(userId, user) {
     for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === user._id) {
+      if (this.users[x]._id === userId) {
         this.users[x] = user;
         return user;
       }
@@ -58,8 +67,6 @@ export class UserServiceClient {
       if (this.users[x]._id === userId) {
         delete this.users[x];
         return true;
-      } else {
-        return false;
       }
     }
   }

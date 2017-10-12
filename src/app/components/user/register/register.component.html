@@ -1,19 +1,50 @@
 <div class="container">
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
   <h1>Register</h1>
-  <input placeholder="username"
-         type="text"
-         class="form-control"/>
-  <p> </p>
-  <input placeholder="password"
-         type="password"
-         class="form-control"/>
-  <p> </p>
-  <input placeholder="verify password"
-         type="password"
-         class="form-control"/>
-  <p> </p>
-  <a class="btn btn-primary btn-block"
-     [routerLink]="['/profile']">Register</a>
+  <form (ngSubmit) = 'register()' #f="ngForm">
+    <input placeholder="username"
+           name="username"
+           type="text"
+           class="form-control"
+           ngModel
+           required
+           #username="ngModel"/>
+    <p> </p>
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+      Username can not be empty!
+    </span>
+
+    <input placeholder="password"
+           name="password"
+           type="password"
+           class="form-control"
+           ngModel
+           required
+           #password="ngModel"/>
+    <p> </p>
+
+    <input placeholder="confirm password"
+           name="password1"
+           type="password"
+           class="form-control"
+           ngModel
+           required
+           #password1="ngModel"/>
+    <p> </p>
+    <span class="help-block" *ngIf="!password.valid && password.touched">
+      Password can not be empty!
+    </span>
+    <span class="help-block" *ngIf="password.touched && password1.touched && password.value != password1.value">
+      Password does not match!
+    </span>
+    <p></p>
+    <button class="btn btn-primary btn-block"
+            type="submit"
+            [disabled]="!f.valid || password.value != password1.value">Register</button>
+  </form>
   <p> </p>
   <a class="btn btn-danger btn-block"
      [routerLink]="['/login']" >Cancel</a>

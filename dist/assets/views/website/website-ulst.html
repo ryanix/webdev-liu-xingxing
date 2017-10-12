@@ -1,26 +1,46 @@
-<div class="container-fluid row dev-navbar-background-color">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags for making website for mobile-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
 
-  <!--arrow on the navbar-->
-  <div class="navbar-text pull-left">
-    <a routerLink="/user/{{userId}}" class="navbar-link">
-      <span class="glyphicon glyphicon-chevron-left dev-navbar-text-color"></span>
-    </a>
-  </div>
 
-  <!--heading on the left-->
-  <div class="navbar-header pull-left">
-    <a class="navbar-brand thick">
-      <b class="dev-navbar-text-color">Websites</b>
-    </a>
-  </div>
+  <meta charset="UTF-8">
+  <title>Website List</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
-  <!--plus icon on the navbar -->
-  <div class="navbar-text pull-right">
-    <a routerLink="/user/{{userId}}/website/new" class="navbar-link pull-right">
-      <span class="glyphicon glyphicon-plus dev-navbar-text-color"></span>
-    </a>
+
+  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+  <link href="../css/style.css" rel="stylesheet"/>
+  <!--<link href="../css/style.css" rel="stylesheet"/>-->
+</head>
+<body>
+
+  <div class="container-fluid row dev-navbar-background-color dev-header">
+
+    <!--arrow on the navbar-->
+    <div class="navbar-text pull-left">
+      <a href="../user/profile.html" class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left dev-navbar-text-color"></span>
+      </a>
+    </div>
+
+    <!--heading on the left-->
+    <div class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b href="../page/page-ulst.html" class="dev-navbar-text-color">Websites</b>
+      </a>
+    </div>
+
+    <!--plus icon on the navbar -->
+    <div class="navbar-text pull-right">
+      <a href="website-new.html" class="navbar-link pull-right">
+        <span class="glyphicon glyphicon-plus dev-navbar-text-color"></span>
+      </a>
+    </div>
   </div>
-</div>
 <div class="container-fluid">
   <ul class="list-group dev-list-no-border">
     <li class="list-group-item">
@@ -72,3 +92,5 @@
     </a>
   </p>
 </div>
+</body>
+</html>
