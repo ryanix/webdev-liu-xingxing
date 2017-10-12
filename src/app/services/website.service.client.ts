@@ -24,7 +24,7 @@ export class WebsiteServiceClient {
 
   api = {
     'createWebsite'   : this.createWebsite,
-    'findWebsiteByUser' : this.findWebsiteByUser,
+    'findWebsitesByUser' : this.findWebsitesByUser,
     'findWebsiteById' : this.findWebsiteById,
     'updateWebsite': this.updateWebsite,
     'deleteWebsite': this.deleteWebsite,
@@ -36,12 +36,14 @@ export class WebsiteServiceClient {
     this.websites.push(website);
   }
 
-  findWebsiteByUser(userId: String) {
+  findWebsitesByUser(userId: String) {
+    const webs = [];
     for ( let x = 0; x < this.websites.length; x++) {
       if (this.websites[x].developerId === userId ) {
-        return this.websites[x];
+        webs.push(this.websites[x]);
       }
     }
+    return webs;
   }
 
   findWebsiteById(websiteId: String) {
