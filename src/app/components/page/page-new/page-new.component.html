@@ -1,8 +1,8 @@
-<div class="container-fluid row dev-navbar-background-color dev-header">
+<div class="container-fluid row dev-navbar-background-color">
 
   <!--arrow on the navbar-->
   <div class="navbar-text pull-left">
-    <a href="page-ulst.html" class="navbar-link">
+    <a routerLink="/user/{{userId}}/website/{{webId}}/page" class="navbar-link">
       <span class="glyphicon glyphicon-chevron-left dev-navbar-text-color"></span>
     </a>
   </div>
@@ -16,7 +16,7 @@
 
     <!--plus icon on the navbar -->
     <div class="navbar-text pull-right">
-      <a href="page-new.html" class="navbar-link pull-right">
+      <a routerLink="/user/{{userId}}/website/{{webId}}/page/new" class="navbar-link pull-right">
         <span class="glyphicon glyphicon-plus dev-navbar-text-color"></span>
       </a>
     </div>
@@ -32,7 +32,7 @@
 
   <!--check mark-->
   <p class="navbar-text pull-right">
-    <a href="page-ulst.html" class="navbar-link">
+    <a (click)="addNewPage()" class="navbar-link">
       <span class="glyphicon glyphicon-ok dev-navbar-text-color"></span>
     </a>
   </p>
@@ -42,43 +42,11 @@
 <div class="container-fluid full-height">
   <!--large screen side options-->
   <div class="col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain">
-    <ul class="list-group">
+    <ul class="list-group" *ngFor="let page of pages">
       <li class="list-group-item">
         <div class="row">
-          <a href="../widget/widget-ulst.html" class="pull-left">Blog Post</a>
-          <a href="page-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog"></span>
-          </a>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="row">
-          <a href="../widget/widget-ulst.html" class="pull-left">Blogs</a>
-          <a href="page-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog"></span>
-          </a>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="row">
-          <a href="../widget/widget-ulst.html" class="pull-left">Home</a>
-          <a href="page-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog"></span>
-          </a>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="row">
-          <a href="../widget/widget-ulst.html" class="pull-left">About</a>
-          <a href="page-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog"></span>
-          </a>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="row">
-          <a href="../widget/widget-ulst.html" class="pull-left">Contact Us</a>
-          <a href="page-edit.html" class="pull-right">
+          <a routerLink="/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget" class="pull-left">{{page.name}}</a>
+          <a routerLink="/user/{{userId}}/website/{{webId}}/page/{{page._id}}" class="pull-right" (click)="refresh()">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
         </div>
@@ -87,22 +55,22 @@
   </div>
   <!--<div class="dev-dividor pull-left"></div>-->
   <div class=" col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    <div *ngIf="errorFlag"
+         class="alert alert-danger">
+      {{errorMsg}}
+    </div>
     <div class="dev-content-side"><label>Name</label></div>
-    <div><input type="text" placeholder="Name" class="dev-input"/></div>
+    <div><input type="text" placeholder="Name" class="dev-input" [(ngModel)]="page.name"/></div>
     <div class="dev-separator"></div>
-    <div class="dev-content-side"><label>Title</label></div>
-    <div><input type="text" class="dev-input" placeholder="Page Title"/></div>
-
-
-
-
+    <div class="dev-content-side"><label>Description</label></div>
+    <div><textarea type="text" row="6" class="dev-input" placeholder="Page Description" [(ngModel)]="page.description"></textarea></div>
   </div>
 </div>
 
 <!--footer-->
 <div class="dev-navbar-background-color container-fluid row dev-footer">
   <p class="navbar-text pull-right">
-    <a href="../user/profile.html" class="navbar-link">
+    <a routerLink="/user/{{userId}}" class="navbar-link">
       <span class="glyphicon glyphicon-user dev-navbar-text-color"></span>
     </a>
   </p>

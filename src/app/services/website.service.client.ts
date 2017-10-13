@@ -37,18 +37,16 @@ export class WebsiteServiceClient {
   }
 
   findWebsitesByUser(userId: String) {
-    const webs = [];
-    for ( let x = 0; x < this.websites.length; x++) {
-      if (this.websites[x].developerId === userId ) {
-        webs.push(this.websites[x]);
+    return this.websites.filter((web) => {
+      if (web.developerId === userId) {
+        return web;
       }
-    }
-    return webs;
+    });
   }
 
   findWebsiteById(websiteId: String) {
     for ( let x = 0; x < this.websites.length; x++) {
-      if (this.websites[x].developerId === websiteId ) {
+      if (this.websites[x]._id === websiteId ) {
         return this.websites[x];
       }
     }
@@ -66,10 +64,7 @@ export class WebsiteServiceClient {
   deleteWebsite(websiteId) {
     for (let x = 0; x < this.websites.length; x++) {
       if (this.websites[x]._id === websiteId) {
-        delete this.websites[x];
-        return true;
-      } else {
-        return false;
+         this.websites.splice(x, 1);
       }
     }
   }

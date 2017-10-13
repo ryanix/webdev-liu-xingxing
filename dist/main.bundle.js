@@ -327,7 +327,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-edit/page-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color dev-header\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a href=\"page-ulst.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Pages</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a href=\"page-new.html\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">New Page</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a href=\"page-ulst.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">Blog Post</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">Blogs</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">Home</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">About</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">Contact Us</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div ><input type=\"text\" placeholder=\"Name\" class=\"dev-input\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Title</label></div>\n    <div><input type=\"text\" class=\"dev-input\" placeholder=\"Page Title\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"btn-contain dev-content-side\">\n      <button class=\"btn btn-danger btn-block\" onclick=\"deletePage()\">Delete</button>\n    </div>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"../user/profile.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Pages</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/new\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">New Page</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a (click)=\"updatePage()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\" *ngFor=\"let page of pages\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget\" class=\"pull-left\">{{page.name}}</a>\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}\" (click)=\"refresh()\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div ><input type=\"text\" placeholder=\"Name\" class=\"dev-input\" [(ngModel)]=\"page.name\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Description</label></div>\n    <div><input type=\"text\" class=\"dev-input\" placeholder=\"Page Description\" [(ngModel)]=\"page.description\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"btn-contain dev-content-side\">\n      <button class=\"btn btn-danger btn-block\" (click)=\"deletePage()\">Delete</button>\n    </div>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -337,6 +337,8 @@ module.exports = "<div class=\"container-fluid row dev-navbar-background-color d
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageEditComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -347,10 +349,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var PageEditComponent = (function () {
-    function PageEditComponent() {
+    function PageEditComponent(route, pageService, router) {
+        this.route = route;
+        this.pageService = pageService;
+        this.router = router;
+        this.errorMsg = 'Page name is required!';
     }
     PageEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.webId = params['wid'];
+            _this.pageId = params['pid'];
+            _this.page = _this.pageService.findPageById(_this.pageId);
+            _this.pages = _this.pageService.findPageByWebsiteId(_this.webId);
+        });
+    };
+    PageEditComponent.prototype.updatePage = function () {
+        if (this.page.name.length > 0) {
+            this.pageService.updatePage(this.webId, this.page);
+            this.router.navigate(["/user/" + this.userId + "/website/" + this.webId + "/page"]);
+        }
+        else {
+            this.errorFlag = true;
+        }
+    };
+    PageEditComponent.prototype.deletePage = function () {
+        this.pageService.deletePage(this.pageId);
+        this.router.navigate(["/user/" + this.userId + "/website/" + this.webId + "/page"]);
+    };
+    PageEditComponent.prototype.refresh = function () {
+        this.errorFlag = false;
     };
     return PageEditComponent;
 }());
@@ -360,9 +392,10 @@ PageEditComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-edit/page-edit.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__["a" /* PageServiceClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_page_service_client__["a" /* PageServiceClient */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], PageEditComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=page-edit.component.js.map
 
 /***/ }),
@@ -388,7 +421,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-list/page-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color dev-header\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a href=\"../website/website-ulst.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Pages</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a href=\"page-new.html\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n</div>\n<div class=\"container-fluid\">\n  <ul class=\"list-group dev-list-no-border\">\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a href=\"../widget/widget-ulst.html\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">Blog Post</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">09/21/2017</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">Page List Item</b>\n        <a href=\"page-edit.html\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a href=\"../widget/widget-ulst.html\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">Blogs</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">09/21/2017</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">Page List Item</b>\n        <a href=\"page-edit.html\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a href=\"../widget/widget-ulst.html\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">Home</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">09/21/2017</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">Page List Item</b>\n        <a href=\"page-edit.html\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a href=\"../widget/widget-ulst.html\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">About</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">09/21/2017</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">Page List Item</b>\n        <a href=\"page-edit.html\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a href=\"../widget/widget-ulst.html\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">Contact Us</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">09/21/2017</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">Page List Item</b>\n        <a href=\"page-edit.html\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n  </ul>\n</div>\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"../user/profile.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Pages</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n</div>\n<div class=\"container-fluid\">\n  <ul class=\"list-group dev-list-no-border\" *ngFor=\"let page of pages\">\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">{{page.name}}</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">{{page._id}}</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">{{page.websiteId}}</b>\n        <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n  </ul>\n</div>\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -398,6 +431,8 @@ module.exports = "<div class=\"container-fluid row dev-navbar-background-color d
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -408,10 +443,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var PageListComponent = (function () {
-    function PageListComponent() {
+    function PageListComponent(pageService, route, router) {
+        this.pageService = pageService;
+        this.route = route;
+        this.router = router;
     }
     PageListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.webId = params['wid'];
+            _this.pages = _this.pageService.findPageByWebsiteId(_this.webId);
+        });
     };
     return PageListComponent;
 }());
@@ -421,9 +467,10 @@ PageListComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/page/page-list/page-list.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-list/page-list.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_page_service_client__["a" /* PageServiceClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_page_service_client__["a" /* PageServiceClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], PageListComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=page-list.component.js.map
 
 /***/ }),
@@ -449,7 +496,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-new/page-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color dev-header\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a href=\"page-ulst.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Pages</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a href=\"page-new.html\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">New Page</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a href=\"page-ulst.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">Blog Post</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">Blogs</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">Home</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">About</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../widget/widget-ulst.html\" class=\"pull-left\">Contact Us</a>\n          <a href=\"page-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div><input type=\"text\" placeholder=\"Name\" class=\"dev-input\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Title</label></div>\n    <div><input type=\"text\" class=\"dev-input\" placeholder=\"Page Title\"/></div>\n\n\n\n\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"../user/profile.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Pages</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/new\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">New Page</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a (click)=\"addNewPage()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\" *ngFor=\"let page of pages\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget\" class=\"pull-left\">{{page.name}}</a>\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}\" class=\"pull-right\" (click)=\"refresh()\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div *ngIf=\"errorFlag\"\n         class=\"alert alert-danger\">\n      {{errorMsg}}\n    </div>\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div><input type=\"text\" placeholder=\"Name\" class=\"dev-input\" [(ngModel)]=\"page.name\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Description</label></div>\n    <div><textarea type=\"text\" row=\"6\" class=\"dev-input\" placeholder=\"Page Description\" [(ngModel)]=\"page.description\"></textarea></div>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -459,6 +506,9 @@ module.exports = "<div class=\"container-fluid row dev-navbar-background-color d
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageNewComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_page_model_client__ = __webpack_require__("../../../../../src/app/models/page.model.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__ = __webpack_require__("../../../../../src/app/services/page.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -469,10 +519,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var PageNewComponent = (function () {
-    function PageNewComponent() {
+    function PageNewComponent(route, pageService, router) {
+        this.route = route;
+        this.pageService = pageService;
+        this.router = router;
+        this.errorMsg = 'Page name is required!';
     }
     PageNewComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.page = new __WEBPACK_IMPORTED_MODULE_1__models_page_model_client__["a" /* Page */](1, '', _this.webId);
+            _this.userId = params['uid'];
+            _this.webId = params['wid'];
+            _this.pages = _this.pageService.findPageByWebsiteId(_this.webId);
+        });
+    };
+    PageNewComponent.prototype.addNewPage = function () {
+        if (this.page.name.length > 0) {
+            this.pageService.createPage(this.webId, this.page);
+            this.router.navigate(["/user/" + this.userId + "/website/" + this.webId + "/page"]);
+        }
+        else {
+            this.errorFlag = true;
+        }
+    };
+    PageNewComponent.prototype.refresh = function () {
+        this.errorFlag = false;
     };
     return PageNewComponent;
 }());
@@ -482,9 +558,10 @@ PageNewComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/page/page-new/page-new.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/page/page-new/page-new.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageServiceClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_page_service_client__["a" /* PageServiceClient */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], PageNewComponent);
 
+var _a, _b, _c;
 //# sourceMappingURL=page-new.component.js.map
 
 /***/ }),
@@ -849,7 +926,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-edit/website-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color dev-header\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a href=\"website-ulst.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b href=\"../page/page-ulst.html\" class=\"dev-navbar-text-color\">Websites</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a href=\"website-new.html\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b href=\"../page/page-ulst.html\" class=\"dev-navbar-text-color\">Edit Website</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a href=\"website-ulst.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../page/page-ulst.html\" class=\"pull-left\">Address Book</a>\n          <a href=\"website-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../page/page-ulst.html\" class=\"pull-left\">Blogger</a>\n          <a href=\"website-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../page/page-ulst.html\" class=\"pull-left\">Blogging App</a>\n          <a href=\"website-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../page/page-ulst.html\" class=\"pull-left\">Script Testing App</a>\n          <a href=\"website-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div><input type=\"text\" placeholder=\"Name\" class=\"dev-input\" value=\"Blogger\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Description</label></div>\n    <div><textarea type=\"text\" class=\"dev-input\" placeholder=\"Description\" rows=\"6\">Given the wireframes discussed in class, implement the following HTML pages using HTML, CSS, and Bootstrap. The HTML pages should responsive and mobile first. The wireframes just show the functionality and layout of the page, the do not show the look and feel of the page. You can use the default look and feel provided by bootstrap stylesheet, but you can improve on the style. Apply the styles using bootstrap classes. The instructor will demonstrate how to use bootstrap styles and code samples to build the Web pages. These are the Web pages you will be creating for this assignment:\n</textarea></div>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"../user/profile.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Websites</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}/website/new\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Edit Website</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a class=\"navbar-link\" (click)=\"updateWebSite()\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\"  *ngFor=\"let web of websites\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a routerLink=\"/user/{{userId}}/website/{{web._id}}/page\" class=\"pull-left\">{{web.name}}</a>\n          <a routerLink=\"/user/{{userId}}/website/{{web._id}}\" (click)=\"refresh()\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div *ngIf=\"errorFlag\"\n         class=\"alert alert-danger\">\n      {{errorMsg}}\n    </div>\n    <form #f=\"ngForm\">\n      <div class=\"dev-content-side\"><label>Name</label></div>\n      <div><input type=\"text\" placeholder=\"Name\" class=\"dev-input\" [ngModel]=\"website.name\" ngModel name=\"name\"/></div>\n      <div class=\"dev-separator\"></div>\n      <div class=\"dev-content-side\"><label>Description</label></div>\n      <div>\n        <textarea type=\"text\" class=\"dev-input\" placeholder=\"Description\" rows=\"6\" ngModel [ngModel]=\"website.description\" name=\"description\"></textarea>\n      </div>\n    </form>\n    <p> </p>\n    <button class=\"btn btn-danger btn-block\" (click)=\"deleteWebsite()\">Delete</button>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -859,6 +936,9 @@ module.exports = "<div class=\"container-fluid row dev-navbar-background-color d
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebsiteEditComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -869,22 +949,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var WebsiteEditComponent = (function () {
-    function WebsiteEditComponent() {
+    function WebsiteEditComponent(router, route, webService) {
+        this.router = router;
+        this.route = route;
+        this.webService = webService;
+        this.errorMsg = 'Name is required!';
     }
     WebsiteEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.webId = params['wid'];
+            _this.website = _this.webService.findWebsiteById(_this.webId);
+            _this.websites = _this.webService.findWebsitesByUser(_this.userId);
+        });
+    };
+    WebsiteEditComponent.prototype.updateWebSite = function () {
+        if (this.editWebForm.value.name.length > 0) {
+            this.errorFlag = false;
+            this.website.name = this.editWebForm.value.name;
+            this.website.description = this.editWebForm.value.description;
+            this.webService.updateWebsite(this.website._id, this.website);
+            this.router.navigate(["/user/" + this.userId + "/website"]);
+        }
+        else {
+            this.errorFlag = true;
+        }
+    };
+    WebsiteEditComponent.prototype.deleteWebsite = function () {
+        this.webService.deleteWebsite(this.webId);
+        this.router.navigate(["/user/" + this.userId + "/website"]);
+    };
+    WebsiteEditComponent.prototype.refresh = function () {
+        this.errorFlag = false;
     };
     return WebsiteEditComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], WebsiteEditComponent.prototype, "editWebForm", void 0);
 WebsiteEditComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-website-edit',
         template: __webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/website/website-edit/website-edit.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__["a" /* WebsiteServiceClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__["a" /* WebsiteServiceClient */]) === "function" && _d || Object])
 ], WebsiteEditComponent);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=website-edit.component.js.map
 
 /***/ }),
@@ -910,7 +1028,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-list/website-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a href=\"../user/profile.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b href=\"../page/page-ulst.html\" class=\"dev-navbar-text-color\">Websites</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a href=\"website-new.html\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n</div>\n<div class=\"container-fluid\">\n  <ul class=\"list-group dev-list-no-border\">\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a href=\"../page/page-ulst.html\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">Address Book App</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">09/21/2017</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">Websites</b>\n        <a href=\"website-edit.html\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a href=\"../page/page-ulst.html\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">Blogger</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">09/21/2017</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">Websites</b>\n        <a href=\"website-edit.html\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a href=\"../page/page-ulst.html\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">Blogging App</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">09/21/2017</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">Websites</b>\n        <a href=\"website-edit.html\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a href=\"../page/page-ulst.html\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">Script Testing App</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">09/21/2017</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">Websites</b>\n        <a href=\"website-edit.html\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n  </ul>\n</div>\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"../user/profile.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Websites</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n</div>\n<div class=\"container-fluid\" >\n  <ul class=\"list-group dev-list-no-border\" *ngFor=\"let web of websites\">\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a routerLink=\"/user/{{userId}}/website/{{web._id}}/page\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">{{web.name}}</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">{{web._id}}</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">{{web.developerId}}</b>\n        <a routerLink=\"/user/{{userId}}/website/{{web._id}}\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n  </ul>\n</div>\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -920,6 +1038,8 @@ module.exports = "<div class=\"container-fluid row dev-navbar-background-color\"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebsiteListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -930,10 +1050,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var WebsiteListComponent = (function () {
-    function WebsiteListComponent() {
+    function WebsiteListComponent(route, webService) {
+        this.route = route;
+        this.webService = webService;
     }
     WebsiteListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.websites = _this.webService.findWebsitesByUser(_this.userId);
+        });
     };
     return WebsiteListComponent;
 }());
@@ -943,9 +1072,10 @@ WebsiteListComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/website/website-list/website-list.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteServiceClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_website_service_client__["a" /* WebsiteServiceClient */]) === "function" && _b || Object])
 ], WebsiteListComponent);
 
+var _a, _b;
 //# sourceMappingURL=website-list.component.js.map
 
 /***/ }),
@@ -971,7 +1101,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-new/website-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color dev-header\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a href=\"website-ulst.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b href=\"../page/page-ulst.html\" class=\"dev-navbar-text-color\">Websites</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a href=\"website-new.html\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b href=\"../page/page-ulst.html\" class=\"dev-navbar-text-color\">New Website</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a href=\"website-ulst.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../page/page-ulst.html\" class=\"pull-left\">Address Book</a>\n          <a href=\"website-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../page/page-ulst.html\" class=\"pull-left\">Blogger</a>\n          <a href=\"website-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../page/page-ulst.html\" class=\"pull-left\">Blogging App</a>\n          <a href=\"website-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a href=\"../page/page-ulst.html\" class=\"pull-left\">Script Testing App</a>\n          <a href=\"website-edit.html\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div><input type=\"text\" placeholder=\"Name\" class=\"dev-input\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Description</label></div>\n    <div><textarea type=\"text\"class=\"dev-input\" placeholder=\"Description\" rows=\"6\"></textarea></div>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"../user/profile.html\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Websites</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}/website/new\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">New Website</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a class=\"navbar-link\" (click)=\"addWebsite()\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\" >\n    <ul class=\"list-group\" *ngFor=\"let web of websites\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a routerLink=\"/user/{{userId}}/website/{{web._id}}/page\" class=\"pull-left\">{{web.name}}</a>\n          <a routerLink=\"/user/{{userId}}/website/{{web._id}}\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div *ngIf=\"errorFlag\"\n         class=\"alert alert-danger\">\n      {{errorMsg}}\n    </div>\n    <form #f=\"ngForm\">\n      <div class=\"dev-content-side\"><label>Name</label></div>\n      <div><input type=\"text\" placeholder=\"Name\" class=\"dev-input\" name=\"name\" ngModel required #name=\"ngModel\"/></div>\n      <div class=\"dev-separator\"></div>\n      <div class=\"dev-content-side\"><label>Description</label></div>\n      <div><textarea type=\"text\"class=\"dev-input\" placeholder=\"Description\" rows=\"6\" name=\"description\" ngModel></textarea></div>\n    </form>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -981,6 +1111,10 @@ module.exports = "<div class=\"container-fluid row dev-navbar-background-color d
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WebsiteNewComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_website_model_client__ = __webpack_require__("../../../../../src/app/models/website.model.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__ = __webpack_require__("../../../../../src/app/services/website.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -991,22 +1125,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
 var WebsiteNewComponent = (function () {
-    function WebsiteNewComponent() {
+    function WebsiteNewComponent(router, route, webService) {
+        this.router = router;
+        this.route = route;
+        this.webService = webService;
+        this.errorMsg = 'Name is required for a new website';
     }
     WebsiteNewComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.websites = _this.webService.findWebsitesByUser(_this.userId);
+        });
+    };
+    WebsiteNewComponent.prototype.addWebsite = function () {
+        if (this.addWebForm.value.name.length > 0) {
+            this.errorFlag = false;
+            var web = new __WEBPACK_IMPORTED_MODULE_1__models_website_model_client__["a" /* Website */](1, this.addWebForm.value.name, this.userId, this.addWebForm.value.description);
+            this.webService.createWebsite(this.userId, web);
+            this.router.navigate(["/user/" + this.userId + "/website"]);
+        }
+        else {
+            this.errorFlag = true;
+        }
     };
     return WebsiteNewComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+], WebsiteNewComponent.prototype, "addWebForm", void 0);
 WebsiteNewComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-website-new',
         template: __webpack_require__("../../../../../src/app/components/website/website-new/website-new.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/website/website-new/website-new.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__["a" /* WebsiteServiceClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_website_service_client__["a" /* WebsiteServiceClient */]) === "function" && _d || Object])
 ], WebsiteNewComponent);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=website-new.component.js.map
 
 /***/ }),
@@ -1499,11 +1662,11 @@ var PageServiceClient = (function () {
         this.pages.push(page);
     };
     PageServiceClient.prototype.findPageByWebsiteId = function (websiteId) {
-        for (var x = 0; x < this.pages.length; x++) {
-            if (this.pages[x].websiteId === websiteId) {
-                return this.pages[x];
+        return this.pages.filter(function (p) {
+            if (p.websiteId === websiteId) {
+                return p;
             }
-        }
+        });
     };
     PageServiceClient.prototype.findPageById = function (pageId) {
         for (var x = 0; x < this.pages.length; x++) {
@@ -1523,11 +1686,7 @@ var PageServiceClient = (function () {
     PageServiceClient.prototype.deletePage = function (pageId) {
         for (var x = 0; x < this.pages.length; x++) {
             if (this.pages[x]._id === pageId) {
-                delete this.pages[x];
-                return true;
-            }
-            else {
-                return false;
+                this.pages.splice(x, 1);
             }
         }
     };
@@ -1733,7 +1892,7 @@ var WebsiteServiceClient = (function () {
         ];
         this.api = {
             'createWebsite': this.createWebsite,
-            'findWebsiteByUser': this.findWebsiteByUser,
+            'findWebsitesByUser': this.findWebsitesByUser,
             'findWebsiteById': this.findWebsiteById,
             'updateWebsite': this.updateWebsite,
             'deleteWebsite': this.deleteWebsite,
@@ -1744,16 +1903,16 @@ var WebsiteServiceClient = (function () {
         website.websiteId = userId;
         this.websites.push(website);
     };
-    WebsiteServiceClient.prototype.findWebsiteByUser = function (userId) {
-        for (var x = 0; x < this.websites.length; x++) {
-            if (this.websites[x].developerId === userId) {
-                return this.websites[x];
+    WebsiteServiceClient.prototype.findWebsitesByUser = function (userId) {
+        return this.websites.filter(function (web) {
+            if (web.developerId === userId) {
+                return web;
             }
-        }
+        });
     };
     WebsiteServiceClient.prototype.findWebsiteById = function (websiteId) {
         for (var x = 0; x < this.websites.length; x++) {
-            if (this.websites[x].developerId === websiteId) {
+            if (this.websites[x]._id === websiteId) {
                 return this.websites[x];
             }
         }
@@ -1769,11 +1928,7 @@ var WebsiteServiceClient = (function () {
     WebsiteServiceClient.prototype.deleteWebsite = function (websiteId) {
         for (var x = 0; x < this.websites.length; x++) {
             if (this.websites[x]._id === websiteId) {
-                delete this.websites[x];
-                return true;
-            }
-            else {
-                return false;
+                this.websites.splice(x, 1);
             }
         }
     };

@@ -32,11 +32,11 @@ export class PageServiceClient {
   }
 
   findPageByWebsiteId(websiteId: String) {
-    for ( let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x].websiteId === websiteId ) {
-        return this.pages[x];
+    return this.pages.filter((p) => {
+      if (p.websiteId === websiteId) {
+        return p;
       }
-    }
+    });
   }
 
   findPageById(pageId: String) {
@@ -59,10 +59,7 @@ export class PageServiceClient {
   deletePage(pageId: String) {
     for (let x = 0; x < this.pages.length; x++) {
       if (this.pages[x]._id === pageId) {
-        delete this.pages[x];
-        return true;
-      } else {
-        return false;
+        this.pages.splice(x, 1);
       }
     }
   }
