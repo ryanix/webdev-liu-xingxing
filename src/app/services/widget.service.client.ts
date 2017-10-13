@@ -36,11 +36,11 @@ export class WidgetServiceClient {
   }
 
   findWidgetsByPageId(pageId: String) {
-    for ( let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x].pageId === pageId ) {
-        return this.widgets[x];
+    return this.widgets.filter((w) => {
+      if (w.pageId === pageId) {
+        return w;
       }
-    }
+    });
   }
 
   findWidgetById(widgetId: String) {

@@ -1,8 +1,8 @@
-<div class="container-fluid row dev-navbar-background-color dev-header">
+<div class="container-fluid row dev-navbar-background-color">
 
   <!--arrow on the navbar-->
   <div class="navbar-text pull-left">
-    <a href="../page/page-ulst.html" class="navbar-link">
+    <a routerLink="/user/{{userId}}/website/{{webId}}/page" class="navbar-link">
       <span class="glyphicon glyphicon-chevron-left dev-navbar-text-color"></span>
     </a>
   </div>
@@ -16,58 +16,60 @@
 
   <!--plus icon on the navbar -->
   <div class="navbar-text pull-right">
-    <a href="widget-choose.html" class="navbar-link pull-right">
+    <a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/new" class="navbar-link pull-right">
       <span class="glyphicon glyphicon-plus dev-navbar-text-color"></span>
     </a>
   </div>
 
 </div>
 
-<div class="container-fluid">
-  <div class="dev-widget">
-    <div class="dev-widget-toolbar">
-      <a href="widget-heading.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <span class="glyphicon glyphicon-menu-hamburger"></span>
+<div class="container-fluid" *ngFor="let widget of widgets">
+  <div  [ngSwitch]="widget.widgetType">
+    <div class="dev-widget" *ngSwitchCase="'HEADING'">
+      <div class="dev-widget-toolbar">
+        <a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/{{widget._id}}">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </div>
+      <h1>{{widget.text}}</h1>
     </div>
-    <h1>Heading Widget Example</h1>
-  </div>
 
-  <div class="dev-widget">
-    <div class="dev-widget-toolbar">
-      <a href="widget-image.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    <div class="dev-widget" *ngSwitchCase="'IMAGE'">
+      <div class="dev-widget-toolbar">
+        <a routerLink="/user/{{userId}}/webiste/{{webId}}/page/{{pageId}}/widget/{{widget._id}}">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </div>
+      <img class="dev-widget-content" [src]="widget.url" [width]="widget.width" />
     </div>
-    <img class="dev-widget-content" src="http://lorempixel.com/400/200" />
-  </div>
 
-  <div class="dev-widget">
-    <div class="dev-widget-toolbar">
-      <a href="widget-heading.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    <div class="dev-widget" *ngSwitchCase="'HTML'">
+      <div class="dev-widget-toolbar">
+        <a routerLink="/user/{{userId}}/webiste/{{webId}}/page/{{pageId}}/widget/{{widget._id}}">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </div>
+      {{widget.text}}
     </div>
-    <p data-reactid="47">“A country that has been the world’s greatest exporter of havoc, death and inhumanity became a champion of hypocrisy by preaching about humanity from this podium.” </p>
-  </div>
 
-  <div class="dev-widget">
-    <div class="dev-widget-toolbar">
-      <a href="widget-youtube.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <span class="glyphicon glyphicon-menu-hamburger"></span>
+    <div class="dev-widget" *ngSwitchCase="'YOUTUBE'">
+      <div class="dev-widget-toolbar">
+        <a routerLink="/user/{{userId}}/webiste/{{webId}}/page/{{pageId}}/widget/{{widget._id}}">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </div>
+      <iframe [width]="widget.width" height="315" src="https://www.youtube.com/embed/ue80QwXMRHg" frameborder="0" allowfullscreen></iframe>
     </div>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ue80QwXMRHg" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
 
 <div class="dev-navbar-background-color container-fluid row dev-footer">
   <p class="navbar-text pull-right">
-    <a href="../user/profile.html" class="navbar-link">
+    <a routerLink="/user/{{userId}}" class="navbar-link">
       <span class="glyphicon glyphicon-user dev-navbar-text-color"></span>
     </a>
   </p>
