@@ -41,7 +41,7 @@
 
     <div class="dev-input-section">
       <label>Width</label>
-      <input type="number" min="0" class="dev-input" placeholder="100" [ngModel]="widget.width + '%'" name="width"/>
+      <input type="number" min="0" class="dev-input" placeholder="100" [ngModel]="widget.width.replace('%','')" name="width"/>
     </div>
 
   </form>

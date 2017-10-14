@@ -35,7 +35,6 @@ export class WidgetListComponent implements OnInit {
           w.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
         }
       });
-      console.log(this.widgets);
     });
   }
 
