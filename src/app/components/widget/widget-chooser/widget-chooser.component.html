@@ -1,8 +1,8 @@
-<div class="container-fluid row dev-navbar-background-color dev-header">
+<div class="container-fluid row dev-navbar-background-color">
 
   <!--arrow on the navbar-->
   <div class="navbar-text pull-left">
-    <a href="widget-ulst.html" class="navbar-link">
+    <a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget" class="navbar-link">
       <span class="glyphicon glyphicon-chevron-left dev-navbar-text-color"></span>
     </a>
   </div>
@@ -19,33 +19,33 @@
 <div  class="container-fluid">
   <ul class="list-group">
     <li class="list-group-item row">
-      <a href="widget-heading.html" class="pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <a (click)="addNewHeader()" class="pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <b>Header</b>
       </a>
       <p class="col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right">
-        Numbers of header being used: 5
+        Number of header being used: {{nh}}
       </p>
       <p class="col-lg-4 hidden-md hidden-sm hidden-xs pull-right">
         Description about Header.
       </p>
     </li>
     <li class="list-group-item row">
-      <a href="widget-image.html" class="pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <a (click)="addNewImage()" class="pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <b>Image</b>
       </a>
       <p class="col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right">
-        Numbers of Image being used: 5
+        Number of Image being used: {{ni}}
       </p>
       <p class="col-lg-4 hidden-md hidden-sm hidden-xs pull-right">
         Description about Image.
       </p>
     </li>
     <li class="list-group-item row">
-      <a href="widget-youtube.html" class="pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <a (click)="addNewYoutube()" class="pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <b>YouTube</b>
       </a>
       <p class="col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right">
-        Numbers of YouTube being used: 5
+        Number of YouTube being used: {{ny}}
       </p>
       <p class="col-lg-4 hidden-md hidden-sm hidden-xs pull-right">
         Description about YouTube.
@@ -56,7 +56,7 @@
 
 <div class="dev-navbar-background-color container-fluid row dev-footer">
   <p class="navbar-text pull-right">
-    <a href="../user/profile.html" class="navbar-link">
+    <a routerLink="/user/{{userId}}" class="navbar-link">
       <span class="glyphicon glyphicon-user dev-navbar-text-color"></span>
     </a>
   </p>

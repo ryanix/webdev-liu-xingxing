@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Widget} from '../../../../models/widget.model.client';
+import {ActivatedRoute, Router} from '@angular/router';
+import {WidgetServiceClient} from '../../../../services/widget.service.client';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-widget-header',
@@ -7,9 +11,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetHeaderComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('f') headerForm: NgForm;
+
+  userId: String;
+  webId: String;
+  pageId: String;
+  widgetId: String;
+  widget: Widget;
+  errorFlag: boolean;
+  errorMsg = 'Header name is required';
+
+  constructor(
+    private route: ActivatedRoute,
+    private widgetService: WidgetServiceClient,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.userId = params['uid'];
+      this.webId = params['wid'];
+      this.pageId = params['pid'];
+      this.widgetId = params['wgid'];
+      this.widget = this.widgetService.findWidgetById(this.widgetId);
+    });
+  }
+
+  confirmChange() {
+    if (this.headerForm.value.name.length > 0) {
+      this.errorFlag = false;
+      this.widget.text = this.headerForm.value.name;
+      this.widget.size = this.headerForm.value.size;
+      this.widgetService.updateWidget(this.widgetId, this.widget);
+      this.router.navigate([`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
+    } else {
+      this.errorFlag = true;
+    }
+  }
+
+  deleteWidget() {
+    this.widgetService.deleteWidget(this.widgetId);
+    this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
   }
 
 }

@@ -2,7 +2,7 @@
 
   <!--arrow on the navbar-->
   <div class="navbar-text pull-left">
-    <a href="widget-ulst.html" class="navbar-link">
+    <a routerLink="/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget" class="navbar-link">
       <span class="glyphicon glyphicon-chevron-left dev-navbar-text-color"></span>
     </a>
   </div>
@@ -15,7 +15,7 @@
   </div>
 
   <div class="navbar-text pull-right">
-    <a href="widget-ulst.html" class="navbar-link">
+    <a (click)="confirmChange()" class="navbar-link">
       <span class="glyphicon glyphicon-ok dev-navbar-text-color"></span>
     </a>
   </div>
@@ -23,35 +23,36 @@
 </div>
 
 <div  class="container-fluid">
-  <div class="dev-input-section">
-    <label>Name</label>
-    <input type="text" class="dev-input"/>
-  </div>
+  <form #f="ngForm">
+    <div class="dev-input-section">
+      <label>Name</label>
+      <input type="text" class="dev-input" [ngModel]="widget.text" name="text"/>
+    </div>
 
-  <div class="dev-input-section">
-    <label>Text</label>
-    <input type="text" class="dev-input"/>
-  </div>
+    <div class="dev-input-section">
+      <label>Text</label>
+      <input type="text" class="dev-input"/>
+    </div>
 
-  <div class="dev-input-section">
-    <label>URL</label>
-    <input type="url" class="dev-input" placeholder="3"/>
-  </div>
+    <div class="dev-input-section">
+      <label>URL</label>
+      <input type="url" class="dev-input" placeholder="3" [ngModel]="widget.url" name="url"/>
+    </div>
 
-  <div class="dev-input-section">
-    <label>Width</label>
-    <input type="number" min="0" class="dev-input" placeholder="100"/>
-  </div>
+    <div class="dev-input-section">
+      <label>Width</label>
+      <input type="number" min="0" class="dev-input" placeholder="100" [ngModel]="widget.width + '%'" name="width"/>
+    </div>
 
-
+  </form>
   <div class="dev-input-section">
-    <button class="btn btn-danger full-width" onclick="backToWidgetList()">Delete</button>
+    <button class="btn btn-danger full-width" (click)="deleteWidget()">Delete</button>
   </div>
 </div>
 
 <div class="dev-navbar-background-color container-fluid row dev-footer">
   <p class="navbar-text pull-right">
-    <a href="../user/profile.html" class="navbar-link">
+    <a href="/user/{{userId}}" class="navbar-link">
       <span class="glyphicon glyphicon-user dev-navbar-text-color"></span>
     </a>
   </p>

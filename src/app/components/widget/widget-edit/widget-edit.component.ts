@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Widget} from '../../../models/widget.model.client';
 import {WidgetServiceClient} from '../../../services/widget.service.client';
 
@@ -15,8 +15,7 @@ export class WidgetEditComponent implements OnInit {
   pageId: String;
   widgetId: String;
   widget: Widget;
-  widgets: Widget[];
-  constructor(private route: ActivatedRoute, private router: Router, private widgetService: WidgetServiceClient) { }
+  constructor(private route: ActivatedRoute, private widgetService: WidgetServiceClient) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -25,7 +24,6 @@ export class WidgetEditComponent implements OnInit {
       this.pageId = params['pid'];
       this.widgetId = params['wgid'];
       this.widget = this.widgetService.findWidgetById(this.widgetId);
-      this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
     });
   }
 }

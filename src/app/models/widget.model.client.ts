@@ -1,3 +1,5 @@
+import {SafeResourceUrl} from '@angular/platform-browser';
+
 export class Widget {
   _id: String;
   widgetType: String;
@@ -6,6 +8,7 @@ export class Widget {
   width: String;
   text: String;
   url: String;
+  safeUrl: SafeResourceUrl;
 
   constructor(_id, widgetType, pageId, size?, width?, text?,  url?) {
     this._id = _id;
@@ -14,5 +17,6 @@ export class Widget {
     this.size = size;
     this.width = width;
     this.text = text;
+    this.url = url;
   }
 }

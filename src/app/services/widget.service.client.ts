@@ -63,10 +63,7 @@ export class WidgetServiceClient {
   deleteWidget(widgetId) {
     for (let x = 0; x < this.widgets.length; x++) {
       if (this.widgets[x]._id === widgetId) {
-        delete this.widgets[x];
-        return true;
-      } else {
-        return false;
+        this.widgets.splice(x, 1);
       }
     }
   }
