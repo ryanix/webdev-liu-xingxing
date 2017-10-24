@@ -9,17 +9,8 @@ import {Widget} from '../models/widget.model.client';
 @Injectable()
 
 export class WidgetServiceClient {
-  constructor() {}
+  constructor(private http: Http) {}
 
-  widgets: Widget[] = [
-    new Widget('123', 'HEADING', '321', 2, null, 'GIZMODO'),
-    new Widget('234', 'HEADING', '321', 4, null, 'Lorem ipsum'),
-    new Widget('345', 'IMAGE', '321', null, '100%', null, 'http://lorempixel.com/400/200/'),
-    new Widget('456', 'HTML', '321', null, null, '<p>Lorem ipsum</p>'),
-    new Widget('567', 'HEADING', '321', 4, null, 'Lorem ipsum'),
-    new Widget('678', 'YOUTUBE', '321', null, '100%', null, 'https://youtu.be/AM2Ivdi9c4E'),
-    new Widget('789', 'HTML', '321', null, null, '<p>Lorem ipsum</p>')
-  ];
 
   api = {
     'createWidget'   : this.createWidget,
@@ -30,42 +21,53 @@ export class WidgetServiceClient {
   };
 
   createWidget(pageId: String, widget: any) {
-    widget._id = (this.widgets.length + 1).toString();
-    widget.pageId = pageId;
-    this.widgets.push(widget);
+    const url = 'http://localhost:3100/api/page/' + pageId + '/widget';
+    return this.http.post(url, widget)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   findWidgetsByPageId(pageId: String) {
-    return this.widgets.filter((w) => {
-      if (w.pageId === pageId) {
-        return w;
-      }
-    });
+    const url = 'http://localhost:3100/api/page/' + pageId + '/widget';
+    return this.http.get(url)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   findWidgetById(widgetId: String) {
-    for ( let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId ) {
-        return this.widgets[x];
-      }
-    }
+    const url = 'http://localhost:3100/api/widget/' + widgetId;
+    return this.http.get(url)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   updateWidget(widgetId: String, widget: Widget) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {
-        this.widgets[x] = widget;
-        return widget;
-      }
-    }
+    const url = 'http://localhost:3100/api/widget/' + widgetId;
+    return this.http.put(url, widget)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
   }
 
   deleteWidget(widgetId) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {
-        this.widgets.splice(x, 1);
-      }
-    }
+    const url = 'http://localhost:3100/api/widget/' + widgetId;
+    return this.http.delete(url)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
   }
 
 

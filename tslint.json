@@ -1,4 +1,9 @@
 {
+  "compilerOptions": {
+    "plugins": [
+      { "name": "tslint-language-service"}
+    ]
+  },
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],

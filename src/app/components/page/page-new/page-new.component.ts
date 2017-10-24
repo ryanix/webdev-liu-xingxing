@@ -29,16 +29,23 @@ export class PageNewComponent implements OnInit {
       );
       this.userId = params['uid'];
       this.webId = params['wid'];
-      this.pages = this.pageService.findPageByWebsiteId(this.webId);
+      this.pageService.findPageByWebsiteId(this.webId)
+        .subscribe((p: Page[]) => {
+          this.pages = p;
+        });
     });
   }
 
   addNewPage() {
     if (this.page.name.length > 0) {
-      this.pageService.createPage(this.webId, this.page);
-      this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
-    }else {
-      this.errorFlag = true;
+      this.pageService.createPage(this.webId, this.page)
+        .subscribe((p: Page) => {
+          if ( p ) {
+            this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
+          }else {
+            this.errorFlag = true;
+          }
+        });
     }
   }
 

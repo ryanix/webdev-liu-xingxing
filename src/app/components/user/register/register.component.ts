@@ -24,17 +24,24 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    const user: User = this.userService.findUserByUsername(this.registerForm.value.username);
-    if (user) {
-      this.errorFlag = true;
-    }else {
-      const nuser = new User(
-        (this.userService.users.length + 1).toString(),
-        this.registerForm.value.username,
-        this.registerForm.value.password
-      );
-      this.userService.createUser(nuser);
-      this.router.navigate([`/user/${nuser._id}`]);
-    }
+    this.userService.findUserByUsername(this.registerForm.value.username)
+      .subscribe((user: User) => {
+        const u = user;
+        if (u) {
+          this.errorFlag = true;
+        } else {
+          const nuser = new User(
+            Math.random().toString(),
+            this.registerForm.value.username,
+            this.registerForm.value.password
+          );
+          this.userService.createUser(nuser)
+            .subscribe( (nu: User) => {
+                if (nu) {
+                  this.router.navigate([`/user/${nu._id}`]);
+                }
+            });
+        }
+      });
   }
 }

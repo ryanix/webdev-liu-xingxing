@@ -33,26 +33,37 @@ export class WidgetYoutubeComponent implements OnInit {
       this.webId = params['wid'];
       this.pageId = params['pid'];
       this.widgetId = params['wgid'];
-      this.widget = this.widgetService.findWidgetById(this.widgetId);
+      this.widgetService.findWidgetById(this.widgetId)
+        .subscribe((w: Widget) => {
+          this.widget = w;
+        });
     });
   }
 
   confirmChange() {
-    if (this.youtubeForm.value.url.length > 0) {
+    if (this.youtubeForm.valid) {
       this.errorFlag = false;
       this.widget.text = this.youtubeForm.value.name;
       this.widget.width = this.youtubeForm.value.width.toString() + '%';
       this.widget.url = this.youtubeForm.value.url;
-      this.widgetService.updateWidget(this.widgetId, this.widget);
-      this.router.navigate([`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
-    } else {
-      this.errorFlag = true;
+      this.widgetService.updateWidget(this.widgetId, this.widget)
+        .subscribe((w: Widget) => {
+          if (w) {
+            this.router.navigate([`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
+          } else {
+            this.errorFlag = true;
+          }
+        });
     }
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widgetId);
-    this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
-  }
+    this.widgetService.deleteWidget(this.widgetId)
+      .subscribe((w: Widget) => {
+        if ( w ) {
+          this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
+        }
+      });
+    }
 
 }

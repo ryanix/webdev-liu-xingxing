@@ -24,23 +24,35 @@ export class PageEditComponent implements OnInit {
       this.userId = params['uid'];
       this.webId = params['wid'];
       this.pageId = params['pid'];
-      this.page = this.pageService.findPageById(this.pageId);
-      this.pages = this.pageService.findPageByWebsiteId(this.webId);
+      this.pageService.findPageById(this.pageId)
+        .subscribe( (p: Page) => {
+          this.page = p;
+        });
+      this.pageService.findPageByWebsiteId(this.webId)
+        .subscribe((ps: Page[]) => {
+          this.pages = ps;
+        });
     });
   }
 
   updatePage() {
     if (this.page.name.length > 0) {
-      this.pageService.updatePage(this.webId, this.page);
-      this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
-    }else {
-      this.errorFlag = true;
+      this.pageService.updatePage(this.webId, this.page)
+        .subscribe((p: Page) => {
+          if (p) {
+            this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
+          }else {
+            this.errorFlag = true;
+          }
+        });
     }
   }
 
   deletePage() {
-    this.pageService.deletePage(this.pageId);
-    this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
+    this.pageService.deletePage(this.pageId)
+      .subscribe((p: Page) => {
+        this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
+      });
   }
 
   refresh() {

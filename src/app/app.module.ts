@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestComponent } from './components/test/test.component';
 import {Routing} from './app.routing';
+import {RouterModule} from '@angular/router';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {TestService} from './services/test.service.client';
@@ -29,6 +30,10 @@ import {WebsiteServiceClient} from './services/website.service.client';
 import {PageServiceClient} from './services/page.service.client';
 import {WidgetServiceClient} from './services/widget.service.client';
 
+import { SafePipe} from './Pipe/SafePip';
+
+import {SortableDirective} from '../../assignment/directives/sortable.directive';
+
 @NgModule({
   // Declare components here
   declarations: [
@@ -51,12 +56,14 @@ import {WidgetServiceClient} from './services/widget.service.client';
     WidgetImageComponent,
     WidgetYoutubeComponent,
 
+    SafePipe,
+    SortableDirective,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    Routing
+    Routing,
   ],
   // Client Side services here
   providers: [

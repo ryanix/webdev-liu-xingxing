@@ -25,8 +25,14 @@ export class WebsiteEditComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.userId = params['uid'];
       this.webId = params['wid'];
-      this.website = this.webService.findWebsiteById(this.webId);
-      this.websites = this.webService.findWebsitesByUser(this.userId);
+      this.webService.findWebsiteById(this.webId)
+        .subscribe( (w: Website) => {
+          this.website = w;
+        });
+      this.webService.findWebsitesByUser(this.userId)
+        .subscribe((ws: Website[]) => {
+          this.websites = ws;
+        });
     });
   }
 
@@ -35,16 +41,22 @@ export class WebsiteEditComponent implements OnInit {
       this.errorFlag = false;
       this.website.name = this.editWebForm.value.name;
       this.website.description = this.editWebForm.value.description;
-      this.webService.updateWebsite(this.website._id, this.website);
-      this.router.navigate([`/user/${this.userId}/website`]);
-    } else {
-      this.errorFlag = true;
+      this.webService.updateWebsite(this.website._id, this.website)
+        .subscribe((w: Website) => {
+          if (w) {
+            this.router.navigate([`/user/${this.userId}/website`]);
+          } else {
+            this.errorFlag = true;
+          }
+        });
     }
   }
 
   deleteWebsite() {
-    this.webService.deleteWebsite(this.webId);
-    this.router.navigate([`/user/${this.userId}/website`]);
+    this.webService.deleteWebsite(this.webId)
+      .subscribe(() => {
+        this.router.navigate([`/user/${this.userId}/website`]);
+      });
   }
 
   refresh() {

@@ -30,21 +30,26 @@ export class WidgetChooserComponent implements OnInit {
       this.userId = params['uid'];
       this.webId = params['wid'];
       this.pageId = params['pid'];
-      this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
-      this.widgets.map((w) => {
-        if (w.widgetType === 'HEADING') {
-          this.nh += 1;
-        } else if (w.widgetType === 'IMAGE') {
-          this.ni += 1;
-        } else if (w.widgetType === 'YOUTUBE') {
-          this.ny += 1;
-        }
-      });
+      this.widgetService.findWidgetsByPageId(this.pageId)
+        .subscribe((ws: Widget[]) => {
+          if (ws.length > 0) {
+            this.widgets = ws;
+              ws.map((w) => {
+                if (w.widgetType === 'HEADING') {
+                  this.nh += 1;
+                } else if (w.widgetType === 'IMAGE') {
+                  this.ni += 1;
+                } else if (w.widgetType === 'YOUTUBE') {
+                  this.ny += 1;
+                }
+              });
+          }
+        });
     });
   }
 
   addNewImage() {
-    const widgetId = this.widgetService.widgets.length + 1;
+    const widgetId = Math.random();
     const widget = new Widget(
       widgetId.toString(),
       'IMAGE',
@@ -54,12 +59,16 @@ export class WidgetChooserComponent implements OnInit {
       null,
       'IMAGE URl'
     );
-    this.widgetService.createWidget(this.pageId, widget);
-    this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${widgetId}`]);
+    this.widgetService.createWidget(this.pageId, widget)
+      .subscribe( (w: Widget) => {
+        if ( w ) {
+          this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${widgetId}`]);
+        }
+      });
   }
 
   addNewYoutube() {
-    const widgetId = this.widgetService.widgets.length + 1;
+    const widgetId = Math.random();
     const widget = new Widget(
       widgetId.toString(),
       'YOUTUBE',
@@ -69,12 +78,14 @@ export class WidgetChooserComponent implements OnInit {
       null,
       'Youtube url'
     );
-    this.widgetService.createWidget(this.pageId, widget);
-    this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${widgetId}`]);
+    this.widgetService.createWidget(this.pageId, widget)
+      .subscribe((w: Widget) => {
+        this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${widgetId}`]);
+    });
   }
 
   addNewHeader() {
-    const widgetId = this.widgetService.widgets.length + 1;
+    const widgetId = Math.random();
     const widget = new Widget(
       widgetId.toString(),
       'HEADING',
@@ -83,7 +94,11 @@ export class WidgetChooserComponent implements OnInit {
       null,
       'HEADING NAME'
     );
-    this.widgetService.createWidget(this.pageId, widget);
-    this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${widgetId}`]);
+    this.widgetService.createWidget(this.pageId, widget)
+      .subscribe((w: Widget) => {
+        if ( w ) {
+          this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${widgetId}`]);
+        }
+      });
   }
 }

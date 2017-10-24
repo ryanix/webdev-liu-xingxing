@@ -19,28 +19,36 @@ export class WebsiteNewComponent implements OnInit {
   errorFlag: boolean;
   errorMsg = 'Name is required for a new website';
 
-  constructor(private router: Router, private route: ActivatedRoute, private webService: WebsiteServiceClient) { }
+  constructor(private router: Router, private route: ActivatedRoute, private webService: WebsiteServiceClient) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.userId = params['uid'];
-      this.websites = this.webService.findWebsitesByUser(this.userId);
+      this.webService.findWebsitesByUser(this.userId)
+        .subscribe((ws: Website[]) => {
+          this.websites = ws;
+        });
     });
   }
 
   addWebsite() {
     if (this.addWebForm.value.name.length > 0) {
       this.errorFlag = false;
-      const web = new Website (
+      const web = new Website(
         1,
         this.addWebForm.value.name,
         this.userId,
         this.addWebForm.value.description
       );
-      this.webService.createWebsite(this.userId, web);
-      this.router.navigate([`/user/${this.userId}/website`]);
-    } else {
-      this.errorFlag = true;
+      this.webService.createWebsite(this.userId, web)
+        .subscribe((w: Website) => {
+          if (w) {
+            this.router.navigate([`/user/${this.userId}/website`]);
+          } else {
+            this.errorFlag = true;
+          }
+        });
     }
   }
 }

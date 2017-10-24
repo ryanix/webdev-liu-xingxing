@@ -28,17 +28,15 @@ export class WidgetListComponent implements OnInit {
       this.userId = params['uid'];
       this.webId = params['wid'];
       this.pageId = params['pid'];
-      this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
-      this.widgets.map((w) => {
-        if (w.widgetType === 'YOUTUBE' && w.url) {
-          const url = 'https://www.youtube.com/embed/' + w.url.split('/').slice(-1)[0];
-          w.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-        }
-      });
+      this.widgetService.findWidgetsByPageId(this.pageId)
+        .subscribe((ws: Widget[]) => {
+          this.widgets = ws;
+        });
     });
   }
 
   redirectTo(id) {
+    console.log(id)
     this.router.navigate([`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${id}`]);
   }
 }

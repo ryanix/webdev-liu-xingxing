@@ -24,7 +24,7 @@
 </div>
 
 <div class="container-fluid" *ngFor="let widget of widgets">
-  <div  [ngSwitch]="widget.widgetType">
+  <div  [ngSwitch]="widget.widgetType" *ngIf="widget">
     <div class="dev-widget" *ngSwitchCase="'HEADING'">
       <div class="dev-widget-toolbar">
         <a (click)="redirectTo(widget._id)">
@@ -63,7 +63,7 @@
         </a>
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </div>
-      <iframe [width]="widget.width" height="500" [src]="widget.safeUrl" frameborder="0" allowfullscreen></iframe>
+      <iframe [width]="widget.width" height="500" [src]="widget.url | safe" frameborder="0" allowfullscreen></iframe>
       <p>{{widget.text}}</p>
     </div>
   </div>

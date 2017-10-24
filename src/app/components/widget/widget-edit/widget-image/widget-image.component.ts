@@ -33,24 +33,35 @@ export class WidgetImageComponent implements OnInit {
       this.webId = params['wid'];
       this.pageId = params['pid'];
       this.widgetId = params['wgid'];
-      this.widget = this.widgetService.findWidgetById(this.widgetId);
+      this.widgetService.findWidgetById(this.widgetId)
+        .subscribe( (w: Widget) => {
+          this.widget = w;
+        });
     });
   }
 
   confirmChange() {
-    if (this.imageForm.value.url.length > 0) {
+    if (this.imageForm.value.url.valid) {
       this.errorFlag = false;
       this.widget.width = this.imageForm.value.width.toString() + '%';
       this.widget.url = this.imageForm.value.url;
-      this.widgetService.updateWidget(this.widgetId, this.widget);
-      this.router.navigate([`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
-    } else {
-      this.errorFlag = true;
+      this.widgetService.updateWidget(this.widgetId, this.widget)
+        .subscribe((w: Widget) => {
+          if (w) {
+            this.router.navigate([`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
+          } else {
+            this.errorFlag = true;
+          }
+        });
     }
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widgetId);
-    this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
+    this.widgetService.deleteWidget(this.widgetId)
+      .subscribe((w: Widget) => {
+        if ( w ) {
+          this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget`]);
+        }
+      });
   }
 }
