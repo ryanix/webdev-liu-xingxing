@@ -40,7 +40,7 @@ export class UserServiceClient {
   }
 
   findUserByUsername(username: string) {
-    const url = 'http://localhost:3100/api/user/?username=' + username;
+    const url = 'http://localhost:3100/api/user?username=' + username;
     return this.http.get(url)
       .map(
         (res: Response) => {
@@ -51,7 +51,7 @@ export class UserServiceClient {
   }
 
   findUserByCredentials(username: String, password: String) {
-    const url = 'http://localhost:3100/api/user/?username=' + username + '&password=' + password;
+    const url = 'http://localhost:3100/api/user?username=' + username + '&password=' + password;
     return this.http.get(url)
       .map(
         (res: Response) => {

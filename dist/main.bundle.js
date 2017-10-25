@@ -2457,7 +2457,8 @@ var WidgetServiceClient = (function () {
     };
     WidgetServiceClient.prototype.sortWidgets = function (pageId, start, end) {
         var url = 'http://localhost:3100/page/' + pageId + '/widget?initial=' + start.toString() + '&final=' + end.toString();
-        return this.http.put(url, {})
+        console.log(url);
+        return this.http.put(url, { start: start, end: end })
             .map(function (res) {
             return res.json();
         });
