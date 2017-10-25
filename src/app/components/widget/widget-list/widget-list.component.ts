@@ -35,8 +35,15 @@ export class WidgetListComponent implements OnInit {
     });
   }
 
+  onSorted(positions) {
+    if ( positions ) {
+      if (positions.startIndex >= 0 && positions.endIndex >= 0 && positions.startIndex !== positions.endIndex) {
+        this.widgetService.sortWidgets(this.pageId, positions.startIndex, positions.endIndex);
+      }
+    }
+  }
+
   redirectTo(id) {
-    console.log(id)
     this.router.navigate([`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${id}`]);
   }
 }

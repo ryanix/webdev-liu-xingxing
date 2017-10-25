@@ -28,11 +28,9 @@ var SortableDirective = (function () {
         jQuery(this.el.nativeElement).sortable({
             axis: 'y',
             start: function (event, ui) {
-                console.log('Old position: ' + ui.item.index());
                 refe.initialIndex = ui.item.index();
             },
             stop: function (event, ui) {
-                console.log('New position: ' + ui.item.index());
                 refe.newIndexes.emit({
                     startIndex: refe.initialIndex,
                     endIndex: ui.item.index()
@@ -48,7 +46,7 @@ __decorate([
 ], SortableDirective.prototype, "newIndexes", void 0);
 SortableDirective = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Directive */])({
-        selector: '[wbdvSortable]'
+        selector: '[appSortable]'
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ElementRef */]) === "function" && _a || Object])
 ], SortableDirective);
@@ -106,7 +104,6 @@ var SafePipe = (function () {
         else {
             new_url = url;
         }
-        console.log(url, new_url);
         return this.sanitizer.bypassSecurityTrustResourceUrl(new_url);
     };
     return SafePipe;
@@ -1694,7 +1691,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\"/>\n    </div>\n\n    <div class=\"dev-input-section\" [ngModel]=\"widget.text\" name=\"text\">\n      <label>Text</label>\n      <input type=\"text\" class=\"dev-input\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>URL</label>\n      <input type=\"url\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.url\" name=\"url\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Width(%)</label>\n      <input type=\"number\" min=\"0\" max=\"100\" class=\"dev-input\" placeholder=\"100\" [ngModel]=\"widget.width.replace('%','')\" name=\"width\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Upload</label>\n      <input type=\"file\" class=\"dev-input\" placeholder=\"3\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <button class=\"btn btn-primary full-width\" onclick=\"\">Upload Image</button>\n    </div>\n  </form>\n  <div class=\"dev-input-section\">\n    <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Text</label>\n      <input type=\"text\" class=\"dev-input\" placeholder=\"text description\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>URL</label>\n      <input type=\"url\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.url\" name=\"url\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Width(%)</label>\n      <input type=\"number\" min=\"0\" max=\"100\" class=\"dev-input\" placeholder=\"100\" [ngModel]=\"widget.width.replace('%','')\" name=\"width\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Upload</label>\n      <input type=\"file\" class=\"dev-input\" placeholder=\"3\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <button class=\"btn btn-primary full-width\" onclick=\"\">Upload Image</button>\n    </div>\n  </form>\n  <div class=\"dev-input-section\">\n    <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -1742,7 +1739,7 @@ var WidgetImageComponent = (function () {
     };
     WidgetImageComponent.prototype.confirmChange = function () {
         var _this = this;
-        if (this.imageForm.value.url.valid) {
+        if (this.imageForm.valid) {
             this.errorFlag = false;
             this.widget.width = this.imageForm.value.width.toString() + '%';
             this.widget.url = this.imageForm.value.url;
@@ -1921,7 +1918,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\" [ngStyle]=\"{'overflow': scroll}\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widgets</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div class=\"container-fluid\" *ngFor=\"let widget of widgets\">\n  <div  [ngSwitch]=\"widget.widgetType\" *ngIf=\"widget\">\n    <div class=\"dev-widget\" *ngSwitchCase=\"'HEADING'\">\n      <div class=\"dev-widget-toolbar\">\n        <a (click)=\"redirectTo(widget._id)\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </div>\n      <h1 [ngStyle]=\"{'font-size': widget.size + 'em'}\">{{widget.text}}</h1>\n    </div>\n\n    <div class=\"dev-widget\" *ngSwitchCase=\"'IMAGE'\">\n      <div class=\"dev-widget-toolbar\">\n        <a (click)=\"redirectTo(widget._id)\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </div>\n      <img [src]=\"widget.url\" [style.width]=\"widget.width\"/>\n      <p>{{widget.text}}</p>\n    </div>\n\n    <div class=\"dev-widget\" *ngSwitchCase=\"'HTML'\">\n      <div class=\"dev-widget-toolbar\">\n        <a (click)=\"redirectTo(widget._id)\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </div>\n      <div [innerHtml]=\"widget.text\"></div>\n    </div>\n\n    <div class=\"dev-widget\" *ngSwitchCase=\"'YOUTUBE'\">\n      <div class=\"dev-widget-toolbar\">\n        <a (click)=\"redirectTo(widget._id)\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n        <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n      </div>\n      <iframe [width]=\"widget.width\" height=\"500\" [src]=\"widget.url | safe\" frameborder=\"0\" allowfullscreen></iframe>\n      <p>{{widget.text}}</p>\n    </div>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\" [ngStyle]=\"{'overflow': scroll}\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widgets</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n<div class=\"container-fliud\" appSortable (newIndexes)=\"onSorted($event)\">\n  <div class=\"container-fluid\" *ngFor=\"let widget of widgets\">\n    <div  [ngSwitch]=\"widget.widgetType\" *ngIf=\"widget\" >\n      <div class=\"dev-widget\" *ngSwitchCase=\"'HEADING'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <h1 [ngStyle]=\"{'font-size': widget.size + 'em'}\">{{widget.text}}</h1>\n      </div>\n\n      <div class=\"dev-widget\" *ngSwitchCase=\"'IMAGE'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <img [src]=\"widget.url\" [style.width]=\"widget.width\"/>\n        <p>{{widget.text}}</p>\n      </div>\n\n      <div class=\"dev-widget\" *ngSwitchCase=\"'HTML'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <div [innerHtml]=\"widget.text\"></div>\n      </div>\n\n      <div class=\"dev-widget\" *ngSwitchCase=\"'YOUTUBE'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <iframe [width]=\"widget.width\" height=\"500\" [src]=\"widget.url | safe\" frameborder=\"0\" allowfullscreen></iframe>\n        <p>{{widget.text}}</p>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -1966,8 +1963,14 @@ var WidgetListComponent = (function () {
             });
         });
     };
+    WidgetListComponent.prototype.onSorted = function (positions) {
+        if (positions) {
+            if (positions.startIndex >= 0 && positions.endIndex >= 0 && positions.startIndex !== positions.endIndex) {
+                this.widgetService.sortWidgets(this.pageId, positions.startIndex, positions.endIndex);
+            }
+        }
+    };
     WidgetListComponent.prototype.redirectTo = function (id) {
-        console.log(id);
         this.router.navigate(["/user/" + this.userId + "/website/" + this.webId + "/page/" + this.pageId + "/widget/" + id]);
     };
     return WidgetListComponent;
@@ -2414,6 +2417,7 @@ var WidgetServiceClient = (function () {
             'findWidgetById': this.findWidgetById,
             'updateWidget': this.updateWidget,
             'deleteWidget': this.deleteWidget,
+            'sortWidgets': this.sortWidgets,
         };
     }
     WidgetServiceClient.prototype.createWidget = function (pageId, widget) {
@@ -2447,6 +2451,13 @@ var WidgetServiceClient = (function () {
     WidgetServiceClient.prototype.deleteWidget = function (widgetId) {
         var url = 'http://localhost:3100/api/widget/' + widgetId;
         return this.http.delete(url)
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    WidgetServiceClient.prototype.sortWidgets = function (pageId, start, end) {
+        var url = 'http://localhost:3100/page/' + pageId + '/widget?initial=' + start.toString() + '&final=' + end.toString();
+        return this.http.put(url, {})
             .map(function (res) {
             return res.json();
         });

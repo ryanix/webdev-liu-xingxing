@@ -18,6 +18,7 @@ export class WidgetServiceClient {
     'findWidgetById' : this.findWidgetById,
     'updateWidget': this.updateWidget,
     'deleteWidget': this.deleteWidget,
+    'sortWidgets': this.sortWidgets,
   };
 
   createWidget(pageId: String, widget: any) {
@@ -63,6 +64,16 @@ export class WidgetServiceClient {
   deleteWidget(widgetId) {
     const url = 'http://localhost:3100/api/widget/' + widgetId;
     return this.http.delete(url)
+      .map(
+        (res: Response) => {
+          return res.json();
+        }
+      );
+  }
+
+  sortWidgets(pageId, start, end) {
+    const url = 'http://localhost:3100/page/' + pageId + '/widget?initial=' + start.toString() + '&final=' + end.toString();
+    return this.http.put(url, {})
       .map(
         (res: Response) => {
           return res.json();

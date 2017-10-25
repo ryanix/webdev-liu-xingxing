@@ -41,7 +41,7 @@ export class WidgetImageComponent implements OnInit {
   }
 
   confirmChange() {
-    if (this.imageForm.value.url.valid) {
+    if (this.imageForm.valid) {
       this.errorFlag = false;
       this.widget.width = this.imageForm.value.width.toString() + '%';
       this.widget.url = this.imageForm.value.url;

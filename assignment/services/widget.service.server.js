@@ -17,22 +17,19 @@ module.exports = function(app) {
       "url": "https://youtu.be/AM2Ivdi9c4E" },
     { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
   ]
-  function reOrderWidgets(req, res) {
-    
-  }
 
   function createWidget(req, res) {
-    var pageId = req.params['pageId']
+    var pageId = req.params['pageId'];
     var widget = req.body;
-    var id = (widgets.length + 1).toString()
+    var id = (widgets.length + 1).toString();
     widget._id = id;
     widget.developerId = pageId;
-    widgets.push(widget)
+    widgets.push(widget);
     res.json(widget)
   }
 
   function findAllWidgetsForPage(req, res) {
-    var pageId = req.params['pageId']
+    var pageId = req.params['pageId'];
     var ws = widgets.map( function(w) {
       if(w.pageId === pageId) {
         return w
@@ -42,10 +39,10 @@ module.exports = function(app) {
   }
 
   function findWidgetById(req, res) {
-    var widgetId = req.params['widgetId']
+    var widgetId = req.params['widgetId'];
     var widget = widgets.find( function (w) {
       return w._id === widgetId;
-    })
+    });
     if (widget) {
       res.json(widget)
     } else {
@@ -59,22 +56,30 @@ module.exports = function(app) {
     for (var i = 0; i < widgets.length; i++) {
       if (widgets[i]._id ===widgetId) {
         widgets[i] = widget;
-        res.json(widget)
+        res.json(widget);
         return
       }
     }
   }
 
   function deleteWidget(req, res) {
-    var widgetId = req.params['widgetId']
+    var widgetId = req.params['widgetId'];
     var widget = req.body;
     for (var i = 0; i < widgets.length; i++) {
       if (widgets[i]._id === widgetId) {
         widgets.splice(i,1);
-        res.json(widgets)
+        res.json(widgets);
         return
       }
     }
   }
 
+  function reOrderWidgets(req, res) {
+    var pageId = req.params['pageId'];
+    var start = req.query['initial'];
+    var end = req.query['final'];
+    widgets.splice(end, 0, widgets.splice(start, 1)[0]);
+    res.json(widgets)
+  }
 }
+
