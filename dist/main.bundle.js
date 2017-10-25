@@ -2264,7 +2264,7 @@ var UserServiceClient = (function () {
         });
     };
     UserServiceClient.prototype.findUserByUsername = function (username) {
-        var url = 'http://localhost:3100/api/user/?username=' + username;
+        var url = 'http://localhost:3100/api/user?username=' + username;
         return this.http.get(url)
             .map(function (res) {
             var data = res.json();
@@ -2272,7 +2272,7 @@ var UserServiceClient = (function () {
         });
     };
     UserServiceClient.prototype.findUserByCredentials = function (username, password) {
-        var url = 'http://localhost:3100/api/user/?username=' + username + '&password=' + password;
+        var url = 'http://localhost:3100/api/user?username=' + username + '&password=' + password;
         return this.http.get(url)
             .map(function (res) {
             var data = res.json();
