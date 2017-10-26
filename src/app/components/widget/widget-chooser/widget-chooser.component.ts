@@ -35,6 +35,9 @@ export class WidgetChooserComponent implements OnInit {
           if (ws.length > 0) {
             this.widgets = ws;
               ws.map((w) => {
+                if (!w) {
+                  return;
+                }
                 if (w.widgetType === 'HEADING') {
                   this.nh += 1;
                 } else if (w.widgetType === 'IMAGE') {
@@ -62,7 +65,7 @@ export class WidgetChooserComponent implements OnInit {
     this.widgetService.createWidget(this.pageId, widget)
       .subscribe( (w: Widget) => {
         if ( w ) {
-          this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${widgetId}`]);
+          this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${w._id}`]);
         }
       });
   }
@@ -80,7 +83,7 @@ export class WidgetChooserComponent implements OnInit {
     );
     this.widgetService.createWidget(this.pageId, widget)
       .subscribe((w: Widget) => {
-        this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${widgetId}`]);
+        this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${w._id}`]);
     });
   }
 
@@ -97,7 +100,7 @@ export class WidgetChooserComponent implements OnInit {
     this.widgetService.createWidget(this.pageId, widget)
       .subscribe((w: Widget) => {
         if ( w ) {
-          this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${widgetId}`]);
+          this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${w._id}`]);
         }
       });
   }

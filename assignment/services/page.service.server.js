@@ -13,7 +13,7 @@ module.exports = function(app) {
 
   function createPage(req, res) {
     var webId = req.params['websiteId'];
-    var id = (pages.length + 1)._toString();
+    var id = (pages.length + 1).toString();
     var page = req.body;
     page._id = id;
     page.websiteId = webId;

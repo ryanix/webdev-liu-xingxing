@@ -48,15 +48,18 @@
       <input type="number" min="0" max="100" class="dev-input" placeholder="100" [ngModel]="widget.width.replace('%','')" name="width"/>
     </div>
 
-    <div class="dev-input-section">
-      <label>Upload</label>
-      <input type="file" class="dev-input" placeholder="3"/>
-    </div>
-
-    <div class="dev-input-section">
-      <button class="btn btn-primary full-width" onclick="">Upload Image</button>
-    </div>
   </form>
+  <p></p>
+  <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+    <input  name="myFile"   type="file" class="form-control"/>
+    <input  name="widgetId" value="{{widgetId}}"   style="display: none"/>
+    <input  name="websiteId" value="{{webId}}"   style="display: none"/>
+    <input  name="pageId" value="{{pageId}}"   style="display: none"/>
+    <input  name="userId" value="{{userId}}"   style="display: none"/>
+    <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+    <br/>
+  </form>
+
   <div class="dev-input-section">
     <button class="btn btn-danger full-width" (click)="deleteWidget()">Delete</button>
   </div>

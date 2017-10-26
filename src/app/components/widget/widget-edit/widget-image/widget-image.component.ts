@@ -3,6 +3,7 @@ import {Widget} from '../../../../models/widget.model.client';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetServiceClient} from '../../../../services/widget.service.client';
 import {NgForm} from '@angular/forms';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-widget-image',
@@ -20,6 +21,7 @@ export class WidgetImageComponent implements OnInit {
   widget: Widget;
   errorFlag: boolean;
   errorMsg = 'Image url is required';
+  baseUrl = environment.baseUrl;
 
   constructor(
     private route: ActivatedRoute,

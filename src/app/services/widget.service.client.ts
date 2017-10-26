@@ -73,8 +73,7 @@ export class WidgetServiceClient {
 
   sortWidgets(pageId, start, end) {
     const url = 'http://localhost:3100/page/' + pageId + '/widget?initial=' + start.toString() + '&final=' + end.toString();
-    console.log(url)
-    return this.http.put(url, {start, end})
+    return this.http.put(url, {})
       .map(
         (res: Response) => {
           return res.json();

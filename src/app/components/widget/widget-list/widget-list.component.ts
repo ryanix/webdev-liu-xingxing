@@ -34,11 +34,13 @@ export class WidgetListComponent implements OnInit {
         });
     });
   }
-
   onSorted(positions) {
     if ( positions ) {
       if (positions.startIndex >= 0 && positions.endIndex >= 0 && positions.startIndex !== positions.endIndex) {
-        this.widgetService.sortWidgets(this.pageId, positions.startIndex, positions.endIndex);
+        this.widgetService.sortWidgets(this.pageId, positions.startIndex, positions.endIndex)
+          .subscribe((w: Widget[]) => {
+            this.widgets = w;
+          });
       }
     }
   }
