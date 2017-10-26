@@ -66,4 +66,8 @@ export class WidgetImageComponent implements OnInit {
         }
       });
   }
+
+  redirect() {
+    this.router.navigate([`user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${this.widgetId}/search`]);
+  }
 }

@@ -117,3 +117,7 @@ a:hover {
   margin-top: 15px;
   width: 100%;
 }
+
+.dev-input-block {
+  margin: 15px;
+}

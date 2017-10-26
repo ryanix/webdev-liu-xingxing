@@ -1,7 +1,18 @@
 module.exports = function(app) {
-
+  var mime = require('mime');
+  var crypto = require('crypto');
   var multer = require('multer'); // npm install multer --save
-  var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, __dirname+'/../../src/assets/uploads')
+    },
+    filename: function (req, file, cb) {
+      crypto.pseudoRandomBytes(16, function (err, raw) {
+        cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      });
+    }
+  });
+  var upload = multer({ storage: storage });
 
   app.post('/api/page/:pageId/widget', createWidget);
   app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
@@ -104,9 +115,9 @@ module.exports = function(app) {
     var mimetype      = myFile.mimetype;
 
     widget = getWidgetById(widgetId);
-    widget.url = 'assets/uploads/'+filename;
+    widget.url = 'assets/uploads/' + filename;
 
-    var callbackUrl   = "/user/"+userId+"/website/"+websiteId+"/page/" + pageId + '/widget/' + widgetId;
+    var callbackUrl   = "http://localhost:3100/user/"+userId+"/website/"+websiteId+"/page/" + pageId + '/widget/' + widgetId;
 
     res.redirect(callbackUrl);
 

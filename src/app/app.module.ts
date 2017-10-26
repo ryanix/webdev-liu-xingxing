@@ -33,6 +33,8 @@ import {WidgetServiceClient} from './services/widget.service.client';
 import { SafePipe} from './Pipe/SafePip';
 
 import {SortableDirective} from '../../assignment/directives/sortable.directive';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {FlickrServiceClient} from './services/flickr.service.client';
 
 @NgModule({
   // Declare components here
@@ -58,6 +60,7 @@ import {SortableDirective} from '../../assignment/directives/sortable.directive'
 
     SafePipe,
     SortableDirective,
+    FlickrImageSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import {SortableDirective} from '../../assignment/directives/sortable.directive'
     UserServiceClient,
     WebsiteServiceClient,
     PageServiceClient,
-    WidgetServiceClient
+    WidgetServiceClient,
+    FlickrServiceClient,
   ],
   bootstrap: [AppComponent]
 })

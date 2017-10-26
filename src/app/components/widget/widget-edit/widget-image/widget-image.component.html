@@ -23,6 +23,11 @@
 </div>
 
 <div  class="container-fluid" *ngIf="widget">
+
+  <div class="dev-input-section">
+    <button class="btn btn-primary btn-block" (click)="redirect()">Search</button>
+  </div>
+
   <div *ngIf="errorFlag"
        class="alert alert-danger">
     {{errorMsg}}
@@ -56,6 +61,7 @@
     <input  name="websiteId" value="{{webId}}"   style="display: none"/>
     <input  name="pageId" value="{{pageId}}"   style="display: none"/>
     <input  name="userId" value="{{userId}}"   style="display: none"/>
+    <p></p>
     <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
     <br/>
   </form>
