@@ -11,6 +11,8 @@ import {Page} from '../models/page.model.client';
 export class PageServiceClient {
   constructor(private http: Http) {}
 
+  baseUrl = environment.baseUrl;
+
   api = {
     'createPage'   : this.createPage,
     'findPageByWebsiteId' : this.findPageByWebsiteId,
@@ -20,7 +22,7 @@ export class PageServiceClient {
   };
 
   createPage(websiteId: String, page: Page) {
-    const url = 'http://localhost:3100/api/website/' + websiteId + '/page';
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
     return this.http.post(url, page)
       .map(
         (res: Response) => {
@@ -30,7 +32,7 @@ export class PageServiceClient {
   }
 
   findPageByWebsiteId(websiteId: String) {
-    const url = 'http://localhost:3100/api/website/' + websiteId + '/page';
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
     return this.http.get(url)
       .map(
         (res: Response) => {
@@ -40,7 +42,7 @@ export class PageServiceClient {
   }
 
   findPageById(pageId: String) {
-    const url = 'http://localhost:3100/api/page/' + pageId;
+    const url = this.baseUrl + '/api/page/' + pageId;
     return this.http.get(url)
       .map(
         (res: Response) => {
@@ -50,7 +52,7 @@ export class PageServiceClient {
   }
 
   updatePage(pageId: String, page: Page) {
-    const url = 'http://localhost:3100/api/page/' + pageId;
+    const url = this.baseUrl + '/api/page/' + pageId;
     return this.http.put(url, page)
       .map(
         (res: Response) => {
@@ -60,7 +62,7 @@ export class PageServiceClient {
   }
 
   deletePage(pageId: String) {
-    const url = 'http://localhost:3100/api/page/' + pageId;
+    const url = this.baseUrl + '/api/page/' + pageId;
     return this.http.delete(url)
       .map(
         (res: Response) => {

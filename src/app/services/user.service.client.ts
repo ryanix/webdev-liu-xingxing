@@ -11,6 +11,8 @@ import { User } from '../models/user.model.client';
 export class UserServiceClient {
   constructor(private http: Http) {}
 
+  baseUrl = environment.baseUrl;
+
   api = {
     'createUser'   : this.createUser,
     'findUserById' : this.findUserById,
@@ -21,7 +23,7 @@ export class UserServiceClient {
   };
 
   createUser(user: any) {
-    const url = 'http://localhost:3100/api/user';
+    const url = this.baseUrl + '/api/user';
     return this.http.post(url, user)
       .map((response: Response) => {
         return response.json();
@@ -29,7 +31,7 @@ export class UserServiceClient {
   }
 
   findUserById(userId: string) {
-    const url = 'http://localhost:3100/api/user/' + userId;
+    const url = this.baseUrl + '/api/user/' + userId;
     return this.http.get(url)
       .map(
         (res: Response) => {
@@ -40,7 +42,7 @@ export class UserServiceClient {
   }
 
   findUserByUsername(username: string) {
-    const url = 'http://localhost:3100/api/user?username=' + username;
+    const url = this.baseUrl + '/api/user?username=' + username;
     return this.http.get(url)
       .map(
         (res: Response) => {
@@ -51,7 +53,7 @@ export class UserServiceClient {
   }
 
   findUserByCredentials(username: String, password: String) {
-    const url = 'http://localhost:3100/api/user?username=' + username + '&password=' + password;
+    const url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
     return this.http.get(url)
       .map(
         (res: Response) => {
@@ -62,14 +64,14 @@ export class UserServiceClient {
   }
 
   updateUser(userId, user) {
-    const url = 'http://localhost:3100/api/user/' + userId;
+    const url = this.baseUrl + '/api/user/' + userId;
     return this.http.put(url, user)
       .map((res: Response) => {
         return res.json();
       });
   }
   deleteUser(userId) {
-    const url = 'http://localhost:3100/api/user/' + userId;
+    const url = this.baseUrl + '/api/user/' + userId;
     return this.http.delete(url)
       .map(
         (res: Response) => {

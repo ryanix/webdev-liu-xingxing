@@ -11,6 +11,7 @@ import {Widget} from '../models/widget.model.client';
 export class WidgetServiceClient {
   constructor(private http: Http) {}
 
+  baseUrl = environment.baseUrl;
 
   api = {
     'createWidget'   : this.createWidget,
@@ -22,7 +23,7 @@ export class WidgetServiceClient {
   };
 
   createWidget(pageId: String, widget: any) {
-    const url = 'http://localhost:3100/api/page/' + pageId + '/widget';
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget';
     return this.http.post(url, widget)
       .map(
         (res: Response) => {
@@ -32,7 +33,7 @@ export class WidgetServiceClient {
   }
 
   findWidgetsByPageId(pageId: String) {
-    const url = 'http://localhost:3100/api/page/' + pageId + '/widget';
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget';
     return this.http.get(url)
       .map(
         (res: Response) => {
@@ -42,7 +43,7 @@ export class WidgetServiceClient {
   }
 
   findWidgetById(widgetId: String) {
-    const url = 'http://localhost:3100/api/widget/' + widgetId;
+    const url = this.baseUrl + '/api/widget/' + widgetId;
     return this.http.get(url)
       .map(
         (res: Response) => {
@@ -52,7 +53,7 @@ export class WidgetServiceClient {
   }
 
   updateWidget(widgetId: String, widget: Widget) {
-    const url = 'http://localhost:3100/api/widget/' + widgetId;
+    const url = this.baseUrl + '/api/widget/' + widgetId;
     return this.http.put(url, widget)
       .map(
         (res: Response) => {
@@ -62,7 +63,7 @@ export class WidgetServiceClient {
   }
 
   deleteWidget(widgetId) {
-    const url = 'http://localhost:3100/api/widget/' + widgetId;
+    const url = this.baseUrl + '/api/widget/' + widgetId;
     return this.http.delete(url)
       .map(
         (res: Response) => {
@@ -72,7 +73,7 @@ export class WidgetServiceClient {
   }
 
   sortWidgets(pageId, start, end) {
-    const url = 'http://localhost:3100/page/' + pageId + '/widget?initial=' + start.toString() + '&final=' + end.toString();
+    const url = '/page/' + pageId + '/widget?initial=' + start.toString() + '&final=' + end.toString();
     return this.http.put(url, {})
       .map(
         (res: Response) => {
