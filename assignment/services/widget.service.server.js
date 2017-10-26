@@ -2,17 +2,19 @@ module.exports = function(app) {
   var mime = require('mime');
   var crypto = require('crypto');
   var multer = require('multer'); // npm install multer --save
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, __dirname+'/../../src/assets/uploads')
-    },
-    filename: function (req, file, cb) {
-      crypto.pseudoRandomBytes(16, function (err, raw) {
-        cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
-      });
-    }
-  });
-  var upload = multer({ storage: storage });
+  // var storage = multer.diskStorage({
+  //   destination: function (req, file, cb) {
+  //     cb(null, __dirname+'/../../src/assets/uploads')
+  //   },
+  //   filename: function (req, file, cb) {
+  //     crypto.pseudoRandomBytes(16, function (err, raw) {
+  //       cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+  //     });
+  //   }
+  // });
+  // var upload = multer({ storage: storage });
+
+  var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
 
   app.post('/api/page/:pageId/widget', createWidget);
   app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
