@@ -483,10 +483,12 @@ var PageEditComponent = (function () {
             _this.pageService.findPageById(_this.pageId)
                 .subscribe(function (p) {
                 _this.page = p;
+                console.log('this page is ', p);
             });
             _this.pageService.findPageByWebsiteId(_this.webId)
                 .subscribe(function (ps) {
                 _this.pages = ps;
+                console.log('all the pages are', ps);
             });
         });
     };
@@ -508,6 +510,7 @@ var PageEditComponent = (function () {
         var _this = this;
         this.pageService.deletePage(this.pageId)
             .subscribe(function (p) {
+            console.log('---------------------------------------------------', p);
             _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page"]);
         });
     };
@@ -679,6 +682,7 @@ var PageNewComponent = (function () {
         if (this.page.name.length > 0) {
             this.pageService.createPage(this.webId, this.page)
                 .subscribe(function (p) {
+                console.log('==================================', p);
                 if (p) {
                     _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page"]);
                 }
@@ -1152,7 +1156,7 @@ var WebsiteEditComponent = (function () {
     WebsiteEditComponent.prototype.deleteWebsite = function () {
         var _this = this;
         this.webService.deleteWebsite(this.webId)
-            .subscribe(function () {
+            .subscribe(function (w) {
             _this.router.navigate(["/user/" + _this.userId + "/website"]);
         });
     };
@@ -2521,7 +2525,7 @@ var WebsiteServiceClient = (function () {
     }
     WebsiteServiceClient.prototype.createWebsite = function (userId, website) {
         var url = this.baseUrl + '/api/user/' + userId + '/website';
-        return this.http.put(url, website)
+        return this.http.post(url, website)
             .map(function (res) {
             return res.json();
         });

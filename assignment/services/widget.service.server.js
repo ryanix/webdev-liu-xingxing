@@ -48,10 +48,8 @@ module.exports = function(app) {
 
   function findAllWidgetsForPage(req, res) {
     var pageId = req.params['pageId'];
-    var ws = widgets.map( function(w) {
-      if(w.pageId === pageId) {
-        return w
-      }
+    var ws = widgets.filter( function(w) {
+      return w.pageId === pageId;
     });
     res.json(ws);
   }

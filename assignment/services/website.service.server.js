@@ -18,9 +18,7 @@ module.exports = function(app) {
   function findAllWebsitesForUser(req, res) {
     var userId = req.params['userId'];
     var webs = websites.filter(function (w) {
-      if (w.developerId === userId) {
-        return w;
-      }
+      return w.developerId === userId;
     });
     res.json(webs)
   }
@@ -49,7 +47,7 @@ module.exports = function(app) {
 
   function updateWebsite(req, res) {
     var webId = req.params['websiteId'];
-    var web = req.body();
+    var web = req.body;
     for (var i = 0; i < websites.length; i++) {
       if (websites[i]._id === webId) {
         websites[i] = web;
@@ -64,6 +62,7 @@ module.exports = function(app) {
     for (var i = 0; i < websites.length; i++) {
       if (websites[i]._id === webId) {
         websites.splice(i,1)
+        res.json(websites);
         return
       }
     }
