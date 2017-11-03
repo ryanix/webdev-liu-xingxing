@@ -8,10 +8,10 @@ var UserSchema = mongoose.Schema({
   lastname: String,
   dob: Date,
   salary: Number,
-},{collection: 'user'})
+})
 
 
-var UserModel = mongoose.model('UserModel', UserSchema)
+var UserModel = mongoose.model('UserModel', UserSchema, 'testModel')
 
 var pep = {username: 'pep', firstname: 'dadada',  lastname: 'haha'}
 
