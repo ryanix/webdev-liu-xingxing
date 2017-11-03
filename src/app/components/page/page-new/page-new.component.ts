@@ -40,6 +40,7 @@ export class PageNewComponent implements OnInit {
     if (this.page.name.length > 0) {
       this.pageService.createPage(this.webId, this.page)
         .subscribe((p: Page) => {
+          console.log('==================================', p);
           if ( p ) {
             this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
           }else {

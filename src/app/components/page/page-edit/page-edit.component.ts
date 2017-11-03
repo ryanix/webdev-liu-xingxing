@@ -27,10 +27,12 @@ export class PageEditComponent implements OnInit {
       this.pageService.findPageById(this.pageId)
         .subscribe( (p: Page) => {
           this.page = p;
+          console.log('this page is ', p);
         });
       this.pageService.findPageByWebsiteId(this.webId)
         .subscribe((ps: Page[]) => {
           this.pages = ps;
+          console.log('all the pages are', ps);
         });
     });
   }
@@ -51,6 +53,7 @@ export class PageEditComponent implements OnInit {
   deletePage() {
     this.pageService.deletePage(this.pageId)
       .subscribe((p: Page) => {
+        console.log('---------------------------------------------------', p)
         this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
       });
   }

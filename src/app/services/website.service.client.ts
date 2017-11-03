@@ -23,7 +23,7 @@ export class WebsiteServiceClient {
 
   createWebsite(userId: String, website: any) {
     const url = this.baseUrl + '/api/user/' + userId + '/website';
-    return this.http.put(url, website)
+    return this.http.post(url, website)
       .map(
         (res: Response) => {
           return res.json();

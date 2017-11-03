@@ -23,10 +23,8 @@ module.exports = function(app) {
 
   function findAllPagesForWebsites(req, res) {
     var webId = req.params['websiteId'];
-    var ps = pages.map(function (p) {
-      if (p.websiteId === webId) {
-        return p;
-      }
+    var ps = pages.filter(function (p) {
+      return p.websiteId === webId
     });
     res.json(ps);
   }
@@ -34,7 +32,7 @@ module.exports = function(app) {
   function findPageById(req, res) {
     var pageId = req.params['pageId'];
     var page = pages.find(function (p) {
-      return p._id = pageId;
+      return p._id === pageId;
     })
     if(page) {
       res.json(page)
@@ -59,7 +57,7 @@ module.exports = function(app) {
     var pageId = req.params['pageId'];
     for (var i = 0; i < pages.length; i++) {
       if (pages[i]._id === pageId) {
-        pages.slice(i, 1);
+        pages.splice(i, 1);
         res.json(pages);
         return
       }
