@@ -1,3 +1,6 @@
+
+
+
 <div class="container-fluid row dev-navbar-background-color">
 
   <!--arrow on the navbar-->
@@ -23,28 +26,45 @@
 </div>
 
 <div  class="container-fluid" *ngIf="widget">
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+
   <form #f="ngForm">
-    <div class="dev-input-section">
-      <label>Name</label>
-      <input type="text" class="dev-input" [ngModel]="widget.name" name="name"/>
+    Text
+    <input [(ngModel)]="widget.text" class="form-control" name="text"/>
+
+    Rows
+    <input [(ngModel)]="widget.rows" class="form-control" type="number" name="rows"/>
+    <label for="Name">Name</label>
+    <div>
+      <input [(ngModel)]="widget.name"
+             type="text"
+             name="name"
+             class="form-control"
+             id="Name"
+             name="name"
+             placeholder="Name">
     </div>
 
-    <div class="dev-input-section">
-      <label>Text</label>
-      <input type="text" class="dev-input" [(ngModel)]="widget.text" name="text"/>
+    Placeholder
+    <input [(ngModel)]="widget.placeholder" class="form-control" required name="placeholder"/>
+    <p></p>
+    <div class="input-group">
+      <input type="text"
+             readonly
+             value="Formatted"
+             class="form-control"/>
+      <span class="input-group-addon">
+        <input [(ngModel)]="widget.formatted"
+               type="checkbox"
+               name="formatted"
+        />
+      </span>
     </div>
-
-    <div class="dev-input-section">
-      <label>URL</label>
-      <input type="url" class="dev-input" placeholder="3" [ngModel]="widget.url" name="url"/>
-    </div>
-
-    <div class="dev-input-section">
-      <label>Width</label>
-      <input type="number" min="0" class="dev-input" placeholder="100" [ngModel]="widget.width.replace('%','')" name="width"/>
-    </div>
-
   </form>
+  <p></p>
   <div class="dev-input-section">
     <button class="btn btn-danger full-width" (click)="deleteWidget()">Delete</button>
   </div>
