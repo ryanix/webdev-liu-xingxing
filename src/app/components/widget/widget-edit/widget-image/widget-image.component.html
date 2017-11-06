@@ -35,12 +35,12 @@
   <form #f="ngForm">
     <div class="dev-input-section">
       <label>Name</label>
-      <input type="text" class="dev-input"/>
+      <input type="text" class="dev-input" [(ngMode)]="widget.name" name="name"/>
     </div>
 
     <div class="dev-input-section">
       <label>Text</label>
-      <input type="text" class="dev-input" placeholder="text description"/>
+      <input type="text" class="dev-input" placeholder="text description" [(ngMode)]="widget.text" name="text"/>
     </div>
 
     <div class="dev-input-section">

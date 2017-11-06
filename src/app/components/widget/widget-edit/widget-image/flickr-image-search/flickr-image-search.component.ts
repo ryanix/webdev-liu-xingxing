@@ -56,7 +56,7 @@ export class FlickrImageSearchComponent implements OnInit {
 
   selectPhoto(pic) {
     this.widget.url = 'https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' +   pic.id + '_' + pic.secret + '_s.jpg';
-    this.widgetService.updateWidget(this.widget._id, this.widget)
+    this.widgetService.updateWidget(this.widgetId, this.widget)
       .subscribe((w: Widget) => {
         this.router.navigate([`user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${this.widgetId}`]);
       });

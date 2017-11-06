@@ -23,31 +23,26 @@
 </div>
 
 <div  class="container-fluid" *ngIf="widget">
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+
   <form #f="ngForm">
     <div class="dev-input-section">
       <label>Name</label>
-      <input type="text" class="dev-input" [ngModel]="widget.name" name="name"/>
+      <input type="text" class="dev-input" [ngModel]="widget.name" ngModel name="name"/>
     </div>
 
     <div class="dev-input-section">
-      <label>Text</label>
-      <input type="text" class="dev-input" [(ngMode)]="widget.text" name="text"/>
+      <label>HTML</label>
+      <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
     </div>
 
     <div class="dev-input-section">
-      <label>URL</label>
-      <input type="url" class="dev-input" placeholder="3" [ngModel]="widget.url" name="url"/>
+      <button class="btn btn-danger full-width" (click)="deleteWidget()">Delete</button>
     </div>
-
-    <div class="dev-input-section">
-      <label>Width</label>
-      <input type="number" min="0" class="dev-input" placeholder="100" [ngModel]="widget.width.replace('%','')" name="width"/>
-    </div>
-
   </form>
-  <div class="dev-input-section">
-    <button class="btn btn-danger full-width" (click)="deleteWidget()">Delete</button>
-  </div>
 </div>
 
 <div class="dev-navbar-background-color container-fluid row dev-footer">

@@ -1,4 +1,4 @@
-<div [ngSwitch]="widget.widgetType" *ngIf="widget">
+<div [ngSwitch]="widget.type" *ngIf="widget">
 
   <div *ngSwitchCase="'HEADING'">
     <app-widget-header></app-widget-header>
@@ -10,6 +10,10 @@
 
   <div *ngSwitchCase="'YOUTUBE'">
     <app-widget-youtube></app-widget-youtube>
+  </div>
+
+  <div *ngSwitchCase="'HTML'">
+    <app-widget-html></app-widget-html>
   </div>
 
 </div>
