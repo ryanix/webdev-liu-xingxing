@@ -26,8 +26,8 @@
     <li class="list-group-item">
       <div class="row">
         <a routerLink="/user/{{userId}}/website/{{web._id}}/page" class="col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left">{{web.name}}</a>
-        <b class="col-lg-3 hidden-md hidden-sm hidden-xs">{{web._id}}</b>
-        <b class="col-lg-3 col-md-4 hidden-sm hidden-xs">{{web.developerId}}</b>
+        <b class="col-lg-3 hidden-md hidden-sm hidden-xs">{{web.dateCreated.split('T')[0]}}</b>
+        <b class="col-lg-3 col-md-4 hidden-sm hidden-xs">{{web._user.username}}</b>
         <a routerLink="/user/{{userId}}/website/{{web._id}}" class="text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right">
           <span class="glyphicon glyphicon-cog"></span>
         </a>

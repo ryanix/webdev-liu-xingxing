@@ -23,7 +23,6 @@ export class PageNewComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.page = new Page(
-        1,
         '',
         this.webId
       );
@@ -38,9 +37,10 @@ export class PageNewComponent implements OnInit {
 
   addNewPage() {
     if (this.page.name.length > 0) {
+      this.page._website = this.webId;
       this.pageService.createPage(this.webId, this.page)
-        .subscribe((p: Page) => {
-          console.log('==================================', p);
+        .subscribe((p) => {
+        console.log('==============', p);
           if ( p ) {
             this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
           }else {

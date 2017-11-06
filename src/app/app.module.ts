@@ -35,6 +35,10 @@ import { SafePipe} from './Pipe/SafePip';
 import {SortableDirective} from '../../assignment/directives/sortable.directive';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {FlickrServiceClient} from './services/flickr.service.client';
+import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+
+import { QuillEditorModule } from 'ngx-quill-editor';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 
 @NgModule({
   // Declare components here
@@ -61,12 +65,15 @@ import {FlickrServiceClient} from './services/flickr.service.client';
     SafePipe,
     SortableDirective,
     FlickrImageSearchComponent,
+    WidgetHtmlComponent,
+    WidgetTextComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     Routing,
+    QuillEditorModule,
   ],
   // Client Side services here
   providers: [

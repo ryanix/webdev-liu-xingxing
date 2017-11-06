@@ -17,6 +17,8 @@ export class WidgetChooserComponent implements OnInit {
   nh = 0;
   ni = 0;
   ny = 0;
+  nht = 0;
+  nt = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +33,7 @@ export class WidgetChooserComponent implements OnInit {
       this.webId = params['wid'];
       this.pageId = params['pid'];
       this.widgetService.findWidgetsByPageId(this.pageId)
-        .subscribe((ws: Widget[]) => {
+        .subscribe((ws) => {
           if (ws.length > 0) {
             this.widgets = ws;
               ws.map((w) => {
@@ -44,6 +46,10 @@ export class WidgetChooserComponent implements OnInit {
                   this.ni += 1;
                 } else if (w.widgetType === 'YOUTUBE') {
                   this.ny += 1;
+                } else if (w.widgetType === 'HTML') {
+                  this.nht += 1;
+                } else if (w.widgetType === 'INPUT') {
+                  this.nt += 1;
                 }
               });
           }
@@ -52,9 +58,7 @@ export class WidgetChooserComponent implements OnInit {
   }
 
   addNewImage() {
-    const widgetId = Math.random();
     const widget = new Widget(
-      widgetId.toString(),
       'IMAGE',
       this.pageId,
       null,
@@ -62,18 +66,11 @@ export class WidgetChooserComponent implements OnInit {
       null,
       'IMAGE URl'
     );
-    this.widgetService.createWidget(this.pageId, widget)
-      .subscribe( (w: Widget) => {
-        if ( w ) {
-          this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${w._id}`]);
-        }
-      });
+    this.addWidget(this.pageId, widget);
   }
 
   addNewYoutube() {
-    const widgetId = Math.random();
     const widget = new Widget(
-      widgetId.toString(),
       'YOUTUBE',
       this.pageId,
       null,
@@ -81,24 +78,45 @@ export class WidgetChooserComponent implements OnInit {
       null,
       'Youtube url'
     );
-    this.widgetService.createWidget(this.pageId, widget)
-      .subscribe((w: Widget) => {
-        this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${w._id}`]);
-    });
+    this.addWidget(this.pageId, widget);
   }
 
   addNewHeader() {
-    const widgetId = Math.random();
     const widget = new Widget(
-      widgetId.toString(),
       'HEADING',
       this.pageId,
       2,
       null,
       'HEADING NAME'
     );
-    this.widgetService.createWidget(this.pageId, widget)
-      .subscribe((w: Widget) => {
+    this.addWidget(this.pageId, widget);
+  }
+
+  addNewHtml() {
+    const widget = new Widget(
+      'HTML',
+      this.pageId,
+      null,
+      '100%',
+      '',
+    );
+    this.addWidget(this.pageId, widget);
+  }
+
+  addNewInput() {
+    const widget = new Widget(
+      'INPUT',
+      this.pageId,
+      null,
+      null,
+      null,
+    );
+    this.addWidget(this.pageId, widget);
+  }
+
+  addWidget(pageId, widget) {
+    this.widgetService.createWidget(pageId, widget)
+      .subscribe( (w) => {
         if ( w ) {
           this.router.navigate( [`/user/${this.userId}/website/${this.webId}/page/${this.pageId}/widget/${w._id}`]);
         }

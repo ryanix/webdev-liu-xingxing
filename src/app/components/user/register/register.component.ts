@@ -14,6 +14,11 @@ export class RegisterComponent implements OnInit {
 
   username: String;
   password: String;
+  firstName: String;
+  lastName: String;
+  email: String;
+  phone: String;
+  dateCreated: Date;
   errorFlag: boolean;
   errorMsg = 'username already exists!';
 
@@ -27,14 +32,19 @@ export class RegisterComponent implements OnInit {
     this.userService.findUserByUsername(this.registerForm.value.username)
       .subscribe((user: User) => {
         const u = user;
-        if (u) {
+        if (Object.getOwnPropertyNames(u).length > 1) {
           this.errorFlag = true;
         } else {
           const nuser = new User(
-            Math.random().toString(),
             this.registerForm.value.username,
             this.registerForm.value.password
           );
+          nuser.firstName = this.firstName;
+          nuser.lastName = this.lastName;
+          nuser.email = this.email;
+          nuser.phone = this.phone;
+          nuser.websites = [];
+          nuser.dateCreated = new Date();
           this.userService.createUser(nuser)
             .subscribe( (nu: User) => {
                 if (nu) {

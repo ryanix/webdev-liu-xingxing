@@ -29,7 +29,8 @@ export class WidgetListComponent implements OnInit {
       this.webId = params['wid'];
       this.pageId = params['pid'];
       this.widgetService.findWidgetsByPageId(this.pageId)
-        .subscribe((ws: Widget[]) => {
+        .subscribe((ws) => {
+        console.log(ws)
           this.widgets = ws;
         });
     });
@@ -38,7 +39,7 @@ export class WidgetListComponent implements OnInit {
     if ( positions ) {
       if (positions.startIndex >= 0 && positions.endIndex >= 0 && positions.startIndex !== positions.endIndex) {
         this.widgetService.sortWidgets(this.pageId, positions.startIndex, positions.endIndex)
-          .subscribe((w: Widget[]) => {
+          .subscribe((w) => {
             this.widgets = w;
           });
       }

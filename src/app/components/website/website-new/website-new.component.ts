@@ -36,13 +36,13 @@ export class WebsiteNewComponent implements OnInit {
     if (this.addWebForm.value.name.length > 0) {
       this.errorFlag = false;
       const web = new Website(
-        1,
         this.addWebForm.value.name,
         this.userId,
         this.addWebForm.value.description
       );
       this.webService.createWebsite(this.userId, web)
-        .subscribe((w: Website) => {
+        .subscribe((w) => {
+          console.log(w)
           if (w) {
             this.router.navigate([`/user/${this.userId}/website`]);
           } else {

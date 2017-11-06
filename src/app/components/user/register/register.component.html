@@ -41,6 +41,15 @@
       Password does not match!
     </span>
     <p></p>
+    <p></p>
+    <input placeholder="First Name" type="text" [(ngModel)]="firstName" name="firstName" class="form-control" />
+    <p></p>
+    <input placeholder="Last Name" type="text" [(ngModel)]="lastName" name="lastName" class="form-control"/>
+    <p></p>
+    <input placeholder="Email" type="email" [(ngModel)]="email" name="email" class="form-control"/>
+    <p></p>
+    <input placeholder="Phone Number" [(ngModel)]="phone" name="phone" type="tel" class="form-control"/>
+    <p></p>
     <button class="btn btn-primary btn-block"
             type="submit"
             [disabled]="!f.valid || password.value != password1.value">Register</button>

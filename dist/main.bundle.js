@@ -204,12 +204,18 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__assignment_directives_sortable_directive__ = __webpack_require__("../../../../../assignment/directives/sortable.directive.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__services_flickr_service_client__ = __webpack_require__("../../../../../src/app/services/flickr.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_edit_widget_html_widget_html_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_ngx_quill_editor__ = __webpack_require__("../../../../ngx-quill-editor/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_edit_widget_text_widget_text_component__ = __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -272,12 +278,15 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_28__Pipe_SafePip__["a" /* SafePipe */],
             __WEBPACK_IMPORTED_MODULE_29__assignment_directives_sortable_directive__["a" /* SortableDirective */],
             __WEBPACK_IMPORTED_MODULE_30__components_widget_widget_edit_widget_image_flickr_image_search_flickr_image_search_component__["a" /* FlickrImageSearchComponent */],
+            __WEBPACK_IMPORTED_MODULE_32__components_widget_widget_edit_widget_html_widget_html_component__["a" /* WidgetHtmlComponent */],
+            __WEBPACK_IMPORTED_MODULE_34__components_widget_widget_edit_widget_text_widget_text_component__["a" /* WidgetTextComponent */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_7__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_5__app_routing__["a" /* Routing */],
+            __WEBPACK_IMPORTED_MODULE_33_ngx_quill_editor__["a" /* QuillEditorModule */],
         ],
         // Client Side services here
         providers: [
@@ -443,7 +452,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-edit/page-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Pages</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/new\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">New Page</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a (click)=\"updatePage()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\" *ngIf=\"page\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\" *ngFor=\"let page of pages\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget\" class=\"pull-left\">{{page.name}}</a>\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}\" (click)=\"refresh()\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div ><input type=\"text\" placeholder=\"Name\" class=\"dev-input\" [(ngModel)]=\"page.name\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Description</label></div>\n    <div><input type=\"text\" class=\"dev-input\" placeholder=\"Page Description\" [(ngModel)]=\"page.description\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"btn-contain dev-content-side\">\n      <button class=\"btn btn-danger btn-block\" (click)=\"deletePage()\">Delete</button>\n    </div>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Pages</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/new\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">New Page</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a (click)=\"updatePage()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\" *ngIf=\"page\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\" *ngFor=\"let page of pages\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget\" class=\"pull-left\">{{page.name}}</a>\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}\" (click)=\"refresh()\" class=\"pull-right\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div ><input type=\"text\" placeholder=\"Name\" class=\"dev-input\" [(ngModel)]=\"page.name\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Title</label></div>\n    <div ><input type=\"text\" placeholder=\"Title\" class=\"dev-input\" [(ngModel)]=\"page.title\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Description</label></div>\n    <div><input type=\"text\" class=\"dev-input\" placeholder=\"Page Description\" [(ngModel)]=\"page.description\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"btn-contain dev-content-side\">\n      <button class=\"btn btn-danger btn-block\" (click)=\"deletePage()\">Delete</button>\n    </div>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -483,19 +492,18 @@ var PageEditComponent = (function () {
             _this.pageService.findPageById(_this.pageId)
                 .subscribe(function (p) {
                 _this.page = p;
-                console.log('this page is ', p);
             });
             _this.pageService.findPageByWebsiteId(_this.webId)
                 .subscribe(function (ps) {
                 _this.pages = ps;
-                console.log('all the pages are', ps);
             });
         });
     };
     PageEditComponent.prototype.updatePage = function () {
         var _this = this;
         if (this.page.name.length > 0) {
-            this.pageService.updatePage(this.webId, this.page)
+            console.log('++++++++++++++++++++++++++++++', this.page);
+            this.pageService.updatePage(this.pageId, this.page)
                 .subscribe(function (p) {
                 if (p) {
                     _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page"]);
@@ -510,7 +518,6 @@ var PageEditComponent = (function () {
         var _this = this;
         this.pageService.deletePage(this.pageId)
             .subscribe(function (p) {
-            console.log('---------------------------------------------------', p);
             _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page"]);
         });
     };
@@ -554,7 +561,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-list/page-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Pages</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n</div>\n<div class=\"container-fluid\" *ngIf=\"pages\">\n  <ul class=\"list-group dev-list-no-border\" *ngFor=\"let page of pages\">\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">{{page.name}}</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">{{page._id}}</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">{{page.websiteId}}</b>\n        <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n  </ul>\n</div>\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Pages</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n</div>\n<div class=\"container-fluid\" *ngIf=\"pages\">\n  <ul class=\"list-group dev-list-no-border\" *ngFor=\"let page of pages\">\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">{{page.name}}</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">{{page.dateCreated.split('T')[0]}}</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">{{page._website.name}}</b>\n        <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n  </ul>\n</div>\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -632,7 +639,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/page/page-new/page-new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Pages</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/new\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">New Page</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a (click)=\"addNewPage()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\" *ngIf=\"page\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\" *ngFor=\"let page of pages\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget\" class=\"pull-left\">{{page.name}}</a>\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}\" class=\"pull-right\" (click)=\"refresh()\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div *ngIf=\"errorFlag\"\n         class=\"alert alert-danger\">\n      {{errorMsg}}\n    </div>\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div><input type=\"text\" placeholder=\"Name\" class=\"dev-input\" [(ngModel)]=\"page.name\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Description</label></div>\n    <div><textarea type=\"text\" row=\"6\" class=\"dev-input\" placeholder=\"Page Description\" [(ngModel)]=\"page.description\"></textarea></div>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs\">\n    <!--heading on the left-->\n    <div class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Pages</b>\n      </a>\n    </div>\n\n    <!--plus icon on the navbar -->\n    <div class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/new\" class=\"navbar-link pull-right\">\n        <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n      </a>\n    </div>\n  </div>\n\n\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">New Page</b>\n    </a>\n  </div>\n\n\n  <!--check mark-->\n  <p class=\"navbar-text pull-right\">\n    <a (click)=\"addNewPage()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n\n\n<div class=\"container-fluid full-height\" *ngIf=\"page\">\n  <!--large screen side options-->\n  <div class=\"col-lg-3 col-md-3 hidden-sm hidden-xs dev-input-contain\">\n    <ul class=\"list-group\" *ngFor=\"let page of pages\">\n      <li class=\"list-group-item\">\n        <div class=\"row\">\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}/widget\" class=\"pull-left\">{{page.name}}</a>\n          <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{page._id}}\" class=\"pull-right\" (click)=\"refresh()\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n        </div>\n      </li>\n    </ul>\n  </div>\n  <!--<div class=\"dev-dividor pull-left\"></div>-->\n  <div class=\" col-lg-9 col-md-9 col-sm-12 col-xs-12\">\n    <div *ngIf=\"errorFlag\"\n         class=\"alert alert-danger\">\n      {{errorMsg}}\n    </div>\n    <div class=\"dev-content-side\"><label>Name</label></div>\n    <div><input type=\"text\" placeholder=\"Name\" class=\"dev-input\" [(ngModel)]=\"page.name\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Title</label></div>\n    <div><input type=\"text\" placeholder=\"title\" class=\"dev-input\" [(ngModel)]=\"page.title\"/></div>\n    <div class=\"dev-separator\"></div>\n    <div class=\"dev-content-side\"><label>Description</label></div>\n    <div><textarea type=\"text\" row=\"6\" class=\"dev-input\" placeholder=\"Page Description\" [(ngModel)]=\"page.description\"></textarea></div>\n  </div>\n</div>\n\n<!--footer-->\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -668,7 +675,7 @@ var PageNewComponent = (function () {
     PageNewComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
-            _this.page = new __WEBPACK_IMPORTED_MODULE_1__models_page_model_client__["a" /* Page */](1, '', _this.webId);
+            _this.page = new __WEBPACK_IMPORTED_MODULE_1__models_page_model_client__["a" /* Page */]('', _this.webId);
             _this.userId = params['uid'];
             _this.webId = params['wid'];
             _this.pageService.findPageByWebsiteId(_this.webId)
@@ -680,9 +687,10 @@ var PageNewComponent = (function () {
     PageNewComponent.prototype.addNewPage = function () {
         var _this = this;
         if (this.page.name.length > 0) {
+            this.page._website = this.webId;
             this.pageService.createPage(this.webId, this.page)
                 .subscribe(function (p) {
-                console.log('==================================', p);
+                console.log('==============', p);
                 if (p) {
                     _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page"]);
                 }
@@ -862,9 +870,13 @@ var LoginComponent = (function () {
         // alert(username + ' ' + password);
         this.userService.findUserByCredentials(this.loginForm.value.username, this.loginForm.value.password)
             .subscribe(function (u) {
-            var user = u;
             if (u) {
-                _this.router.navigate(["/user/" + user._id]);
+                if (Object.getOwnPropertyNames(u).length > 0) {
+                    _this.router.navigate(["/user/" + u._id]);
+                }
+                else {
+                    _this.errorFlag = true;
+                }
             }
             else {
                 _this.errorFlag = true;
@@ -877,7 +889,7 @@ var LoginComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
 ], LoginComponent.prototype, "loginForm", void 0);
 LoginComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -914,7 +926,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default dev-navbar-background-color\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Profile</b>\n      </a>\n    </p>\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{user?._id}}\" class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n<div class=\"container\" *ngIf=\"user\">\n  <form >\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input [(ngModel)]=\"user.username\" name=\"username\" type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"walice\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"alice.wonderland@unicorn.com\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"first-name\">First Name</label>\n      <input [(ngModel)]=\"user.firstName\" name=\"firstName\" type=\"text\" class=\"form-control\" id=\"first-name\" placeholder=\"Alice\">\n    </div>\n  </form>\n\n  <form>\n    <div class=\"form-group\">\n      <label for=\"last-name\">Last Name</label>\n      <input [(ngModel)]=\"user.lastName\" name=\"lastName\" type=\"text\" class=\"form-control\" id=\"last-name\" placeholder=\"Wonderland\">\n    </div>\n  </form>\n  <a class=\"btn btn-primary btn-block\"\n     routerLink='/user/{{user?._id}}/website'>Websites</a>\n  <a class=\"btn btn-danger btn-block\"\n     [routerLink]=\"['/login']\" >Logout</a>\n\n</div>\n\n<!-- Footer -->\n<nav class=\"navbar navbar-default navbar-fixed-bottom dev-navbar-background-color\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink='/user/{{user?._id}}'>\n        <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-default dev-navbar-background-color\">\n  <div class=\"container-fluid\">\n\n    <!--heading on the nav bar-->\n    <p class=\"navbar-header pull-left\">\n      <a class=\"navbar-brand thick\">\n        <b class=\"dev-navbar-text-color\">Profile</b>\n      </a>\n    </p>\n\n    <!--tick mark-->\n    <p class=\"navbar-text pull-right\">\n      <a routerLink=\"/user/{{user?._id}}\" class=\"navbar-link\">\n        <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n\n\n<div class=\"container\" *ngIf=\"user\">\n  <div *ngIf=\"errFlag\"\n       class=\"alert alert-danger\">\n    Update Failed! Please try again later.\n  </div>\n  <div *ngIf=\"sucFlag\"\n       class=\"alert alert-success\">\n    Update Succeed!\n  </div>\n  <form (ngSubmit) = \"update()\" #f=\"ngForm\">\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input [(ngModel)]=\"user.username\" name=\"username\" type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"walice\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"email\">Email address</label>\n      <input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"alice.wonderland@unicorn.com\" name=\"email\" [(ngModel)]=\"user.email\">\n    </div>\n\n\n    <div class=\"form-group\">\n      <label for=\"first-name\">First Name</label>\n      <input [(ngModel)]=\"user.firstName\" name=\"firstName\" type=\"text\" class=\"form-control\" id=\"first-name\" placeholder=\"Alice\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"last-name\">Last Name</label>\n      <input [(ngModel)]=\"user.lastName\" name=\"lastName\" type=\"text\" class=\"form-control\" id=\"last-name\" placeholder=\"Wonderland\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"phone\">Phone</label>\n      <input [(ngModel)]=\"user.phone\" id=\"phone\" name=\"phone\" type=\"text\" class=\"form-control\" placeholder=\"123-345-5678\">\n    </div>\n\n    <div class=\"form-group\">\n      <label for=\"date\">First Name</label>\n      <input disabled [ngModel]=\"user.dateCreated | date: 'MM/dd/yyyy HH:mm:ss'\" name=\"date\" type=\"text\" class=\"form-control\" id=\"date\">\n    </div>\n\n\n    <p> </p>\n    <button class=\"btn btn-primary btn-block\"\n            type=\"submit\"\n            [disabled]=\"!f.valid\">Update</button>\n    <p> </p>\n    <a class=\"btn btn-primary btn-block\"\n       routerLink='/user/{{user?._id}}/website'>Websites</a>\n    <a class=\"btn btn-danger btn-block\"\n       [routerLink]=\"['/login']\" >Logout</a>\n  </form>\n</div>\n\n<!-- Footer -->\n<nav class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <div class=\"container-fluid\">\n    <p class=\"navbar-text pull-right\">\n      <a routerLink='/user/{{user?._id}}'>\n        <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n      </a>\n    </p>\n\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -955,6 +967,20 @@ var ProfileComponent = (function () {
             });
         });
     };
+    ProfileComponent.prototype.update = function () {
+        var _this = this;
+        this.userService.updateUser(this.userId, this.user)
+            .subscribe(function (user) {
+            if (user) {
+                _this.sucFlag = true;
+                _this.errFlag = false;
+            }
+            else {
+                _this.sucFlag = false;
+                _this.errFlag = true;
+            }
+        });
+    };
     return ProfileComponent;
 }());
 ProfileComponent = __decorate([
@@ -992,7 +1018,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n  <h1>Register</h1>\n  <form (ngSubmit) = 'register()' #f=\"ngForm\">\n    <input placeholder=\"username\"\n           name=\"username\"\n           type=\"text\"\n           class=\"form-control\"\n           ngModel\n           required\n           #username=\"ngModel\"/>\n    <p> </p>\n    <span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">\n      Username can not be empty!\n    </span>\n\n    <input placeholder=\"password\"\n           name=\"password\"\n           type=\"password\"\n           class=\"form-control\"\n           ngModel\n           required\n           #password=\"ngModel\"/>\n    <p> </p>\n\n    <input placeholder=\"confirm password\"\n           name=\"password1\"\n           type=\"password\"\n           class=\"form-control\"\n           ngModel\n           required\n           #password1=\"ngModel\"/>\n    <p> </p>\n    <span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">\n      Password can not be empty!\n    </span>\n    <span class=\"help-block\" *ngIf=\"password.touched && password1.touched && password.value != password1.value\">\n      Password does not match!\n    </span>\n    <p></p>\n    <button class=\"btn btn-primary btn-block\"\n            type=\"submit\"\n            [disabled]=\"!f.valid || password.value != password1.value\">Register</button>\n  </form>\n  <p> </p>\n  <a class=\"btn btn-danger btn-block\"\n     [routerLink]=\"['/login']\" >Cancel</a>\n\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n  <h1>Register</h1>\n  <form (ngSubmit) = 'register()' #f=\"ngForm\">\n    <input placeholder=\"username\"\n           name=\"username\"\n           type=\"text\"\n           class=\"form-control\"\n           ngModel\n           required\n           #username=\"ngModel\"/>\n    <p> </p>\n    <span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">\n      Username can not be empty!\n    </span>\n\n    <input placeholder=\"password\"\n           name=\"password\"\n           type=\"password\"\n           class=\"form-control\"\n           ngModel\n           required\n           #password=\"ngModel\"/>\n    <p> </p>\n\n    <input placeholder=\"confirm password\"\n           name=\"password1\"\n           type=\"password\"\n           class=\"form-control\"\n           ngModel\n           required\n           #password1=\"ngModel\"/>\n    <p> </p>\n    <span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">\n      Password can not be empty!\n    </span>\n    <span class=\"help-block\" *ngIf=\"password.touched && password1.touched && password.value != password1.value\">\n      Password does not match!\n    </span>\n    <p></p>\n    <p></p>\n    <input placeholder=\"First Name\" type=\"text\" [(ngModel)]=\"firstName\" name=\"firstName\" class=\"form-control\" />\n    <p></p>\n    <input placeholder=\"Last Name\" type=\"text\" [(ngModel)]=\"lastName\" name=\"lastName\" class=\"form-control\"/>\n    <p></p>\n    <input placeholder=\"Email\" type=\"email\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control\"/>\n    <p></p>\n    <input placeholder=\"Phone Number\" [(ngModel)]=\"phone\" name=\"phone\" type=\"tel\" class=\"form-control\"/>\n    <p></p>\n    <button class=\"btn btn-primary btn-block\"\n            type=\"submit\"\n            [disabled]=\"!f.valid || password.value != password1.value\">Register</button>\n  </form>\n  <p> </p>\n  <a class=\"btn btn-danger btn-block\"\n     [routerLink]=\"['/login']\" >Cancel</a>\n\n</div>\n"
 
 /***/ }),
 
@@ -1033,11 +1059,17 @@ var RegisterComponent = (function () {
         this.userService.findUserByUsername(this.registerForm.value.username)
             .subscribe(function (user) {
             var u = user;
-            if (u) {
+            if (Object.getOwnPropertyNames(u).length > 1) {
                 _this.errorFlag = true;
             }
             else {
-                var nuser = new __WEBPACK_IMPORTED_MODULE_4__models_user_model_client__["a" /* User */](Math.random().toString(), _this.registerForm.value.username, _this.registerForm.value.password);
+                var nuser = new __WEBPACK_IMPORTED_MODULE_4__models_user_model_client__["a" /* User */](_this.registerForm.value.username, _this.registerForm.value.password);
+                nuser.firstName = _this.firstName;
+                nuser.lastName = _this.lastName;
+                nuser.email = _this.email;
+                nuser.phone = _this.phone;
+                nuser.websites = [];
+                nuser.dateCreated = new Date();
                 _this.userService.createUser(nuser)
                     .subscribe(function (nu) {
                     if (nu) {
@@ -1051,7 +1083,7 @@ var RegisterComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
 ], RegisterComponent.prototype, "registerForm", void 0);
 RegisterComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -1167,7 +1199,7 @@ var WebsiteEditComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
 ], WebsiteEditComponent.prototype, "editWebForm", void 0);
 WebsiteEditComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -1204,7 +1236,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/website/website-list/website-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Websites</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n</div>\n<div class=\"container-fluid\" *ngIf=\"websites\">\n  <ul class=\"list-group dev-list-no-border\" *ngFor=\"let web of websites\">\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a routerLink=\"/user/{{userId}}/website/{{web._id}}/page\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">{{web.name}}</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">{{web._id}}</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">{{web.developerId}}</b>\n        <a routerLink=\"/user/{{userId}}/website/{{web._id}}\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n  </ul>\n</div>\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Websites</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n</div>\n<div class=\"container-fluid\" *ngIf=\"websites\">\n  <ul class=\"list-group dev-list-no-border\" *ngFor=\"let web of websites\">\n    <li class=\"list-group-item\">\n      <div class=\"row\">\n        <a routerLink=\"/user/{{userId}}/website/{{web._id}}/page\" class=\"col-md-4 col-lg-3 col-sm-6 col-xs-6 pull-left\">{{web.name}}</a>\n        <b class=\"col-lg-3 hidden-md hidden-sm hidden-xs\">{{web.dateCreated.split('T')[0]}}</b>\n        <b class=\"col-lg-3 col-md-4 hidden-sm hidden-xs\">{{web._user.username}}</b>\n        <a routerLink=\"/user/{{userId}}/website/{{web._id}}\" class=\"text-right col-lg-3 col-md-4 col-sm-6 col-xs-6 pull-right\">\n          <span class=\"glyphicon glyphicon-cog\"></span>\n        </a>\n      </div>\n    </li>\n  </ul>\n</div>\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -1329,9 +1361,10 @@ var WebsiteNewComponent = (function () {
         var _this = this;
         if (this.addWebForm.value.name.length > 0) {
             this.errorFlag = false;
-            var web = new __WEBPACK_IMPORTED_MODULE_1__models_website_model_client__["a" /* Website */](1, this.addWebForm.value.name, this.userId, this.addWebForm.value.description);
+            var web = new __WEBPACK_IMPORTED_MODULE_1__models_website_model_client__["a" /* Website */](this.addWebForm.value.name, this.userId, this.addWebForm.value.description);
             this.webService.createWebsite(this.userId, web)
                 .subscribe(function (w) {
+                console.log(w);
                 if (w) {
                     _this.router.navigate(["/user/" + _this.userId + "/website"]);
                 }
@@ -1345,7 +1378,7 @@ var WebsiteNewComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
 ], WebsiteNewComponent.prototype, "addWebForm", void 0);
 WebsiteNewComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -1382,7 +1415,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-chooser/widget-chooser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Choose Widgets</b>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item row\">\n      <a (click)=\"addNewHeader()\" class=\"pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12\">\n        <b>Header</b>\n      </a>\n      <p class=\"col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right\">\n        Number of header being used: {{nh}}\n      </p>\n      <p class=\"col-lg-4 hidden-md hidden-sm hidden-xs pull-right\">\n        Description about Header.\n      </p>\n    </li>\n    <li class=\"list-group-item row\">\n      <a (click)=\"addNewImage()\" class=\"pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12\">\n        <b>Image</b>\n      </a>\n      <p class=\"col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right\">\n        Number of Image being used: {{ni}}\n      </p>\n      <p class=\"col-lg-4 hidden-md hidden-sm hidden-xs pull-right\">\n        Description about Image.\n      </p>\n    </li>\n    <li class=\"list-group-item row\">\n      <a (click)=\"addNewYoutube()\" class=\"pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12\">\n        <b>YouTube</b>\n      </a>\n      <p class=\"col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right\">\n        Number of YouTube being used: {{ny}}\n      </p>\n      <p class=\"col-lg-4 hidden-md hidden-sm hidden-xs pull-right\">\n        Description about YouTube.\n      </p>\n    </li>\n  </ul>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Choose Widgets</b>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\">\n  <ul class=\"list-group\">\n    <li class=\"list-group-item row\">\n      <a (click)=\"addNewHeader()\" class=\"pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12\">\n        <b>Header</b>\n      </a>\n      <p class=\"col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right\">\n        Number of header being used: {{nh}}\n      </p>\n      <p class=\"col-lg-4 hidden-md hidden-sm hidden-xs pull-right\">\n        Description about Header.\n      </p>\n    </li>\n    <li class=\"list-group-item row\">\n      <a (click)=\"addNewImage()\" class=\"pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12\">\n        <b>Image</b>\n      </a>\n      <p class=\"col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right\">\n        Number of Image being used: {{ni}}\n      </p>\n      <p class=\"col-lg-4 hidden-md hidden-sm hidden-xs pull-right\">\n        Description about Image.\n      </p>\n    </li>\n    <li class=\"list-group-item row\">\n      <a (click)=\"addNewYoutube()\" class=\"pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12\">\n        <b>YouTube</b>\n      </a>\n      <p class=\"col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right\">\n        Number of YouTube being used: {{ny}}\n      </p>\n      <p class=\"col-lg-4 hidden-md hidden-sm hidden-xs pull-right\">\n        Description about YouTube.\n      </p>\n    </li>\n    <li class=\"list-group-item row\">\n      <a (click)=\"addNewHtml()\" class=\"pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12\">\n        <b>HTML</b>\n      </a>\n      <p class=\"col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right\">\n        Number of HTML being used: {{nht}}\n      </p>\n      <p class=\"col-lg-4 hidden-md hidden-sm hidden-xs pull-right\">\n        Description about HTML.\n      </p>\n    </li>\n    <li class=\"list-group-item row\">\n      <a (click)=\"addNewInput()\" class=\"pull-left col-lg-4 col-md-6 col-sm-6 col-xs-12\">\n        <b>Text Input</b>\n      </a>\n      <p class=\"col-lg-4 col-md-6 col-sm-6 hidden-xs pull-right\">\n        Number of Text Input being used: {{nt}}\n      </p>\n      <p class=\"col-lg-4 hidden-md hidden-sm hidden-xs pull-right\">\n        Description about Text Input.\n      </p>\n    </li>\n  </ul>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -1416,6 +1449,8 @@ var WidgetChooserComponent = (function () {
         this.nh = 0;
         this.ni = 0;
         this.ny = 0;
+        this.nht = 0;
+        this.nt = 0;
     }
     WidgetChooserComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1440,36 +1475,40 @@ var WidgetChooserComponent = (function () {
                         else if (w.widgetType === 'YOUTUBE') {
                             _this.ny += 1;
                         }
+                        else if (w.widgetType === 'HTML') {
+                            _this.nht += 1;
+                        }
+                        else if (w.widgetType === 'INPUT') {
+                            _this.nt += 1;
+                        }
                     });
                 }
             });
         });
     };
     WidgetChooserComponent.prototype.addNewImage = function () {
-        var _this = this;
-        var widgetId = Math.random();
-        var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */](widgetId.toString(), 'IMAGE', this.pageId, null, '100%', null, 'IMAGE URl');
-        this.widgetService.createWidget(this.pageId, widget)
-            .subscribe(function (w) {
-            if (w) {
-                _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page/" + _this.pageId + "/widget/" + w._id]);
-            }
-        });
+        var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('IMAGE', this.pageId, null, '100%', null, 'IMAGE URl');
+        this.addWidget(this.pageId, widget);
     };
     WidgetChooserComponent.prototype.addNewYoutube = function () {
-        var _this = this;
-        var widgetId = Math.random();
-        var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */](widgetId.toString(), 'YOUTUBE', this.pageId, null, '100%', null, 'Youtube url');
-        this.widgetService.createWidget(this.pageId, widget)
-            .subscribe(function (w) {
-            _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page/" + _this.pageId + "/widget/" + w._id]);
-        });
+        var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('YOUTUBE', this.pageId, null, '100%', null, 'Youtube url');
+        this.addWidget(this.pageId, widget);
     };
     WidgetChooserComponent.prototype.addNewHeader = function () {
+        var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('HEADING', this.pageId, 2, null, 'HEADING NAME');
+        this.addWidget(this.pageId, widget);
+    };
+    WidgetChooserComponent.prototype.addNewHtml = function () {
+        var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('HTML', this.pageId, null, '100%', '');
+        this.addWidget(this.pageId, widget);
+    };
+    WidgetChooserComponent.prototype.addNewInput = function () {
+        var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('INPUT', this.pageId, null, null, null);
+        this.addWidget(this.pageId, widget);
+    };
+    WidgetChooserComponent.prototype.addWidget = function (pageId, widget) {
         var _this = this;
-        var widgetId = Math.random();
-        var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */](widgetId.toString(), 'HEADING', this.pageId, 2, null, 'HEADING NAME');
-        this.widgetService.createWidget(this.pageId, widget)
+        this.widgetService.createWidget(pageId, widget)
             .subscribe(function (w) {
             if (w) {
                 _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page/" + _this.pageId + "/widget/" + w._id]);
@@ -1513,7 +1552,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [ngSwitch]=\"widget.widgetType\" *ngIf=\"widget\">\n\n  <div *ngSwitchCase=\"'HEADING'\">\n    <app-widget-header></app-widget-header>\n  </div>\n\n  <div *ngSwitchCase=\"'IMAGE'\">\n    <app-widget-image></app-widget-image>\n  </div>\n\n  <div *ngSwitchCase=\"'YOUTUBE'\">\n    <app-widget-youtube></app-widget-youtube>\n  </div>\n\n</div>\n"
+module.exports = "<div [ngSwitch]=\"widget.type\" *ngIf=\"widget\">\n\n  <div *ngSwitchCase=\"'HEADING'\">\n    <app-widget-header></app-widget-header>\n  </div>\n\n  <div *ngSwitchCase=\"'IMAGE'\">\n    <app-widget-image></app-widget-image>\n  </div>\n\n  <div *ngSwitchCase=\"'YOUTUBE'\">\n    <app-widget-youtube></app-widget-youtube>\n  </div>\n\n  <div *ngSwitchCase=\"'HTML'\">\n    <app-widget-html></app-widget-html>\n  </div>\n\n  <div *ngSwitchCase=\"'INPUT'\">\n    <app-widget-text></app-widget-text>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1592,7 +1631,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-header/widget-header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\" [ngModel]=\"widget.text\" ngModel name=\"name\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Size</label>\n      <input type=\"number\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.size\" ngModel name=\"size\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n    </div>\n  </form>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\" [ngModel]=\"widget.name\" ngModel name=\"name\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Size</label>\n      <input type=\"number\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.size\" ngModel name=\"size\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n    </div>\n  </form>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -1670,7 +1709,7 @@ var WidgetHeaderComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
 ], WidgetHeaderComponent.prototype, "headerForm", void 0);
 WidgetHeaderComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -1683,6 +1722,116 @@ WidgetHeaderComponent = __decorate([
 
 var _a, _b, _c, _d;
 //# sourceMappingURL=widget-header.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\" [ngModel]=\"widget.name\" ngModel name=\"name\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>HTML</label>\n      <quill-editor [(ngModel)]=\"widget.text\" name=\"text\"></quill-editor>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n    </div>\n  </form>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetHtmlComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var WidgetHtmlComponent = (function () {
+    function WidgetHtmlComponent(route, widgetService, router) {
+        this.route = route;
+        this.widgetService = widgetService;
+        this.router = router;
+        this.errorMsg = 'HTML name should not be empty';
+    }
+    WidgetHtmlComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.webId = params['wid'];
+            _this.pageId = params['pid'];
+            _this.widgetId = params['wgid'];
+            _this.widgetService.findWidgetById(_this.widgetId)
+                .subscribe(function (w) {
+                _this.widget = w;
+            });
+        });
+    };
+    WidgetHtmlComponent.prototype.confirmChange = function () {
+        var _this = this;
+        if (this.youtubeForm.valid) {
+            this.widgetService.updateWidget(this.widgetId, this.widget)
+                .subscribe(function (w) {
+                if (w) {
+                    _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page/" + _this.pageId + "/widget"]);
+                }
+                else {
+                    _this.errorFlag = true;
+                }
+            });
+        }
+    };
+    WidgetHtmlComponent.prototype.deleteWidget = function () {
+        var _this = this;
+        this.widgetService.deleteWidget(this.widgetId)
+            .subscribe(function (w) {
+            if (w) {
+                _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page/" + _this.pageId + "/widget"]);
+            }
+        });
+    };
+    return WidgetHtmlComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
+], WidgetHtmlComponent.prototype, "youtubeForm", void 0);
+WidgetHtmlComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-widget-html',
+        template: __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-html/widget-html.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_widget_service_client__["a" /* WidgetServiceClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_widget_service_client__["a" /* WidgetServiceClient */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
+], WidgetHtmlComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=widget-html.component.js.map
 
 /***/ }),
 
@@ -1768,7 +1917,7 @@ var FlickrImageSearchComponent = (function () {
     FlickrImageSearchComponent.prototype.selectPhoto = function (pic) {
         var _this = this;
         this.widget.url = 'https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' + pic.id + '_' + pic.secret + '_s.jpg';
-        this.widgetService.updateWidget(this.widget._id, this.widget)
+        this.widgetService.updateWidget(this.widgetId, this.widget)
             .subscribe(function (w) {
             _this.router.navigate(["user/" + _this.userId + "/website/" + _this.webId + "/page/" + _this.pageId + "/widget/" + _this.widgetId]);
         });
@@ -1810,7 +1959,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-image/widget-image.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n\n  <div class=\"dev-input-section\">\n    <button class=\"btn btn-primary btn-block\" (click)=\"redirect()\">Search</button>\n  </div>\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Text</label>\n      <input type=\"text\" class=\"dev-input\" placeholder=\"text description\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>URL</label>\n      <input type=\"url\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.url\" name=\"url\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Width(%)</label>\n      <input type=\"number\" min=\"0\" max=\"100\" class=\"dev-input\" placeholder=\"100\" [ngModel]=\"widget.width.replace('%','')\" name=\"width\"/>\n    </div>\n\n  </form>\n  <p></p>\n  <form ngNoForm action=\"{{baseUrl}}/api/upload\" method=\"post\" enctype=\"multipart/form-data\">\n    <input  name=\"myFile\"   type=\"file\" class=\"form-control\"/>\n    <input  name=\"widgetId\" value=\"{{widgetId}}\"   style=\"display: none\"/>\n    <input  name=\"websiteId\" value=\"{{webId}}\"   style=\"display: none\"/>\n    <input  name=\"pageId\" value=\"{{pageId}}\"   style=\"display: none\"/>\n    <input  name=\"userId\" value=\"{{userId}}\"   style=\"display: none\"/>\n    <p></p>\n    <button type=\"submit\" class=\"btn btn-block btn-primary\">Upload Image</button>\n    <br/>\n  </form>\n\n  <div class=\"dev-input-section\">\n    <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n\n  <div class=\"dev-input-section\">\n    <button class=\"btn btn-primary btn-block\" (click)=\"redirect()\">Search</button>\n  </div>\n\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\" [(ngModel)]=\"widget.name\" name=\"name\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Text</label>\n      <input type=\"text\" class=\"dev-input\" placeholder=\"text description\" [(ngModel)]=\"widget.text\" name=\"text\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>URL</label>\n      <input type=\"url\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.url\" name=\"url\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Width(%)</label>\n      <input type=\"number\" min=\"0\" max=\"100\" class=\"dev-input\" placeholder=\"100\" [ngModel]=\"widget.width.replace('%','')\" name=\"width\"/>\n    </div>\n\n  </form>\n  <p></p>\n  <form ngNoForm action=\"{{baseUrl}}/api/upload\" method=\"post\" enctype=\"multipart/form-data\">\n    <input  name=\"myFile\"   type=\"file\" class=\"form-control\"/>\n    <input  name=\"widgetId\" value=\"{{widgetId}}\"   style=\"display: none\"/>\n    <input  name=\"websiteId\" value=\"{{webId}}\"   style=\"display: none\"/>\n    <input  name=\"pageId\" value=\"{{pageId}}\"   style=\"display: none\"/>\n    <input  name=\"userId\" value=\"{{userId}}\"   style=\"display: none\"/>\n    <p></p>\n    <button type=\"submit\" class=\"btn btn-block btn-primary\">Upload Image</button>\n    <br/>\n  </form>\n\n  <div class=\"dev-input-section\">\n    <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -1892,7 +2041,7 @@ var WidgetImageComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
 ], WidgetImageComponent.prototype, "imageForm", void 0);
 WidgetImageComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -1905,6 +2054,117 @@ WidgetImageComponent = __decorate([
 
 var _a, _b, _c, _d;
 //# sourceMappingURL=widget-image.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n\n\n<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <form #f=\"ngForm\">\n    Text\n    <input [(ngModel)]=\"widget.text\" class=\"form-control\" name=\"text\"/>\n\n    Rows\n    <input [(ngModel)]=\"widget.rows\" class=\"form-control\" type=\"number\" name=\"rows\"/>\n    <label for=\"Name\">Name</label>\n    <div>\n      <input [(ngModel)]=\"widget.name\"\n             type=\"text\"\n             name=\"name\"\n             class=\"form-control\"\n             id=\"Name\"\n             name=\"name\"\n             placeholder=\"Name\">\n    </div>\n\n    Placeholder\n    <input [(ngModel)]=\"widget.placeholder\" class=\"form-control\" required name=\"placeholder\"/>\n    <p></p>\n    <div class=\"input-group\">\n      <input type=\"text\"\n             readonly\n             value=\"Formatted\"\n             class=\"form-control\"/>\n      <span class=\"input-group-addon\">\n        <input [(ngModel)]=\"widget.formatted\"\n               type=\"checkbox\"\n               name=\"formatted\"\n        />\n      </span>\n    </div>\n  </form>\n  <p></p>\n  <div class=\"dev-input-section\">\n    <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetTextComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__ = __webpack_require__("../../../../../src/app/services/widget.service.client.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var WidgetTextComponent = (function () {
+    function WidgetTextComponent(route, widgetService, router) {
+        this.route = route;
+        this.widgetService = widgetService;
+        this.router = router;
+        this.errorMsg = 'Placeholder is required for text input widget.';
+    }
+    WidgetTextComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.userId = params['uid'];
+            _this.webId = params['wid'];
+            _this.pageId = params['pid'];
+            _this.widgetId = params['wgid'];
+            _this.widgetService.findWidgetById(_this.widgetId)
+                .subscribe(function (w) {
+                _this.widget = w;
+            });
+        });
+    };
+    WidgetTextComponent.prototype.confirmChange = function () {
+        var _this = this;
+        if (this.textForm.valid) {
+            this.errorFlag = false;
+            this.widgetService.updateWidget(this.widgetId, this.widget)
+                .subscribe(function (w) {
+                if (w) {
+                    _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page/" + _this.pageId + "/widget"]);
+                }
+            });
+        }
+        else {
+            this.errorFlag = true;
+        }
+    };
+    WidgetTextComponent.prototype.deleteWidget = function () {
+        var _this = this;
+        this.widgetService.deleteWidget(this.widgetId)
+            .subscribe(function (w) {
+            if (w) {
+                _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page/" + _this.pageId + "/widget"]);
+            }
+        });
+    };
+    return WidgetTextComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
+], WidgetTextComponent.prototype, "textForm", void 0);
+WidgetTextComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-widget-text',
+        template: __webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/widget/widget-edit/widget-text/widget-text.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__["a" /* WidgetServiceClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_widget_service_client__["a" /* WidgetServiceClient */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _d || Object])
+], WidgetTextComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=widget-text.component.js.map
 
 /***/ }),
 
@@ -1929,7 +2189,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-youtube/widget-youtube.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\" [ngModel]=\"widget.text\" name=\"text\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Text</label>\n      <input type=\"text\" class=\"dev-input\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>URL</label>\n      <input type=\"url\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.url\" name=\"url\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Width</label>\n      <input type=\"number\" min=\"0\" class=\"dev-input\" placeholder=\"100\" [ngModel]=\"widget.width.replace('%','')\" name=\"width\"/>\n    </div>\n\n  </form>\n  <div class=\"dev-input-section\">\n    <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\" [ngModel]=\"widget.name\" name=\"name\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Text</label>\n      <input type=\"text\" class=\"dev-input\" [(ngModel)]=\"widget.text\" name=\"text\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>URL</label>\n      <input type=\"url\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.url\" name=\"url\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Width</label>\n      <input type=\"number\" min=\"0\" class=\"dev-input\" placeholder=\"100\" [ngModel]=\"widget.width.replace('%','')\" name=\"width\"/>\n    </div>\n\n  </form>\n  <div class=\"dev-input-section\">\n    <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -2006,7 +2266,7 @@ var WidgetYoutubeComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* ViewChild */])('f'),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* NgForm */]) === "function" && _a || Object)
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* NgForm */]) === "function" && _a || Object)
 ], WidgetYoutubeComponent.prototype, "youtubeForm", void 0);
 WidgetYoutubeComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
@@ -2043,7 +2303,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-list/widget-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\" [ngStyle]=\"{'overflow': scroll}\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widgets</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n<div class=\"container-fliud\" appSortable (newIndexes)=\"onSorted($event)\">\n  <div class=\"container-fluid\" *ngFor=\"let widget of widgets\">\n    <div  [ngSwitch]=\"widget.widgetType\" *ngIf=\"widget\" >\n      <div class=\"dev-widget\" *ngSwitchCase=\"'HEADING'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <h1 [ngStyle]=\"{'font-size': widget.size + 'em'}\">{{widget.text}}</h1>\n      </div>\n\n      <div class=\"dev-widget\" *ngSwitchCase=\"'IMAGE'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <img src=\"{{widget.url}}\" [style.width]=\"widget.width\"/>\n        <p>{{widget.text}}</p>\n      </div>\n\n      <div class=\"dev-widget\" *ngSwitchCase=\"'HTML'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <div [innerHtml]=\"widget.text\"></div>\n      </div>\n\n      <div class=\"dev-widget\" *ngSwitchCase=\"'YOUTUBE'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <iframe [width]=\"widget.width\" height=\"500\" [src]=\"widget.url | safe\" frameborder=\"0\" allowfullscreen></iframe>\n        <p>{{widget.text}}</p>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\" [ngStyle]=\"{'overflow': scroll}\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widgets</b>\n    </a>\n  </div>\n\n  <!--plus icon on the navbar -->\n  <div class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget/new\" class=\"navbar-link pull-right\">\n      <span class=\"glyphicon glyphicon-plus dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n<div class=\"container-fliud\" appSortable (newIndexes)=\"onSorted($event)\">\n  <div class=\"container-fluid\" *ngFor=\"let widget of widgets\">\n    <div  [ngSwitch]=\"widget.type\" *ngIf=\"widget\" >\n      <div class=\"dev-widget\" *ngSwitchCase=\"'HEADING'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <h1 [ngStyle]=\"{'font-size': widget.size + 'em'}\">{{widget.text}}</h1>\n      </div>\n\n      <div class=\"dev-widget\" *ngSwitchCase=\"'IMAGE'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <img src=\"{{widget.url}}\" [style.width]=\"widget.width\"/>\n        <p>{{widget.text}}</p>\n      </div>\n\n      <div class=\"dev-widget\" *ngSwitchCase=\"'HTML'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <div [innerHtml]=\"widget.text\"></div>\n      </div>\n\n      <div class=\"dev-widget dev-youtube-widget\" *ngSwitchCase=\"'YOUTUBE'\" >\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <iframe [width]=\"widget.width\" height=\"500\" [src]=\"widget.url | safe\" frameborder=\"0\" allowfullscreen></iframe>\n        <p>{{widget.text}}</p>\n      </div>\n\n      <div *ngSwitchCase=\"'INPUT'\" class=\"dev-widget\">\n        <div class=\"dev-widget-toolbar\">\n          <a (click)=\"redirectTo(widget._id)\">\n            <span class=\"glyphicon glyphicon-cog\"></span>\n          </a>\n          <span class=\"glyphicon glyphicon-menu-hamburger\"></span>\n        </div>\n        <div *ngIf=\"widget.formatted\">\n          <quill-editor [(ngModel)]=\"widget.text\" name=\"text\"></quill-editor>\n        </div>\n\n        <input *ngIf=\"!widget.formatted && (!widget.rows || widget.rows===1)\"\n               placeholder=\"{{widget.placeholder}}\" class=\"form-control\"/>\n\n        <textarea *ngIf=\"!widget.formatted && (widget.rows > 1)\"\n                  rows=\"{{widget.rows}}\" placeholder=\"{{widget.placeholder}}\"\n                  class=\"form-control\">{{widget.text}}</textarea>\n      </div>\n\n\n    </div>\n  </div>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a routerLink=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -2084,6 +2344,7 @@ var WidgetListComponent = (function () {
             _this.pageId = params['pid'];
             _this.widgetService.findWidgetsByPageId(_this.pageId)
                 .subscribe(function (ws) {
+                console.log(ws);
                 _this.widgets = ws;
             });
         });
@@ -2124,11 +2385,13 @@ var _a, _b, _c, _d;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Page; });
 var Page = (function () {
-    function Page(_id, name, websiteId, description) {
-        this._id = _id;
+    function Page(name, websiteId, description) {
         this.name = name;
-        this.websiteId = websiteId;
-        this.description = description;
+        this._website = websiteId;
+        this.description = description ? description : '';
+        this.widgets = [];
+        this.title = '';
+        this.dateCreated = new Date();
     }
     return Page;
 }());
@@ -2143,8 +2406,7 @@ var Page = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
 var User = (function () {
-    function User(_id, username, password, firstName, lastName) {
-        this._id = _id;
+    function User(username, password, firstName, lastName) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -2163,11 +2425,12 @@ var User = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Website; });
 var Website = (function () {
-    function Website(_id, name, developerId, description) {
-        this._id = _id;
+    function Website(name, developerId, description) {
         this.name = name;
-        this.developerId = developerId;
-        this.description = description;
+        this._user = developerId;
+        this.description = description ? description : '';
+        this.dateCreated = new Date();
+        this.pages = [];
     }
     return Website;
 }());
@@ -2182,14 +2445,14 @@ var Website = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Widget; });
 var Widget = (function () {
-    function Widget(_id, widgetType, pageId, size, width, text, url) {
-        this._id = _id;
-        this.widgetType = widgetType;
-        this.pageId = pageId;
+    function Widget(widgetType, pageId, size, width, text, url) {
+        this.type = widgetType;
+        this._page = pageId;
         this.size = size;
         this.width = width;
         this.text = text;
         this.url = url;
+        this.dateCreated = new Date();
     }
     return Widget;
 }());

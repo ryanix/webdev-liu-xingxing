@@ -20,42 +20,61 @@
 
 
 <div class="container" *ngIf="user">
-  <form >
+  <div *ngIf="errFlag"
+       class="alert alert-danger">
+    Update Failed! Please try again later.
+  </div>
+  <div *ngIf="sucFlag"
+       class="alert alert-success">
+    Update Succeed!
+  </div>
+  <form (ngSubmit) = "update()" #f="ngForm">
     <div class="form-group">
       <label for="username">Username</label>
       <input [(ngModel)]="user.username" name="username" type="text" class="form-control" id="username" placeholder="walice">
     </div>
-  </form>
 
-  <form>
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" placeholder="alice.wonderland@unicorn.com">
+      <input type="email" class="form-control" id="email" placeholder="alice.wonderland@unicorn.com" name="email" [(ngModel)]="user.email">
     </div>
-  </form>
 
-  <form>
+
     <div class="form-group">
       <label for="first-name">First Name</label>
       <input [(ngModel)]="user.firstName" name="firstName" type="text" class="form-control" id="first-name" placeholder="Alice">
     </div>
-  </form>
 
-  <form>
     <div class="form-group">
       <label for="last-name">Last Name</label>
       <input [(ngModel)]="user.lastName" name="lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
     </div>
-  </form>
-  <a class="btn btn-primary btn-block"
-     routerLink='/user/{{user?._id}}/website'>Websites</a>
-  <a class="btn btn-danger btn-block"
-     [routerLink]="['/login']" >Logout</a>
 
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input [(ngModel)]="user.phone" id="phone" name="phone" type="text" class="form-control" placeholder="123-345-5678">
+    </div>
+
+    <div class="form-group">
+      <label for="date">First Name</label>
+      <input disabled [ngModel]="user.dateCreated | date: 'MM/dd/yyyy HH:mm:ss'" name="date" type="text" class="form-control" id="date">
+    </div>
+
+
+    <p> </p>
+    <button class="btn btn-primary btn-block"
+            type="submit"
+            [disabled]="!f.valid">Update</button>
+    <p> </p>
+    <a class="btn btn-primary btn-block"
+       routerLink='/user/{{user?._id}}/website'>Websites</a>
+    <a class="btn btn-danger btn-block"
+       [routerLink]="['/login']" >Logout</a>
+  </form>
 </div>
 
 <!-- Footer -->
-<nav class="navbar navbar-default navbar-fixed-bottom dev-navbar-background-color">
+<nav class="dev-navbar-background-color container-fluid row dev-footer">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
       <a routerLink='/user/{{user?._id}}'>

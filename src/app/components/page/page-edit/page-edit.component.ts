@@ -25,21 +25,20 @@ export class PageEditComponent implements OnInit {
       this.webId = params['wid'];
       this.pageId = params['pid'];
       this.pageService.findPageById(this.pageId)
-        .subscribe( (p: Page) => {
+        .subscribe( (p) => {
           this.page = p;
-          console.log('this page is ', p);
         });
       this.pageService.findPageByWebsiteId(this.webId)
-        .subscribe((ps: Page[]) => {
+        .subscribe((ps) => {
           this.pages = ps;
-          console.log('all the pages are', ps);
         });
     });
   }
 
   updatePage() {
     if (this.page.name.length > 0) {
-      this.pageService.updatePage(this.webId, this.page)
+      console.log('++++++++++++++++++++++++++++++', this.page)
+      this.pageService.updatePage(this.pageId, this.page)
         .subscribe((p: Page) => {
           if (p) {
             this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
@@ -53,7 +52,6 @@ export class PageEditComponent implements OnInit {
   deletePage() {
     this.pageService.deletePage(this.pageId)
       .subscribe((p: Page) => {
-        console.log('---------------------------------------------------', p)
         this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
       });
   }
