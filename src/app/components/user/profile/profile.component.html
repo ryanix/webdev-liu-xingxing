@@ -10,7 +10,7 @@
 
     <!--tick mark-->
     <p class="navbar-text pull-right">
-      <a routerLink="/user/{{user?._id}}" class="navbar-link">
+      <a routerLink="" class="navbar-link">
         <span class="glyphicon glyphicon-ok dev-navbar-text-color"></span>
       </a>
     </p>
@@ -68,9 +68,9 @@
     <p> </p>
     <a class="btn btn-primary btn-block"
        routerLink='/user/{{user?._id}}/website'>Websites</a>
-    <a class="btn btn-danger btn-block"
-       [routerLink]="['/login']" >Logout</a>
   </form>
+  <p></p>
+  <button class="btn btn-danger btn-block" (click)="logout()">Logout</button>
 </div>
 
 <!-- Footer -->

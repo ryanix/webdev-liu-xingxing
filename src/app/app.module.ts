@@ -39,6 +39,8 @@ import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html
 
 import { QuillEditorModule } from 'ngx-quill-editor';
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import {SharedService} from './services/shared.service';
+import {AuthGuard} from './services/auth-guard.service';
 
 @NgModule({
   // Declare components here
@@ -83,6 +85,8 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
     PageServiceClient,
     WidgetServiceClient,
     FlickrServiceClient,
+    SharedService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {UserServiceClient} from '../../../services/user.service.client';
 import {Router} from '@angular/router';
 import {User} from '../../../models/user.model.client';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,10 @@ export class RegisterComponent implements OnInit {
   errorMsg = 'username already exists!';
 
 
-  constructor(private userService: UserServiceClient, private router: Router) { }
+  constructor(
+    private userService: UserServiceClient,
+    private router: Router,
+    private sharedService: SharedService) { }
 
   ngOnInit() {
   }
@@ -45,10 +49,11 @@ export class RegisterComponent implements OnInit {
           nuser.phone = this.phone;
           nuser.websites = [];
           nuser.dateCreated = new Date();
-          this.userService.createUser(nuser)
+          this.userService.register(nuser)
             .subscribe( (nu: User) => {
                 if (nu) {
-                  this.router.navigate([`/user/${nu._id}`]);
+                  this.sharedService.user = nu;
+                  this.router.navigate([`/profile`]);
                 }
             });
         }

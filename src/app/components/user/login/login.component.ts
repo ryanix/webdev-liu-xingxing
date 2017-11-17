@@ -21,12 +21,14 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserServiceClient, private router: Router) { }
 
   login() {
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
     // alert(username + ' ' + password);
-    this.userService.findUserByCredentials(this.loginForm.value.username, this.loginForm.value.password)
+    this.userService.login(this.username, this.password)
       .subscribe((u) => {
       if (u) {
         if (Object.getOwnPropertyNames(u).length > 0) {
-          this.router.navigate([`/user/${u._id}`]);
+          this.router.navigate([`/profile`]);
         } else {
           this.errorFlag = true;
         }

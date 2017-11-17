@@ -1,7 +1,7 @@
 /**
  * Created by sesha on 7/26/17.
  */
-
+import {AuthGuard} from './services/auth-guard.service';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
 import {ModuleWithProviders} from '@angular/core';
@@ -25,6 +25,7 @@ const APP_ROUTES: Routes = [
   {path: 'default', component : LoginComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register' , component : RegisterComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'user/:uid' , component : ProfileComponent},
   {path: 'user/:uid/website' , component : WebsiteListComponent},
   {path: 'user/:uid/website/new' , component : WebsiteNewComponent},
