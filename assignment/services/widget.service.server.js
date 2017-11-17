@@ -1,8 +1,8 @@
 module.exports = function(app) {
   var widgetModel = require('../model/widget/widget.model.server');
-  var pageModel = require('../model/page/page.model.server');
-  var mime = require('mime');
-  var crypto = require('crypto');
+  // var pageModel = require('../model/page/page.model.server');
+  // var mime = require('mime');
+  // var crypto = require('crypto');
   var multer = require('multer'); // npm install multer --save
   // var storage = multer.diskStorage({
   //   destination: function (req, file, cb) {
