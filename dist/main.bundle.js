@@ -1725,7 +1725,7 @@ var WidgetHeaderComponent = (function () {
         var _this = this;
         if (this.headerForm.value.name.length > 0) {
             this.errorFlag = false;
-            this.widget.text = this.headerForm.value.name;
+            this.widget.text = this.headerForm.value.text;
             this.widget.size = this.headerForm.value.size;
             this.widgetService.updateWidget(this.widgetId, this.widget)
                 .subscribe(function (w) {

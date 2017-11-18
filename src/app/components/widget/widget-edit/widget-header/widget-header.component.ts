@@ -45,8 +45,9 @@ export class WidgetHeaderComponent implements OnInit {
   confirmChange() {
     if (this.headerForm.value.name.length > 0) {
       this.errorFlag = false;
-      this.widget.text = this.headerForm.value.name;
+      this.widget.text = this.headerForm.value.text;
       this.widget.size = this.headerForm.value.size;
+      this.widget.name = this.headerForm.value.name;
       this.widgetService.updateWidget(this.widgetId, this.widget)
         .subscribe((w: Widget) => {
           if ( w ) {
