@@ -21,7 +21,7 @@ function findUserById(userId) {
 }
 
 function findUserByUsername(username) {
-  return UserModel.find({username: username})
+  return UserModel.findOne({username: username})
 }
 
 function findUserByCreadentials(username, password) {

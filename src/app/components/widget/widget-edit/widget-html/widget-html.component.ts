@@ -49,6 +49,8 @@ export class WidgetHtmlComponent implements OnInit {
             this.errorFlag = true;
           }
         });
+    } else {
+      this.errorFlag = true;
     }
   }
 

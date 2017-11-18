@@ -37,7 +37,7 @@ export class PageEditComponent implements OnInit {
 
   updatePage() {
     if (this.page.name.length > 0) {
-      console.log('++++++++++++++++++++++++++++++', this.page)
+      this.errorFlag = false;
       this.pageService.updatePage(this.pageId, this.page)
         .subscribe((p: Page) => {
           if (p) {
@@ -46,6 +46,8 @@ export class PageEditComponent implements OnInit {
             this.errorFlag = true;
           }
         });
+    } else {
+      this.errorFlag = true;
     }
   }
 

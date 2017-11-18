@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    console.log('==============', 'trying to log out')
     this.userService.logout()
       .subscribe( (data: any) => {
         this.router.navigate(['/login']);

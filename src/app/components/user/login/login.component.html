@@ -15,7 +15,7 @@
              required
              #username="ngModel"/>
     <p> </p>
-    <span class="help-block" *ngIf="!username.valid && username.touched">
+    <span class="help-block alert alert-danger" *ngIf="!username.valid && username.touched">
       Please enter username!
     </span>
 
@@ -26,7 +26,7 @@
             ngModel
             required
             #password="ngModel"/>
-    <span class="help-block" *ngIf="!password.valid && password.touched">
+    <span class="help-block alert alert-danger" *ngIf="!password.valid && password.touched">
       Please enter password!
     </span>
     <p> </p>

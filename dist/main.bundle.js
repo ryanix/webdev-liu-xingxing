@@ -511,7 +511,7 @@ var PageEditComponent = (function () {
     PageEditComponent.prototype.updatePage = function () {
         var _this = this;
         if (this.page.name.length > 0) {
-            console.log('++++++++++++++++++++++++++++++', this.page);
+            this.errorFlag = false;
             this.pageService.updatePage(this.pageId, this.page)
                 .subscribe(function (p) {
                 if (p) {
@@ -521,6 +521,9 @@ var PageEditComponent = (function () {
                     _this.errorFlag = true;
                 }
             });
+        }
+        else {
+            this.errorFlag = true;
         }
     };
     PageEditComponent.prototype.deletePage = function () {
@@ -696,10 +699,10 @@ var PageNewComponent = (function () {
     PageNewComponent.prototype.addNewPage = function () {
         var _this = this;
         if (this.page.name.length > 0) {
+            this.errorFlag = false;
             this.page._website = this.webId;
             this.pageService.createPage(this.webId, this.page)
                 .subscribe(function (p) {
-                console.log('==============', p);
                 if (p) {
                     _this.router.navigate(["/user/" + _this.userId + "/website/" + _this.webId + "/page"]);
                 }
@@ -707,6 +710,9 @@ var PageNewComponent = (function () {
                     _this.errorFlag = true;
                 }
             });
+        }
+        else {
+            this.errorFlag = true;
         }
     };
     PageNewComponent.prototype.refresh = function () {
@@ -842,7 +848,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <h1>Login</h1>\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\n\n    <input   placeholder=\"username\"\n             name=\"username\"\n             type=\"text\"\n             class=\"form-control\"\n             ngModel\n             required\n             #username=\"ngModel\"/>\n    <p> </p>\n    <span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">\n      Please enter username!\n    </span>\n\n    <input  placeholder=\"password\"\n            name=\"password\"\n            type=\"password\"\n            class=\"form-control\"\n            ngModel\n            required\n            #password=\"ngModel\"/>\n    <span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">\n      Please enter password!\n    </span>\n    <p> </p>\n    <button class=\"btn btn-primary btn-block\"\n            type=\"submit\"\n            [disabled]=\"!f.valid\">Login</button>\n  </form>\n\n  <p> </p>\n  <a href=\"/auth/facebook\" class=\"btn btn-primary btn-block\">\n    <span class=\"fa fa-facebook\"></span>\n    Facebook\n  </a>\n  <p> </p>\n\n  <button class=\"btn btn-success btn-block\"\n          type=\"button\"\n          routerLink=\"/register\">Register</button>\n  <p> </p>\n\n\n\n\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <h1>Login</h1>\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\n\n    <input   placeholder=\"username\"\n             name=\"username\"\n             type=\"text\"\n             class=\"form-control\"\n             ngModel\n             required\n             #username=\"ngModel\"/>\n    <p> </p>\n    <span class=\"help-block alert alert-danger\" *ngIf=\"!username.valid && username.touched\">\n      Please enter username!\n    </span>\n\n    <input  placeholder=\"password\"\n            name=\"password\"\n            type=\"password\"\n            class=\"form-control\"\n            ngModel\n            required\n            #password=\"ngModel\"/>\n    <span class=\"help-block alert alert-danger\" *ngIf=\"!password.valid && password.touched\">\n      Please enter password!\n    </span>\n    <p> </p>\n    <button class=\"btn btn-primary btn-block\"\n            type=\"submit\"\n            [disabled]=\"!f.valid\">Login</button>\n  </form>\n\n  <p> </p>\n  <a href=\"/auth/facebook\" class=\"btn btn-primary btn-block\">\n    <span class=\"fa fa-facebook\"></span>\n    Facebook\n  </a>\n  <p> </p>\n\n  <button class=\"btn btn-success btn-block\"\n          type=\"button\"\n          routerLink=\"/register\">Register</button>\n  <p> </p>\n\n\n\n\n</div>\n"
 
 /***/ }),
 
@@ -984,7 +990,6 @@ var ProfileComponent = (function () {
     };
     ProfileComponent.prototype.logout = function () {
         var _this = this;
-        console.log('==============', 'trying to log out');
         this.userService.logout()
             .subscribe(function (data) {
             _this.router.navigate(['/login']);
@@ -1084,11 +1089,11 @@ var RegisterComponent = (function () {
         var _this = this;
         this.userService.findUserByUsername(this.registerForm.value.username)
             .subscribe(function (user) {
-            var u = user;
-            if (Object.getOwnPropertyNames(u).length > 1) {
+            if (user) {
                 _this.errorFlag = true;
             }
             else {
+                _this.errorFlag = false;
                 var nuser = new __WEBPACK_IMPORTED_MODULE_4__models_user_model_client__["a" /* User */](_this.registerForm.value.username, _this.registerForm.value.password);
                 nuser.firstName = _this.firstName;
                 nuser.lastName = _this.lastName;
@@ -1210,6 +1215,9 @@ var WebsiteEditComponent = (function () {
                     _this.errorFlag = true;
                 }
             });
+        }
+        else {
+            this.errorFlag = true;
         }
     };
     WebsiteEditComponent.prototype.deleteWebsite = function () {
@@ -1391,7 +1399,6 @@ var WebsiteNewComponent = (function () {
             var web = new __WEBPACK_IMPORTED_MODULE_1__models_website_model_client__["a" /* Website */](this.addWebForm.value.name, this.userId, this.addWebForm.value.description);
             this.webService.createWebsite(this.userId, web)
                 .subscribe(function (w) {
-                console.log(w);
                 if (w) {
                     _this.router.navigate(["/user/" + _this.userId + "/website"]);
                 }
@@ -1399,6 +1406,9 @@ var WebsiteNewComponent = (function () {
                     _this.errorFlag = true;
                 }
             });
+        }
+        else {
+            this.errorFlag = true;
         }
     };
     return WebsiteNewComponent;
@@ -1515,22 +1525,27 @@ var WidgetChooserComponent = (function () {
     };
     WidgetChooserComponent.prototype.addNewImage = function () {
         var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('IMAGE', this.pageId, null, '100%', null, 'IMAGE URl');
+        widget.name = 'Image Widget';
         this.addWidget(this.pageId, widget);
     };
     WidgetChooserComponent.prototype.addNewYoutube = function () {
         var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('YOUTUBE', this.pageId, null, '100%', null, 'Youtube url');
+        widget.name = 'Youtube Widget';
         this.addWidget(this.pageId, widget);
     };
     WidgetChooserComponent.prototype.addNewHeader = function () {
         var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('HEADING', this.pageId, 2, null, 'HEADING NAME');
+        widget.name = 'Heading Widget';
         this.addWidget(this.pageId, widget);
     };
     WidgetChooserComponent.prototype.addNewHtml = function () {
         var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('HTML', this.pageId, null, '100%', '');
+        widget.name = 'HTML Widget';
         this.addWidget(this.pageId, widget);
     };
     WidgetChooserComponent.prototype.addNewInput = function () {
         var widget = new __WEBPACK_IMPORTED_MODULE_3__models_widget_model_client__["a" /* Widget */]('INPUT', this.pageId, null, null, null);
+        widget.name = 'Text Widget';
         this.addWidget(this.pageId, widget);
     };
     WidgetChooserComponent.prototype.addWidget = function (pageId, widget) {
@@ -1658,7 +1673,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/widget/widget-edit/widget-header/widget-header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\" [ngModel]=\"widget.name\" ngModel name=\"name\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Size</label>\n      <input type=\"number\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.size\" ngModel name=\"size\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n    </div>\n  </form>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
+module.exports = "<div class=\"container-fluid row dev-navbar-background-color\">\n\n  <!--arrow on the navbar-->\n  <div class=\"navbar-text pull-left\">\n    <a routerLink=\"/user/{{userId}}/website/{{webId}}/page/{{pageId}}/widget\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-chevron-left dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n  <!--heading on the left-->\n  <div class=\"navbar-header pull-left\">\n    <a class=\"navbar-brand thick\">\n      <b class=\"dev-navbar-text-color\">Widget Edit</b>\n    </a>\n  </div>\n\n  <div class=\"navbar-text pull-right\">\n    <a (click)=\"confirmChange()\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-ok dev-navbar-text-color\"></span>\n    </a>\n  </div>\n\n</div>\n\n<div  class=\"container-fluid\" *ngIf=\"widget\">\n  <div *ngIf=\"errorFlag\"\n       class=\"alert alert-danger\">\n    {{errorMsg}}\n  </div>\n\n  <form #f=\"ngForm\">\n    <div class=\"dev-input-section\">\n      <label>Name</label>\n      <input type=\"text\" class=\"dev-input\" [ngModel]=\"widget.name\" ngModel name=\"name\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Size</label>\n      <input type=\"number\" class=\"dev-input\" placeholder=\"3\" [ngModel]=\"widget.size\" ngModel name=\"size\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <label>Text</label>\n      <input type=\"text\" class=\"dev-input\" placeholder=\"text area\" [ngModel]=\"widget.text\" ngModel name=\"text\"/>\n    </div>\n\n    <div class=\"dev-input-section\">\n      <button class=\"btn btn-danger full-width\" (click)=\"deleteWidget()\">Delete</button>\n    </div>\n  </form>\n</div>\n\n<div class=\"dev-navbar-background-color container-fluid row dev-footer\">\n  <p class=\"navbar-text pull-right\">\n    <a href=\"/user/{{userId}}\" class=\"navbar-link\">\n      <span class=\"glyphicon glyphicon-user dev-navbar-text-color\"></span>\n    </a>\n  </p>\n</div>\n"
 
 /***/ }),
 
@@ -1721,6 +1736,9 @@ var WidgetHeaderComponent = (function () {
                     _this.errorFlag = true;
                 }
             });
+        }
+        else {
+            this.errorFlag = true;
         }
     };
     WidgetHeaderComponent.prototype.deleteWidget = function () {
@@ -1831,6 +1849,9 @@ var WidgetHtmlComponent = (function () {
                     _this.errorFlag = true;
                 }
             });
+        }
+        else {
+            this.errorFlag = true;
         }
     };
     WidgetHtmlComponent.prototype.deleteWidget = function () {
@@ -2050,6 +2071,9 @@ var WidgetImageComponent = (function () {
                     _this.errorFlag = true;
                 }
             });
+        }
+        else {
+            this.errorFlag = true;
         }
     };
     WidgetImageComponent.prototype.deleteWidget = function () {
@@ -2279,6 +2303,9 @@ var WidgetYoutubeComponent = (function () {
                 }
             });
         }
+        else {
+            this.errorFlag = true;
+        }
     };
     WidgetYoutubeComponent.prototype.deleteWidget = function () {
         var _this = this;
@@ -2371,7 +2398,6 @@ var WidgetListComponent = (function () {
             _this.pageId = params['pid'];
             _this.widgetService.findWidgetsByPageId(_this.pageId)
                 .subscribe(function (ws) {
-                console.log(ws);
                 _this.widgets = ws;
             });
         });
@@ -2723,7 +2749,6 @@ var TestService = (function () {
         this.baseUrl = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].baseUrl;
     }
     TestService.prototype.findAllMessages = function () {
-        console.log(this.baseUrl);
         return this._http.get(this.baseUrl + '/api/test')
             .map(function (res) {
             var data = res.json();

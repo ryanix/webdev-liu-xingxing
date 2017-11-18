@@ -40,6 +40,11 @@
     </div>
 
     <div class="dev-input-section">
+      <label>Text</label>
+      <input type="text" class="dev-input" placeholder="text area" [ngModel]="widget.text" ngModel name="text"/>
+    </div>
+
+    <div class="dev-input-section">
       <button class="btn btn-danger full-width" (click)="deleteWidget()">Delete</button>
     </div>
   </form>

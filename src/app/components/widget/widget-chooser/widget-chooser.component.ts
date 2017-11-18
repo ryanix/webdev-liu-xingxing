@@ -66,6 +66,7 @@ export class WidgetChooserComponent implements OnInit {
       null,
       'IMAGE URl'
     );
+    widget.name = 'Image Widget';
     this.addWidget(this.pageId, widget);
   }
 
@@ -78,6 +79,7 @@ export class WidgetChooserComponent implements OnInit {
       null,
       'Youtube url'
     );
+    widget.name = 'Youtube Widget';
     this.addWidget(this.pageId, widget);
   }
 
@@ -89,6 +91,7 @@ export class WidgetChooserComponent implements OnInit {
       null,
       'HEADING NAME'
     );
+    widget.name = 'Heading Widget';
     this.addWidget(this.pageId, widget);
   }
 
@@ -100,6 +103,7 @@ export class WidgetChooserComponent implements OnInit {
       '100%',
       '',
     );
+    widget.name = 'HTML Widget';
     this.addWidget(this.pageId, widget);
   }
 
@@ -111,6 +115,7 @@ export class WidgetChooserComponent implements OnInit {
       null,
       null,
     );
+    widget.name = 'Text Widget';
     this.addWidget(this.pageId, widget);
   }
 

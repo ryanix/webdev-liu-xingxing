@@ -54,6 +54,8 @@ export class WidgetYoutubeComponent implements OnInit {
             this.errorFlag = true;
           }
         });
+    } else {
+      this.errorFlag = true;
     }
   }
 

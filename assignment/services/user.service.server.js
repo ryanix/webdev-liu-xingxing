@@ -10,9 +10,9 @@ module.exports = function(app) {
   const facebookConfig = {
     clientID     : process.env.FACEBOOK_CLIENT_ID,
     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
+    profileFields: ['id', 'displayName', 'email']
   }
-
 
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
@@ -27,8 +27,8 @@ module.exports = function(app) {
   app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-      successRedirect: '/#/profile',
-      failureRedirect: '/#/login'
+      successRedirect: '/profile',
+      failureRedirect: '/login'
     }));
   app.get('/api/user/:userId', findUserById);
   app.put('/api/user/:userId', updateUser);
@@ -92,10 +92,10 @@ module.exports = function(app) {
   }
 
   function localStrategy(username, password, done) {
-    userModel.findUserByCreadentials(username, password)
+    userModel.findUserByUsername(username)
       .then(
         function (user) {
-          if(user.username == username && bcrypt.compareSync(password, user.password)) {
+          if (bcrypt.compareSync(password, user.password)) {
             return done(null, user);
           }else {
             return done(null, false);
@@ -108,19 +108,38 @@ module.exports = function(app) {
   }
 
   function facebookStrategy(token, refreshToken, profile, done) {
-    console.log(token, refreshToken, profile);
     userModel.findUserByFacebookId(profile.id)
       .then(
-        function( user ) {
+        function(user) {
           if (!user) {
-            userModel.crewateUser(profile)
+            var newUser = createUserFromFacebook(token, profile)
+            return userModel.crewateUser(newUser)
+              .then(function (u) {
+                return done(null, u);
+              })
+          } else {
+            return done(null, user)
           }
-          return done(null, user)
         },
         function (err) {
           return done(err, null)
         }
       )
+  }
+
+  function createUserFromFacebook(token, profile) {
+    data = profile._json;
+    user = {};
+    user.username = data.email;
+    user.email = data.email;
+    user.dateCreated = new Date();
+    user.facebook = {}
+    user.facebook.id = data.id;
+    user.facebook.token = token;
+    [f,l] = data.name.split(' ');
+    user.firstName = f
+    user.lastName = l
+    return user
   }
 
   function findUsers(req, res) {

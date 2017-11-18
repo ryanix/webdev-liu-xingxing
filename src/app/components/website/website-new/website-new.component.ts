@@ -42,13 +42,14 @@ export class WebsiteNewComponent implements OnInit {
       );
       this.webService.createWebsite(this.userId, web)
         .subscribe((w) => {
-          console.log(w)
           if (w) {
             this.router.navigate([`/user/${this.userId}/website`]);
           } else {
             this.errorFlag = true;
           }
         });
+    } else {
+      this.errorFlag = true;
     }
   }
 }

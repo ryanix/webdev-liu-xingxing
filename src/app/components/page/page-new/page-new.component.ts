@@ -37,16 +37,18 @@ export class PageNewComponent implements OnInit {
 
   addNewPage() {
     if (this.page.name.length > 0) {
+      this.errorFlag = false;
       this.page._website = this.webId;
       this.pageService.createPage(this.webId, this.page)
         .subscribe((p) => {
-        console.log('==============', p);
           if ( p ) {
             this.router.navigate([`/user/${this.userId}/website/${this.webId}/page`]);
           }else {
             this.errorFlag = true;
           }
         });
+    } else {
+      this.errorFlag = true;
     }
   }
 

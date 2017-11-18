@@ -35,10 +35,10 @@ export class RegisterComponent implements OnInit {
   register() {
     this.userService.findUserByUsername(this.registerForm.value.username)
       .subscribe((user: User) => {
-        const u = user;
-        if (Object.getOwnPropertyNames(u).length > 1) {
+        if (user) {
           this.errorFlag = true;
         } else {
+          this.errorFlag = false;
           const nuser = new User(
             this.registerForm.value.username,
             this.registerForm.value.password
