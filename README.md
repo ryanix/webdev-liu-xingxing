@@ -20,3 +20,4 @@ This is a academic related repository for storing all the codes ,coding and lear
     3. [assignment3](https://github.com/ryanix/webdev-liu-xingxing/tree/assignment3.2)
     4. [assignment4](https://github.com/ryanix/webdev-liu-xingxing/tree/assignment4.3)
     5. [assignment5](https://github.com/ryanix/webdev-liu-xingxing/tree/assignment5.1)
+    6. [assignment6](https://github.com/ryanix/webdev-liu-xingxing/tree/assignment6)
