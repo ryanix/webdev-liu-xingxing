@@ -29,7 +29,7 @@ export class FlickrServiceClient {
     const url = this.baseUrl + '/api/flickr/search'
     return this._http.post(url, searchTerm)
       .map((res: Response) => {
-        return res;
+        return res.json();
       });
   }
 

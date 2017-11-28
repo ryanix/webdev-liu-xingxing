@@ -13,7 +13,7 @@ module.exports = function (app) {
       .replace('API_KEY', key)
       .replace('TEXT', searchTerm);
     request.get(url ,function (error, response, body) {
-      res.send(body)
+      res.send(response)
     })
   }
 }
