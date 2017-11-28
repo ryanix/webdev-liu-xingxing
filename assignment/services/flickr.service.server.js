@@ -1,7 +1,7 @@
 module.exports = function (app) {
   app.post('/api/flickr/search', searchForPhoto);
 
-  var http = require('http');
+  var request = require('request');
 
   const key = process.env.FLICKR_KEY
   const secret = process.env.FLICKR_SECRET
@@ -9,9 +9,11 @@ module.exports = function (app) {
 
   function searchForPhoto(req, res) {
     const searchTerm = req.body
-    const url = urlBase
+    const url = baseUrl
       .replace('API_KEY', key)
       .replace('TEXT', searchTerm);
-    return this.http.get(url);
+    request.get(url ,function (error, response, body) {
+      res.send(body)
+    })
   }
 }

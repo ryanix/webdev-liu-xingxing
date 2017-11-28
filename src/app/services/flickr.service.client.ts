@@ -21,13 +21,16 @@ export class FlickrServiceClient {
   //
   // ngOnInit() {
   //   this.key = process.env.FLICKR_KEY;
-  //   this.secret = process.env.FLICKR_SECRET;
+  //   this.secret = process.env.FLICKR_SECRET;z
   //   this.urlBase = process.env.FLICKR_BASE_URL;
   }
 
   searchPhotos(searchTerm: any) {
     const url = this.baseUrl + '/api/flickr/search'
-    return this._http.post(url, searchTerm);
+    return this._http.post(url, searchTerm)
+      .map((res: Response) => {
+        return res;
+      });
   }
 
 }

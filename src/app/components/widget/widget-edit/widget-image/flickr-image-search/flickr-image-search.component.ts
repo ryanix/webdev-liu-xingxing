@@ -45,6 +45,7 @@ export class FlickrImageSearchComponent implements OnInit {
       .searchPhotos(this.searchText)
       .subscribe(
         (data: any) => {
+          console.log('==================', data)
           let val = data._body;
           val = val.replace('jsonFlickrApi(', '');
           val = val.substring(0, val.length - 1);

@@ -1728,7 +1728,6 @@ var WidgetHeaderComponent = (function () {
             this.widget.text = this.headerForm.value.text;
             this.widget.size = this.headerForm.value.size;
             this.widget.name = this.headerForm.value.name;
-            console.log('==============================================', this.widget);
             this.widgetService.updateWidget(this.widgetId, this.widget)
                 .subscribe(function (w) {
                 if (w) {
@@ -1957,6 +1956,7 @@ var FlickrImageSearchComponent = (function () {
         this.flickrService
             .searchPhotos(this.searchText)
             .subscribe(function (data) {
+            console.log('==================', data);
             var val = data._body;
             val = val.replace('jsonFlickrApi(', '');
             val = val.substring(0, val.length - 1);
@@ -2593,12 +2593,15 @@ var FlickrServiceClient = (function () {
         //
         // ngOnInit() {
         //   this.key = process.env.FLICKR_KEY;
-        //   this.secret = process.env.FLICKR_SECRET;
+        //   this.secret = process.env.FLICKR_SECRET;z
         //   this.urlBase = process.env.FLICKR_BASE_URL;
     }
     FlickrServiceClient.prototype.searchPhotos = function (searchTerm) {
         var url = this.baseUrl + '/api/flickr/search';
-        return this._http.post(url, searchTerm);
+        return this._http.post(url, searchTerm)
+            .map(function (res) {
+            return res;
+        });
     };
     return FlickrServiceClient;
 }());
