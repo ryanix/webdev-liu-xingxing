@@ -11,9 +11,10 @@ This is a academic related repository for storing all the codes ,coding and lear
 
 ## Related Links
   
-1. [Root to the hosted environment on Heroku](https://webdev-liu-xingxing.herokuapp.com/)
-2. [Link to your project](https://github.com/ryanix/project-xingxing-liu)
-3. Link to your assignment
+1. [Root to the Assignments on Heroku](https://webdev-liu-xingxing.herokuapp.com/)
+2. [Root to the Project on Heroku](https://project-webdev-xingxing-liu.herokuapp.com/)
+3. [Link to your project](https://github.com/ryanix/project-xingxing-liu)
+4. Link to your assignment
     
     1. [assignment1](https://github.com/ryanix/webdev-liu-xingxing/tree/assignment1-test)
     2. [assignment2](https://github.com/ryanix/webdev-liu-xingxing/tree/assignment2)
